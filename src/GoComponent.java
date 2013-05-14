@@ -7,6 +7,7 @@ import java.awt.event. ActionEvent;
 import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JTextArea;
+import java.awt.Color;
 
 /**
  * An Swing component for playing go
@@ -81,11 +82,25 @@ public class GoComponent extends JComponent
 	    jb.setFont(new Font("sansserif",Font.BOLD,12));
 	    jb.setText(Character.toString(turn)); // this is how we convert char to String
 	    for(int i=1;i<362;i++){
+		if(game.charAt(i) == 'W'){ //if element in Array list is W, set background color of JButton to WHITE
+			buttons[i].setBackground(Color.WHITE);
+			buttons[i].setForeground(Color.BLACK); // set font color of JButton to Black for visibility
+		}
+		else if(game.charAt(i) == 'B'){ //if element in ArrayList is B, set background color of JButton to BLACK
+			buttons[i].setBackground(Color.BLACK);
+			buttons[i].setForeground(Color.WHITE); // set font color of JButton to White for visibility
+		}
+		else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back  to default or null.
+		    buttons[i].setBackground(null);
+		}
+		    
 		if(game.charAt(i)!=' '){
 		    buttons[i].setText(Character.toString(game.charAt(i)));
-		    }
-		else
+		}
+		else{
 		    buttons[i].setText("");
+		}
+		
 	    }
 		
 	    // check for a winner

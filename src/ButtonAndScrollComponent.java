@@ -12,6 +12,8 @@ public class ButtonAndScrollComponent extends JComponent
 {
     private MessageDestination md;
     private GoGame game;
+    
+    private GoGui2 directionFrame;
 
     private JButton sur = new JButton();
 
@@ -29,14 +31,29 @@ public class ButtonAndScrollComponent extends JComponent
 	scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 	scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	JButton sur = new JButton("Surrender");
-	sur.addActionListener(new ButtonListener());
+	sur.addActionListener(new ButtonListener2());
+	JButton directions = new JButton("Directions");
+	directions.addActionListener(new ButtonListener());
 	this.add(scroller);
 	this.add(sur);
+	this.add(directions);
     }
 
-    class ButtonListener implements ActionListener {
-	
+    class ButtonListener implements ActionListener{
 	public ButtonListener(){
+	    super();
+	}
+
+	public void actionPerformed (ActionEvent event){
+	    GoGui2 direction = new GoGui2();
+      
+	}
+
+    }
+
+    class ButtonListener2 implements ActionListener {
+	
+	public ButtonListener2(){
 
 	    super();
 	}

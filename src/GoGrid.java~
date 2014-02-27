@@ -155,6 +155,7 @@ public class GoGrid implements GoGame
 
 
 
+
    public int getWScore(){
 	int wcount=0;
 	for(char c : grid){
@@ -172,7 +173,6 @@ public class GoGrid implements GoGame
 	   }
 	return bcount;
 }
-
 
 
 
@@ -199,16 +199,10 @@ public class GoGrid implements GoGame
 	
 	if(gameOver)
 	    return winner;
-	int blackCount=0;
-	int whiteCount=0;
+	int blackCount=game.getBScore();
+	int whiteCount=game.getWScore();
 	if(surrendering){
-	    for(char c : grid)
-		{
-		    if(c=='B')
-			blackCount++;
-		    if(c=='W')
-			whiteCount++;
-		}
+	    
 	    if(blackCount>whiteCount)
 		setWinner('B');
 	    else if(whiteCount>blackCount)

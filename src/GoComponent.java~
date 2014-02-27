@@ -77,7 +77,7 @@ public class GoComponent extends JComponent
 	    
 	   
 	    
-	    md.append("\nWhite Score: " + game.getWScore() + "\nBlack Score: " + game.getBScore());
+	    md.append("White Score: " + game.getWScore() + "\nBlack Score: " + game.getBScore());
 	    md.append("\n" + nextTurn +"s turn.");
 
 	    if (turn==' ')

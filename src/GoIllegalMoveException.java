@@ -1,4 +1,4 @@
-//package edu.ucsb.cs56.S12.dwinkenwerder.cp1
+//package edu.ucsb.cs56.W14.kwwham.cp1
 /**
    Exception for illegal move in Go. Its used in the GoGrid file.
    @author David Winkenwerder and Dustin Henderson

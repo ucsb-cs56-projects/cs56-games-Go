@@ -62,8 +62,7 @@ public interface GoGame
 
     public void setGrid(int i, char c);
 
-    public int getWScore();
-    public int getBScore();
+    //public int Score();
    
 
 }

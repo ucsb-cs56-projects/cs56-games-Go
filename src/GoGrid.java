@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 
    @author David Winkenwerder and Dustin Henderson
-   @version CS56 choicepoints 5/16/12
+   @author Keith Waldron and Nick Abrahan
+   @version CS56 choicepoints 2/28/14
    @see GoGridTest
 */
 public class GoGrid implements GoGame
@@ -16,8 +17,8 @@ public class GoGrid implements GoGame
     private ArrayList<Character> grid = new ArrayList<Character>();
     private int numMoves=0;
     private char turn = 'W';
-    private int scoreW = 0;//area score for white
-    private int scoreB = 0;//area score for black
+    private int scoreW = 0;//amount of white tiles
+    private int scoreB = 0;//amount of black tiles
     private char winner = ' ';
     private boolean gameOver = false;
     private boolean surrender1 = false; boolean surrender2=false; boolean surrendering = false;
@@ -77,7 +78,7 @@ public class GoGrid implements GoGame
     }
 
     /**
-       isSurrounded checks to see if the piece selected is surrounded
+       checkSurrounded checks to see if the piece selected is surrounded
        the other players pieces. it returns true if surrounded, 
        and false, if it is not.
     */

@@ -10,7 +10,8 @@ import javax.swing.JScrollPane;
 /** GoGui2.java is a Gui interface for the directions JFrame for the Go game.
     
     @author Sophia Mao and Kai Jann
-    @version CS56, Spring 2013, UCSB
+    @author Keith Waldron and Nick Abrahan 
+    @version CS56, Winter 2014, UCSB
 */
 
 public class GoGui2{

@@ -3,7 +3,8 @@
  An interface for Go games
   
    @author David Winkenwerder and Dustin Henderson
-   @version CS56 cp1 05.11.2012
+   @author Keith Waldron and Nick Abrahan
+   @version CS56 cp1 2/28/14
    @see GoGrid
    @see GoComponent
    @see Go
@@ -63,6 +64,7 @@ public interface GoGame
     public void setGrid(int i, char c);
 
     public int getWScore();
+
     public int getBScore();
    
 

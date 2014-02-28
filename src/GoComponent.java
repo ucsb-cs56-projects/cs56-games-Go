@@ -13,7 +13,8 @@ import java.awt.Color;
  * An Swing component for playing go
 
   
-   @author David Winkenwerder and Dustin Henderson
+   @author David Winkenwerder, Dustin Henderson
+   @author Keith Waldron, Nick Abrahan
 */
 
 public class GoComponent extends JComponent
@@ -21,7 +22,7 @@ public class GoComponent extends JComponent
     private GoGame game; 
     private GoGrid grid;
     private MessageDestination md;
-
+  
     private JButton [] buttons = new JButton[362];
 
     /** Constructor
@@ -38,7 +39,7 @@ public class GoComponent extends JComponent
        
     public GoComponent(GoGame game, MessageDestination md) {
 	super(); // is this line necessary?  what does it do?
-	
+
 	this.game = game;  // the Go game
 	this.md = md;  // a place we can write messages to
 	
@@ -73,25 +74,19 @@ public class GoComponent extends JComponent
 		nextTurn = "Black";
 	    if(turn == 'B')
 		nextTurn = "Whites";
-	    
-	    
-	   
-	    
-	    md.append("\nWhite Score: " + game.getWScore() + "\nBlack Score: " + game.getBScore());
-	    md.append("\n" + nextTurn +"s turn.");
 
 	    if (turn==' ')
 		return;
 
 	    if (!game.isBlank(num)) {
-		md.append("That square is already occupied!\n");
+		md.append("\nThat square is already occupied!\n");
 		return;
 	    }  
 
 	    game.setGrid(num,turn);
 
 	    if(game.checkSurrounded(num)){
-		md.append("Cannot place tile there, it would be surrounded\n");
+		md.append("\nCannot place tile there, it would be surrounded\n");
 		return;
 		}
 
@@ -121,12 +116,16 @@ public class GoComponent extends JComponent
 		}
 		
 	    }
+
+	    //prints current score of game and whos turn it is 
+	    md.append("\n\nWhite Score: " + game.getWScore() + "\nBlack Score: " + game.getBScore());
+	    md.append("\n" + nextTurn +"s turn.");
 		
 	    // check for a winner
 	    if (winner=='D')
-		md.append("Phooey.  It's a draw.\n");
+		md.append("\nPhooey.  It's a draw.\n");
 	    else if (winner!=' ')
-		md.append(winner + " wins!\n");
+		md.append("\n"+ winner + " wins!\n");
 	}
     }
 

@@ -1,4 +1,4 @@
-//package edu.ucsb.cs56.S12.dwinkenwerder.cp1;
+//package edu.ucsb.cs56.W14.kwwham.cp1;
 import javax.swing.JTextArea;
 
 /**

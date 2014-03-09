@@ -1,10 +1,10 @@
 <project default="compile">
 
-  <!-- build.xml for cpoint1, S12, CS56
-       name: Dustin Henderson + David Winkenwerder -->
+  <!-- build.xml for cpoint1, W12, CS56
+       name:Keith Waldron and Nick Abrahan -->
    <property environment="env"/> <!-- load the environment variables --> 
    <property name="webRoot" value="${env.HOME}/public_html/cs56/S12/issues" /> <!-- DONE -->
-   <property name="webBaseUrl" value="http://www.cs.ucsb.edu/~dwinkenwerder/cs56/S12/issues" /> <!-- DONE -->
+   <property name="webBaseUrl" value="http://www.cs.ucsb.edu/~keithwaldron/cs56/S12/issues" /> <!-- DONE -->
    <property name="projectName" value="0000795" />
   <property name="javadocDest" value="${webRoot}/${projectName}/javadoc" /> 
   <property name="javadocURL" value="${webBaseUrl}/${projectName}/javadoc" /> 
@@ -16,7 +16,7 @@
    <javac srcdir="src" destdir="build" debug="true" debuglevel="lines,vars,source" includeantruntime="false">
      <classpath>
        <pathelement location="build"/>
-       <pathelement location="/cs/faculty/pconrad/public_html/cs56/lib/junit-4.8.2.jar"/>
+       <pathelement location="lib/junit-4.8.2.jar"/>
      </classpath>
    </javac>
  </target>

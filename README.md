@@ -3,6 +3,7 @@ cs56-games-Go
 
 A gui version of the Chinese board game called Go.
 README file updated by Nicholas Abrahan & Keith Waldron, CS56, W14, Proj1;
+Previously only contained "How to Run" and a screenshot.
 
 
 # The Current State of the Project
@@ -14,6 +15,11 @@ But again, the game currently works, and the scoring is simply based on the amou
 # Developer Notes
 
 The code might need a little overhaul. As it currently stands, it's a little difficult to understand, let alone make changes to, the code. A little problem you might run into also, is trying to understand the game itself. It's a pretty deep game, with little intricacies here and there that makes the gameplay a little more confusing than usual. But the rules are in the game, as well as a source that goes into a little more detail than the in-game instructions panel does.
+
+So I would suggest:
+1. Starting with understanding the game. Read the rules of Go, try to understand the basic mechanics.
+2. Start understanding the code. This step might be a little difficult, because the code might need a large refactoring.
+3. Working on the issues.
 
 # File Explanation
 

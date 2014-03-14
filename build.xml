@@ -1,16 +1,14 @@
 <project default="compile">
 
   <!-- build.xml for cpoint1, W12, CS56
-       name:Keith Waldron and Nick Abrahan -->
+       name:Keith Waldron and Nick Abrahan, updated W14 -->
    <property environment="env"/> <!-- load the environment variables --> 
-   <property name="webRoot" value="${env.HOME}/public_html/cs56/S12/issues" /> <!-- DONE -->
-   <property name="webBaseUrl" value="http://www.cs.ucsb.edu/~keithwaldron/cs56/S12/issues" /> <!-- DONE -->
-   <property name="projectName" value="0000795" />
-  <property name="javadocDest" value="~/public_html/cs56/cs56-games-Go/javadoc" /> 
-  <property name="javadocURL" value="~/public_html/cs56/cs56-games-Go/javadoc" /> 
+   <property name="webRoot" value="${env.HOME}/public_html/cs56" /> <!-- DONE -->
+   <property name="webBaseUrl" value="http://www.cs.ucsb.edu/~${env.USER}/cs56" /> <!-- DONE -->
+   <property name="projectName" value="cs56-games-Go" />
+  <property name="javadocDest" value="${webRoot}/${projectName}/javadoc" /> 
+  <property name="javadocURL" value="${webRoot}/${projectName}/javadoc" /> 
   <property name="mainClass" value="GoGui1" />
-  <property name="jwsDest" value="${webRoot}/${projectName}/jws" /> 
-  <property name="jwsURL" value="${webBaseUrl}/${projectName}/jws" /> 
  <target name="compile" description="compile my code">
    <mkdir dir="build" />
    <javac srcdir="src" destdir="build" debug="true" debuglevel="lines,vars,source" includeantruntime="false">
@@ -21,6 +19,12 @@
    </javac>
  </target>
 
+ <path id="project.class.path">
+   <pathelement location="build"/>
+   <pathelement location="lib/junit-4.8.2.jar"/>
+ </path>
+
+
   <target name="run" depends="compile" description="run the gogame program">
     <java classname="${mainClass}" classpath="build" fork="true" />
   </target>
@@ -28,17 +32,12 @@
   <target name="clean" description="delete unnecessary files and directories">
     <delete dir="build" quiet="true" />
     <delete dir="javadoc" quiet="true" />
-    <delete dir="dist" quiet="true" />
-    <delete dir="download" quiet="true" />
-    <delete dir="temp" quiet="true" />
   </target>
    <target name="javadoc" depends="compile">                            
    <delete dir="javadoc" quiet="true" />                                  
    <javadoc  destdir="javadoc" author="true" version="true" use="true" >  
       <fileset dir="src" includes="**/*.java"/>                           
-      <classpath>                                                         
-          <pathelement location="lib/junit-4.8.2.jar"/>      
-     </classpath>                                                         
+      <classpath refid="project.class.path" />                                                         
    </javadoc>                                                                                     
                                                                                                   
    <!-- delete the old javadoc -->                                                                
@@ -48,38 +47,16 @@
    
    <copy todir="${javadocDest}" >                                         
      <fileset dir="javadoc"/>                                          
-   </copy>                                                                                        
-                                                                                                  
-   <!-- Note: this only does the chmod command on the                                             
-        javadoc subdirectory and its contents.  You MIGHT have to                                 
-        MANUALLY do the chmod on the parent directories.  However,                                
-        you should only need to do that once. -->                                                 
-                                                                                                  
-   <chmod dir="${javadocDest}" perm="755"  type="dir" includes="**" />    
-   <chmod dir="${javadocDest}" perm="755"  type="file" includes="**/*" />  
-   <echo>Javadoc deployed to ${javadocURL}</echo>                                                 
-                                                                                                  
- </target>  
-  <target name="jar" depends="compile">
-    <mkdir dir="dist" />
-    <jar destfile="dist/${projectName}.jar" basedir="build" >
-    <manifest>
-      <attribute name="Main-Class" value="${mainClass}"/>
-    </manifest>
-    </jar>
-  </target>
-
-
- <target name="download" depends="">                                          
-
-  <!-- delete everything under the "temp" and "download" subdirectories 
-          In Ant, **/* means "all files under any number of directory levels" -->
-                                                                                  
-  <delete quiet="true">                                                           
-     <fileset dir="temp" includes="**/*" />                                       
-     <fileset dir="download" includes="**/*" />                                    
-  </delete>                                                                       
-</target>
-
+   </copy>                               
+  
+   <!-- Note: this only does the chmod command on the javadoc subdirectory and its contents.
+   you MIGHT have to MANUALLY d othe chmod on the parent directories. However, you should
+   only need to do that once-->
+   <chmod dir="${javadocDest}" perm="755" type="dir" includes="**" />
+   <chmod dir="${javadocDest}" perm="755" type="file" includes="**/*" />
+   <echo> Javadoc deployed to ${javadocURL} if on CSIL</echo>
+   <echo> or if not on CSIL, try file:///${javadocDest}/index.html</echo>
+   </target>
+                                                                        
 
 </project>

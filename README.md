@@ -54,4 +54,4 @@ simply use the command:
 ant run
 ```
 
-![](/cs/student/keithwaldron/Pictures/Screenshot from 2014-03-14 12:21:57.png)
+![](http://imgur.com/wETn3ly)

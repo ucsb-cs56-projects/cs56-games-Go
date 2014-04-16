@@ -5,6 +5,12 @@ A gui version of the Chinese board game called Go.
 README file updated by Nicholas Abrahan & Keith Waldron, CS56, W14, Proj1;
 Previously only contained "How to Run" and a screenshot.
 
+project history
+===============
+```
+ W14 | jstaahl 4pm | kwwham,nickabrahan | A gui version of the Chinese board game called Go
+```
+
 
 # The Current State of the Project
 

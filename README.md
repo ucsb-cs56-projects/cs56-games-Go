@@ -8,6 +8,7 @@ Previously only contained "How to Run" and a screenshot.
 project history
 ===============
 ```
+NO | mastergberry | kwwham,nickabrahan | A gui version of the Chinese board game called Go
  W14 | jstaahl 4pm | kwwham,nickabrahan | A gui version of the Chinese board game called Go
 ```
 

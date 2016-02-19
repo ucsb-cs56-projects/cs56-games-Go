@@ -16,7 +16,7 @@ public class GoGrid implements GoGame
 
     private ArrayList<Character> grid = new ArrayList<Character>();
     private int numMoves=0;
-    private char turn = 'W';
+    private char turn = 'B';
     private int scoreW = 0;//amount of white tiles
     private int scoreB = 0;//amount of black tiles
     private char winner = ' ';

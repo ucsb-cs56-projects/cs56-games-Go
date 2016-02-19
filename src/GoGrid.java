@@ -3,7 +3,7 @@
 import java.util.ArrayList;
 /**
  * A grid for playing Go, with numbers according to row, 1-19 being the first row
-   and 20-39 being the next, etc.
+   and 20-38 being the next, etc.
 
 
    @author David Winkenwerder and Dustin Henderson
@@ -16,7 +16,7 @@ public class GoGrid implements GoGame
 
     private ArrayList<Character> grid = new ArrayList<Character>();
     private int numMoves=0;
-    private char turn = 'W';
+    private char turn = 'B';
     private int scoreW = 0;//amount of white tiles
     private int scoreB = 0;//amount of black tiles
     private char winner = ' ';
@@ -29,7 +29,7 @@ public class GoGrid implements GoGame
      */
     public GoGrid() {	
 	grid.add('_');
-	for(int i=0;i<362; i++)
+	for(int i=1;i<362; i++)
 	{
 	    grid.add(' ');
 	}

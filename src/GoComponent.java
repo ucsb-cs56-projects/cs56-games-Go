@@ -50,6 +50,8 @@ public class GoComponent extends JComponent
 	for(int i=1; i<=361; i++) {
 	    JButton jb = new JButton("");
 	    buttons[i] = jb;
+	    buttons[i].setBackground(Color.BROWN);
+	    buttons[i].setForeground(Color.BROWN);
 	    jb.addActionListener(new ButtonListener(i));
 	    this.add(jb);
 	}	
@@ -105,7 +107,8 @@ public class GoComponent extends JComponent
 			buttons[i].setForeground(Color.BLACK); // set font color of JButton to White for visibility
 		}
 		else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back  to default or null.
-		    buttons[i].setBackground(null);
+		    buttons[i].setBackground(Color.BROWN);
+		    buttons[i].setForeground(Color.BROWN);
 		}
 		    
 		if(game.charAt(i)!=' '){

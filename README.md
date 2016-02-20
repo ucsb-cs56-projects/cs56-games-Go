@@ -35,21 +35,21 @@ DISCLAIMER: We are only human. We are not entirely 100% sure about this, since w
 
 ButtonAndScrollComponent.java -- Handles the scrollbars/buttons in the GUI
 
-Go.java -- The main hub that controls all the pieces.
+Go.java -- The old contains main. Doesn't use graphics and can be played on the terminal. See GoGui1.java.
 
 GoComponent.java -- Handles the actual game mechanics, such as piece color changing, and deciding whose turn it is.
 
-GoGame.java -- Contains the interface used by GoGrid.java, and assists in the implementation of the game rules.
+GoGame.java -- Contains the interface used by GoGrid.java and assists in the implementation of the game rules.
 
-GoGrid.java -- Contains the implementation of GoGame.java, with appropriate methods that are used by GoComponent to help with the game mechanics. It's also responsible for the drawing of the grid, and the methods used to make sure that the rules stay valid.
+GoGrid.java -- Contains the implementation of GoGame.java, with appropriate methods that are used by GoComponent to help with the game mechanics. It's also responsible for the drawing of the grid and the methods used to make sure that the rules stay valid.
 
-GoGui1.java -- Organizes the layout of the game, to have the grid on the left side and the message box on the right side.
+GoGui1.java -- Organizes the layout of the game, to have the grid on the left side and the message box on the right side. Contains the main that build.xml runs.
 
 GoGui2.java -- Contains the "Directions" section of the GUI, handles little else but that.
 
 GoIllegalMoveException.java -- Contains the Exception that occurs when you try to make an illegal move in Go.
 
-MessageDestination.java/SystemOutMessageDestination.java -- The interface and the implementatino, respectfully; Simply contains an easier way to output messages to the system instead of having to put "System.out.println("x")".
+MessageDestination.java/SystemOutMessageDestination.java -- The interface and the implementation, respectively; Simply contains an easier way to output messages to the system instead of having to put "System.out.println("x")". Might be useful only for Go.java's main and unnecessary for GoGui1.java's main.
 
 
 

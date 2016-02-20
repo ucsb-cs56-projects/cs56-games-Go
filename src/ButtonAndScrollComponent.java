@@ -34,9 +34,12 @@ public class ButtonAndScrollComponent extends JComponent
 	sur.addActionListener(new ButtonListener2());
 	JButton directions = new JButton("Directions");
 	directions.addActionListener(new ButtonListener());
+        JButton skipTurn = new JButton("Skip Turn");
+        skipTurn.addActionListener(new ButtonListener3());
 	this.add(scroller);
 	this.add(sur);
 	this.add(directions);
+        this.add(skipTurn);
     }
 
     class ButtonListener implements ActionListener{
@@ -81,6 +84,30 @@ public class ButtonAndScrollComponent extends JComponent
 	    }
 	}
     }
+
+    class ButtonListener3 implements ActionListener {
+
+        public ButtonListener3(){
+            super();
+        }
+
+        public void actionPerformed (ActionEvent event){
+            char turn = game.getTurn(); //gets player color of whose turn it is
+            if (turn == ' ')
+                return;
+                if (turn == 'B'){
+                    game.setTurn('W');
+                }
+                if (turn == 'W'){
+                    game.setTurn('B');
+                }
+        }
+
+    }
+
+
+
+
 
     public MessageDestination getmd()
     {

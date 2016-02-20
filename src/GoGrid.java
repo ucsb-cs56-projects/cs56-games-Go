@@ -288,7 +288,7 @@ public class GoGrid implements GoGame
        return the Go grid with the contents
     */
 
-    public String toString()
+/*    public String toString()
     {
 	final String gridLine = "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-";
 	String result = "";
@@ -306,9 +306,9 @@ public class GoGrid implements GoGame
 		result+= "\n";
 	
 	    }
-		result +="\n" + gridLine;
-		return result;
-    }
+	    result +="\n" + gridLine;
+
+    }*/
 
 
 public char getTurn()

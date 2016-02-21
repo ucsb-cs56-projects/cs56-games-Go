@@ -76,13 +76,13 @@ public class GoComponent extends JComponent
 	    if(turn == 'W')
 		nextTurn = "Black";
 	    if(turn == 'B')
-		nextTurn = "Whites";
+		nextTurn = "White";
 
 	    if (turn==' ')
 		return;
 
 	    if (!game.isBlank(num)) {
-		md.append("\nThat square is already occupied!\n");
+		md.append("\n\nThat square is already occupied!");
 		return;
 	    }  
 
@@ -94,10 +94,11 @@ public class GoComponent extends JComponent
 		}
 
 	    game.setGrid(num,' ');
-	    char winner=game.move(num);
+//	    char winner=game.move(num);
+	    game.move(num);
 	    JButton jb = buttons[num];
 	    jb.setFont(new Font("sansserif",Font.BOLD,12));
-	    jb.setText(Character.toString(turn)); // this is how we convert char to String
+//	    jb.setText(Character.toString(turn)); // this is how we convert char to String
 	    for(int i=1;i<362;i++){
 		if(game.charAt(i) == 'W'){ //if element in Array list is W, set background color of JButton to WHITE
 			buttons[i].setBackground(Color.WHITE);
@@ -112,14 +113,14 @@ public class GoComponent extends JComponent
 		    buttons[i].setBackground(tan);
 		    buttons[i].setForeground(tan);
 		}
-		    
+/*
 		if(game.charAt(i)!=' '){
 		    buttons[i].setText(Character.toString(game.charAt(i)));
 		}
 		else{
 		    buttons[i].setText("");
 		}
-		
+*/		
 	    }
 
 	    //prints current score of game and whos turn it is 
@@ -127,10 +128,11 @@ public class GoComponent extends JComponent
 	    md.append("\n" + nextTurn +"s turn.");
 		
 	    // check for a winner
-	    if (winner=='D')
+/*	    if (winner=='D')
 		md.append("\nPhooey.  It's a draw.\n");
 	    else if (winner!=' ')
-		md.append("\n"+ winner + " wins!\n");
+	    md.append("\n"+ winner + " wins!\n");
+*/
 	}
     }
 

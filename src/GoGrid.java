@@ -88,15 +88,15 @@ public class GoGrid implements GoGame
 	char color = grid.get(i);
         ArrayList<Integer> visited = new ArrayList<Integer>();
 	ArrayList<Integer> canVisit = new ArrayList<Integer>();
-	canVisit.add(i);
-	while(canVisit.size()>0)
+	canVisit.add(i);     // we start with a single element in canVisit. the helper function may add more elements to or remove elements from canVisit
+	while(canVisit.size()>0)       // loop exits when we checked all the important stones in the area or when liberty is found
 	    {
-		if(!checkSurroundedHelper(canVisit.get(0),color,visited,canVisit))
-		    return false;
+		if(!checkSurroundedHelper(canVisit.get(0),color,visited,canVisit))   // check first element of canVisit
+		    return false;          // there is liberty, function returns
 	    }
 	for(int in: visited)
 	    {
-		grid.set(in,' ');
+		grid.set(in,' ');          // no liberty, surrounded stones get removed.
 	    }
 	return true;
     }
@@ -107,7 +107,7 @@ public class GoGrid implements GoGame
 
     public boolean checkSurrounded2(int i)
     {
-	char color = grid.get(i);
+	char color = grid.get(i);              // the actionPerformed method in GoComponent.java already put the stone in without knowing the legality of the move. Depending on what checksurrounded2 returns, it would either keep the stone or throw it away.
         ArrayList<Integer> visited = new ArrayList<Integer>();
 	ArrayList<Integer> canVisit = new ArrayList<Integer>();
 	canVisit.add(i);
@@ -126,16 +126,16 @@ public class GoGrid implements GoGame
 	if(!visited.contains(i)) 
 	    {
 		if(grid.get(i)==' ')
-		    return false;
-		if(grid.get(i)!=color)
+		    return false;                // this means there is liberty
+		if(grid.get(i)!=color)           // it's the color of the opponent's stone
 		    {
 			canVisit.remove(canVisit.indexOf(i));
 		    return true;
 		    }
 		//System.out.println("b");
-		visited.add(i);
+		visited.add(i);                // stones at risk of removal
 		int v;
-		if((v=canVisit.indexOf(i))!=-1)
+		if((v=canVisit.indexOf(i))!=-1)         // -1 means not in arraylist
 		    canVisit.remove(v);
 		//find the four neighbors
 		//if not in can visit and not over an edge, add it to canvisit
@@ -165,7 +165,7 @@ public class GoGrid implements GoGame
 		    }
 	    }
 	int v;
-	if((v=canVisit.indexOf(i))!=-1)
+	if((v=canVisit.indexOf(i))!=-1)          // this if statement is important when you have stones surrounding a large group of other player's stones
 	    canVisit.remove(v);
 	return true;
 	

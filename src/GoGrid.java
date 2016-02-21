@@ -244,6 +244,7 @@ public class GoGrid implements GoGame
        @return winner 'B', 'W', or 'D' for draw, or ' ' for none yet.
     */
     public char move(int i) throws GoIllegalMoveException{
+//@@@    public void move(int i) throws GoIllegalMoveException{
 	/* indexes go from 0 to 361.
 	   Second substring has 362 as last param because second param
 	   to substring is first index NOT included in subsequence.
@@ -265,6 +266,7 @@ public class GoGrid implements GoGame
 	numMoves++;
 
 	return this.getWinner(); //may change gameOver and winner as side effect
+	//	return;
     }
 
 

@@ -34,8 +34,7 @@ public interface GoGame
 	       a GoMoveException is thrown.
 	@return winner 'B', 'W', or 'D' for draw, or ' ' for none yet.
      */
-    public char move(int i) throws GoIllegalMoveException;
-
+    public char move(int i) throws GoIllegalMoveException;    
 
     /** Allows the game to end when both parties are surrendering
      */

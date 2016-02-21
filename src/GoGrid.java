@@ -100,6 +100,25 @@ public class GoGrid implements GoGame
 	    }
 	return true;
     }
+
+    /**
+       checkSurrounded2 is like checkSurrounded but it doesn't modify the grid. It is useful for checking whether a move is legal.
+    */
+
+    public boolean checkSurrounded2(int i)
+    {
+	char color = grid.get(i);
+        ArrayList<Integer> visited = new ArrayList<Integer>();
+	ArrayList<Integer> canVisit = new ArrayList<Integer>();
+	canVisit.add(i);
+	while(canVisit.size()>0)
+	    {
+		if(!checkSurroundedHelper(canVisit.get(0),color,visited,canVisit))
+		    return false;
+	    }
+	return true;
+    }
+    
     //NOT DONE reason The two work fine as seperate, and we may come back and make them recursive for CP3.
 
     public boolean checkSurroundedHelper(int i,char color,ArrayList visited,ArrayList canVisit) //DONE

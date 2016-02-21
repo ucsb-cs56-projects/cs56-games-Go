@@ -88,8 +88,9 @@ public class GoComponent extends JComponent
 
 	    game.setGrid(num,turn);
 
-	    if(game.checkSurrounded(num)){
+	    if(game.checkSurrounded2(num)){
 		md.append("\nCannot place tile there, it would be surrounded\n");
+		game.setGrid(num,' ');
 		return;
 		}
 

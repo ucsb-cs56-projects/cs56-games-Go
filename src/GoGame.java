@@ -60,6 +60,8 @@ public interface GoGame
     
     public boolean checkSurrounded(int num);
 
+    public boolean checkSurrounded2(int num);
+
     public void setGrid(int i, char c);
 
     public int getWScore();

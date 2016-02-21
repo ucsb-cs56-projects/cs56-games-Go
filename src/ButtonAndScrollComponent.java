@@ -7,6 +7,7 @@ import java.awt.event. ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
+import java.awt.Color;
 
 public class ButtonAndScrollComponent extends JComponent
 {
@@ -36,10 +37,13 @@ public class ButtonAndScrollComponent extends JComponent
 	directions.addActionListener(new ButtonListener());
         JButton skipTurn = new JButton("Skip Turn");
         skipTurn.addActionListener(new ButtonListener3());
+        JButton restart = new JButton("Restart");
+        restart.addActionListener(new ButtonListener4());
 	this.add(scroller);
 	this.add(sur);
 	this.add(directions);
         this.add(skipTurn);
+        this.add(restart);
     }
 
     class ButtonListener implements ActionListener{
@@ -78,9 +82,9 @@ public class ButtonAndScrollComponent extends JComponent
 		char winner = game.getWinner();
 		game.setWinner(winner);
 		if(winner == ' ')
-		    md.append("shoot, it's a draw!");
+                    md.append("\nShoot, it's a draw!");
 		else
-		    md.append(winner + " wins! Congratulations!");
+                    md.append("\n" + winner + " wins! Congratulations!");
 	    }
 	}
     }
@@ -95,14 +99,35 @@ public class ButtonAndScrollComponent extends JComponent
             char turn = game.getTurn(); //gets player color of whose turn it is
             if (turn == ' ')
                 return;
-                if (turn == 'B'){
-                    game.setTurn('W');
-                }
-                if (turn == 'W'){
-                    game.setTurn('B');
-                }
+            if (turn == 'B'){
+                game.setTurn('W');
+                md.append("\nBlack skipped a turn.");
+            }
+            if (turn == 'W'){
+                game.setTurn('B');
+                md.append("\nWhite skipped a turn.");
+            }
         }
 
+    }
+
+
+    class ButtonListener4 implements ActionListener {
+
+        public ButtonListener4(){
+            super();
+        }
+
+        public void actionPerformed (ActionEvent event){
+            for(int i=1;i<362;i++){
+                game.setGrid(i, ' ');
+               /* Color tan = new Color(210,180,140);
+                buttons[i].setBackground(tan);
+                buttons[i].setForeground(tan);*/
+            }
+            game.setTurn('B');
+            md.append("\nClick first tile to start over, Black");
+        }
     }
 
 

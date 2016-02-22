@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
    @author David Winkenwerder and Dustin Henderson
    @author Keith Waldron and Nick Abrahan
-   @version CS56 choicepoints 2/28/14
+   @author Jeffrey Liu and Lauren Dumapias
+   @version CS56 2/21/16
    @see GoGridTest
 */
 public class GoGrid implements GoGame
@@ -105,9 +106,9 @@ public class GoGrid implements GoGame
        and false, if it is not.
     */
     
-    public boolean checkSurrounded(int i)
+    public boolean checkSurrounded(int i, char color)
     {
-	char color = grid.get(i);
+        //char color = grid.get(i);
         ArrayList<Integer> visited = new ArrayList<Integer>();
 	ArrayList<Integer> canVisit = new ArrayList<Integer>();
 	canVisit.add(i);     // we start with a single element in canVisit. the helper function may add more elements to or remove elements from canVisit
@@ -284,13 +285,13 @@ public class GoGrid implements GoGame
        a GoIllegalMoveException is thrown.
        @return winner 'B', 'W', or 'D' for draw, or ' ' for none yet.
     */
-    public char move(int i) throws GoIllegalMoveException{
+   /* public char move(int i) throws GoIllegalMoveException{
 //@@@    public void move(int i) throws GoIllegalMoveException{
 	/* indexes go from 0 to 361.
 	   Second substring has 362 as last param because second param
 	   to substring is first index NOT included in subsequence.
 	*/
-	if(!this.isBlank(i))
+        /*if(!this.isBlank(i))
 	    throw new GoIllegalMoveException("Square "+i+" occupied\n");
 	//if(this.checkSurrounded(i))
 	//  throw new GoIllegalMoveException("Cannot place piece here, it would be surrounded.\n");
@@ -308,8 +309,63 @@ public class GoGrid implements GoGame
 
 	return this.getWinner(); //may change gameOver and winner as side effect
 	//	return;
-    }
+    }*/
 
+    public boolean move2(int i) throws GoIllegalMoveException{
+           /* indexes go from 0 to 361.
+              Second substring has 362 as last param because second param
+              to substring is first index NOT included in subsequence.
+           */
+           if(!this.isBlank(i))
+               throw new GoIllegalMoveException("Square "+i+" occupied\n");
+           //if(this.checkSurrounded(i))
+           //  throw new GoIllegalMoveException("Cannot place piece here, it would be surrounded.\n");
+           char e = ' ', w = ' ', s = ' ', n = ' ';
+           if (i%19!=0)
+               e = grid.get(i+1);
+           if (i%19!=1)
+               w = grid.get(i-1);
+           if (i+19<362)
+               s = grid.get(i+19);
+           if (i-19>0)
+               n = grid.get(i-19);
+           grid.set(i,turn);
+           char turn2 = (turn=='W')?'B':'W';
+           if(i+1<362)
+               checkSurrounded(i+1,turn2);
+           if(i-19>0)
+               checkSurrounded(i-19, turn2);
+           if(i-1>0)
+               checkSurrounded(i-1, turn2);
+           if(i+19<362)
+               checkSurrounded(i+19, turn2);
+           //turn = (turn=='W')?'B':'W'; //change turn
+           //numMoves++;
+
+   //	return this.getWinner(); //may change gameOver and winner as side effect
+           if (i%19!=0) {
+               if (e!=grid.get(i+1))
+                   return true;
+           }
+           if (i%19!=1) {
+               if (w!=grid.get(i-1))
+                   return true;
+           }
+           if (i+19<362) {
+               if (s!=grid.get(i+19))
+                   return true;
+           }
+           if (i-19>0) {
+               if (n!=grid.get(i-19))
+                   return true;
+           }
+           return false;
+   }
+
+       public void changeTurn() {
+           turn = (turn=='W')?'B':'W'; //change turn
+           numMoves++;
+         }
 
 
     /** Return game state as a 361 character string.

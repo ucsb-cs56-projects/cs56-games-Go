@@ -15,6 +15,8 @@ import java.awt.Color;
   
    @author David Winkenwerder, Dustin Henderson
    @author Keith Waldron, Nick Abrahan
+   @author Jeffrey Liu and Lauren Dumapias
+   @version CS56 2/21/16
 */
 
 public class GoComponent extends JComponent
@@ -70,35 +72,38 @@ public class GoComponent extends JComponent
 	}
 
 	public void actionPerformed (ActionEvent event) {
-	    char turn=game.getTurn();
-	    
-	    String nextTurn = "Black" ;
-	    if(turn == 'W')
-		nextTurn = "Black";
-	    if(turn == 'B')
-		nextTurn = "White";
+            char turn=game.getTurn();
 
-	    if (turn==' ')
-		return;
+                       String nextTurn = "Black" ;
+                       if(turn == 'W')
+                           nextTurn = "Black";
+                       if(turn == 'B')
+                           nextTurn = "White";
 
-	    if (!game.isBlank(num)) {
-		md.append("\n\nThat square is already occupied!");
-		return;
-	    }  
+                       if (turn==' ')
+                           return;
 
-	    game.setGrid(num,turn);
+                       if (!game.isBlank(num)) {
+                           md.append("\n\nThat square is already occupied!");
+                           return;
+                       }
 
-	    if(game.checkSurrounded2(num)){
-		md.append("\nCannot place tile there, it would be surrounded\n");
-		game.setGrid(num,' ');
-		return;
-		}
+                       //game.setGrid(num,turn);
+                       if(!game.move2(num)){
+                           if(game.checkSurrounded2(num)){
+                               md.append("\nCannot place tile there, it would be surrounded\n");
+                               game.setGrid(num,' ');
+                               return;
+                           }
+                       }
+                       //game.setGrid(num,' ');
 
-	    game.setGrid(num,' ');
-//	    char winner=game.move(num);
-	    game.move(num);
-	    JButton jb = buttons[num];
-	    jb.setFont(new Font("sansserif",Font.BOLD,12));
+                       game.changeTurn();
+           //	    char winner=game.move(num);
+           //	    game.move2(num);
+           //	    game.changeTurn();
+                       JButton jb = buttons[num];
+                       jb.setFont(new Font("sansserif",Font.BOLD,12));
 //	    jb.setText(Character.toString(turn)); // this is how we convert char to String
 	    for(int i=1;i<362;i++){
 		if(game.charAt(i) == 'W'){ //if element in Array list is W, set background color of JButton to WHITE

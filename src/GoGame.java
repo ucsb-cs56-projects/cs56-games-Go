@@ -4,7 +4,8 @@
   
    @author David Winkenwerder and Dustin Henderson
    @author Keith Waldron and Nick Abrahan
-   @version CS56 cp1 2/28/14
+   @author Jeffrey Liu and Lauren Dumapias
+   @version CS56 2/21/16
    @see GoGrid
    @see GoComponent
    @see Go
@@ -34,7 +35,9 @@ public interface GoGame
 	       a GoMoveException is thrown.
 	@return winner 'B', 'W', or 'D' for draw, or ' ' for none yet.
      */
-    public char move(int i) throws GoIllegalMoveException;    
+//    public char move(int i) throws GoIllegalMoveException;
+// I'm not sure why this method cannot be named move if it returns something other than char
+    public boolean move2(int i) throws GoIllegalMoveException;
 
     /** Allows the game to end when both parties are surrendering
      */
@@ -62,9 +65,11 @@ public interface GoGame
 
     public char setWinner(char a);
     
-    public boolean checkSurrounded(int num);
+    public boolean checkSurrounded(int num, char color);
 
     public boolean checkSurrounded2(int num);
+
+    public void changeTurn();
 
     public void setGrid(int i, char c);
 

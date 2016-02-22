@@ -9,6 +9,15 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 import java.awt.Color;
 
+import javax.swing.JFrame;
+import java.awt.ComponentOrientation;
+//import javax.swing.BoxLayout;
+import java.awt.Dimension;
+//import javax.swing.JScrollPane;
+// javax.swing.JTextArea;
+import javax.swing.text.BadLocationException;
+
+
 public class ButtonAndScrollComponent extends JComponent
 {
     private MessageDestination md;
@@ -78,9 +87,9 @@ public class ButtonAndScrollComponent extends JComponent
 		game.setTurn('B');
 	    }
 	    if(game.getSurrender1() && game.getSurrender2()){
-		game.setSurrendering();
+                game.setSurrendering();
 		char winner = game.getWinner();
-		game.setWinner(winner);
+                //game.setWinner(winner);
 		if(winner == ' ')
                     md.append("\nShoot, it's a draw!");
 		else
@@ -119,14 +128,11 @@ public class ButtonAndScrollComponent extends JComponent
         }
 
         public void actionPerformed (ActionEvent event){
-            for(int i=1;i<362;i++){
-                game.setGrid(i, ' ');
-               /* Color tan = new Color(210,180,140);
-                buttons[i].setBackground(tan);
-                buttons[i].setForeground(tan);*/
-            }
-            game.setTurn('B');
+            game.restart();
+
             md.append("\nClick first tile to start over, Black");
+
+
         }
     }
 

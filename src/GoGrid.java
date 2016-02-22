@@ -36,12 +36,34 @@ public class GoGrid implements GoGame
 
     }
 
+
+  /*  public void setGameStatus(boolean boo){
+        this.gameOver = boo;
+    }*/
+
+    public void restart(){
+        for(int i=1;i<362; i++)
+        {
+            setGrid(i, ' ');
+        }
+        numMoves = 0;
+        turn = 'B';
+        scoreW = 0;
+        scoreB = 0;
+        winner = ' ';
+        gameOver = false;
+        surrender1 = false;
+        surrender2 = false;
+        surrendering = false;
+    }
+
+
     public void setTurn(char turn){
 	this.turn = turn;
     }
 
     public void setSurrendering() {
-	this.surrendering = true;
+        this.surrendering = true;
     }
 	
     public void setGrid(int i, char c){
@@ -323,13 +345,13 @@ public class GoGrid implements GoGame
 			    result = result + grid.get(j+i*19)+ "|";
 			else
 			    result = result + grid.get(j+i*19);
-		    }
-		result+= "\n";
-	
-	    }
-	    result +="\n" + gridLine;
+                    }
+                    result+= "\n";
 
-    }*/
+                }
+                result +="\n" + gridLine;
+
+        }*/
 
 
 public char getTurn()

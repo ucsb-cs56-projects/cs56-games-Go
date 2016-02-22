@@ -52,7 +52,7 @@ public class Go
 	   }
 	   if(surrender1 && surrender2){
 	       g.setSurrendering();
-	       winner = g.getWinner();
+               //winner = g.getWinner();
 	       done=true;
 	   }
 	 }

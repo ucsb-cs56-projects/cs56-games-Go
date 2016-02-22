@@ -44,11 +44,15 @@ public interface GoGame
      */
     public void setSurrendering();
 
+    public void restart();
+
     public String toString();
     
     public char charAt(int i);
 
     public boolean getSurrender1();
+
+ //   public void setGameStatus(boolean boo);
     
     public void setSurrender1(boolean boo);
     

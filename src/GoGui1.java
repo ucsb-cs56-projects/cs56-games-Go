@@ -59,7 +59,7 @@ public class GoGui1 {
 
 	if(game.getSurrender1() && game.getSurrender2()){
 	    game.setSurrendering();
-	    winner=game.getWinner();
+            //winner=game.getWinner();
 
 	  
 	}

@@ -88,17 +88,12 @@ public class GoComponent extends JComponent
                            return;
                        }
 
-                       //game.setGrid(num,turn);
-		       // @@ move2 returns true if capture happens. If it returns true the move is definitely legal. If no capture happens, we have to check if the move would be surrounded. If it would be surrounded, then it is not legal and we must undo the move. this is bad code. the checks should not be in this file. they should be in GoGrid. appending a 2 to the end of a method is poor naming convention.
-                       if(!game.move2(num)){
-                           if(game.checkSurrounded2(num)){
+		       // makeMove returns true if move is legal, false if move is illegal
+		       if (!game.makeMove(num)) {
                                md.append("\nCannot place tile there, it would be surrounded\n");
-                               game.setGrid(num,' ');
-                               return;
-                           }
-                       }
-                       //game.setGrid(num,' ');
-
+			       return;
+		       }
+		       
                        game.changeTurn();
            //	    char winner=game.move(num);
            //	    game.move2(num);

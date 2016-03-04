@@ -139,6 +139,7 @@ public class GoGrid implements GoGame
 		if(!checkSurroundedHelper(canVisit.get(0),color,visited,canVisit))
 		    return false;
 	    }
+	setGrid(i,' ');                  // undo illegal move
 	return true;
     }
     
@@ -157,39 +158,39 @@ public class GoGrid implements GoGame
 		    }
 		//System.out.println("b");
 		visited.add(i);                // stones at risk of removal
-		int v;
-		if((v=canVisit.indexOf(i))!=-1)         // -1 means not in arraylist
+		int v = canVisit.indexOf(i);
+		if(v!=-1)         // -1 means not in arraylist
 		    canVisit.remove(v);
 		//find the four neighbors
 		//if not in can visit and not over an edge, add it to canvisit
 		if((i)%19!=0)
 		    {
-			if(canVisit.indexOf(i)==-1)
+			if(!canVisit.contains(i+1))
 			    if(!visited.contains(i+1))
 				canVisit.add(i+1);
 		    }
 		if((i)%19!=1)
 		    {
-			if(canVisit.indexOf(i)==-1)
+			if(!canVisit.contains(i-1))
 			    if(!visited.contains(i-1))
 				canVisit.add(i-1);
 		    }
 		if((i+19)<362)
 		    {
-			if(canVisit.indexOf(i)==-1)
+			if(!canVisit.contains(i+19))
 			    if(!visited.contains(i+19))
 				canVisit.add(i+19);
 		    }
 	       	if((i-19)>0)
 		    {
-			if(canVisit.indexOf(i)==-1)
+			if(!canVisit.contains(i-19))
 			    if(!visited.contains(i-19))
 				canVisit.add(i-19);
 		    }
 	    }
-	int v;
-	if((v=canVisit.indexOf(i))!=-1)          // this if statement is important when you have stones surrounding a large group of other player's stones
-	    canVisit.remove(v);
+	/*int v;
+	if((v=canVisit.indexOf(i))!=-1)
+	canVisit.remove(v);*/
 	return true;
 	
 
@@ -311,7 +312,7 @@ public class GoGrid implements GoGame
 	//	return;
     }*/
 
-    public boolean move2(int i) throws GoIllegalMoveException{
+    public boolean makeMove(int i) throws GoIllegalMoveException{
            /* indexes go from 0 to 361.
               Second substring has 362 as last param because second param
               to substring is first index NOT included in subsequence.
@@ -359,9 +360,9 @@ public class GoGrid implements GoGame
                if (n!=grid.get(i-19))
                    return true;
            }
-           return false;
+           return !checkSurrounded2(i);
    }
-
+    
        public void changeTurn() {
            turn = (turn=='W')?'B':'W'; //change turn
            numMoves++;

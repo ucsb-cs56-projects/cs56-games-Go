@@ -36,8 +36,8 @@ public interface GoGame
 	@return winner 'B', 'W', or 'D' for draw, or ' ' for none yet.
      */
 //    public char move(int i) throws GoIllegalMoveException;
-// I'm not sure why this method cannot be named move if it returns something other than char
-    public boolean move2(int i) throws GoIllegalMoveException;
+
+    public boolean makeMove(int i) throws GoIllegalMoveException;
 
     /** Allows the game to end when both parties are surrendering
      */

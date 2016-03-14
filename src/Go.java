@@ -1,6 +1,6 @@
 //package edu.ucsb.cs56.W14.kwwham.cp1;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 /**
    A Text UI for playing Go.
@@ -10,7 +10,7 @@ import java.util.Scanner;
    @version CS56 cp1 05.17.2012
    @see GoGridTest
  */
-public class Go
+/*public class Go
 {
     
     public static void main(String [] args) {
@@ -52,7 +52,7 @@ public class Go
 	   }
 	   if(surrender1 && surrender2){
 	       g.setSurrendering();
-	       winner = g.getWinner();
+               //winner = g.getWinner();
 	       done=true;
 	   }
 	 }
@@ -65,3 +65,4 @@ public class Go
     }
 
 }
+*/

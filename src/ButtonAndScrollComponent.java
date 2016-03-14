@@ -7,6 +7,16 @@ import java.awt.event. ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
+import java.awt.Color;
+
+import javax.swing.JFrame;
+import java.awt.ComponentOrientation;
+//import javax.swing.BoxLayout;
+import java.awt.Dimension;
+//import javax.swing.JScrollPane;
+// javax.swing.JTextArea;
+import javax.swing.text.BadLocationException;
+
 
 public class ButtonAndScrollComponent extends JComponent
 {
@@ -34,9 +44,15 @@ public class ButtonAndScrollComponent extends JComponent
 	sur.addActionListener(new ButtonListener2());
 	JButton directions = new JButton("Directions");
 	directions.addActionListener(new ButtonListener());
+        JButton skipTurn = new JButton("Skip Turn");
+        skipTurn.addActionListener(new ButtonListener3());
+        JButton restart = new JButton("Restart");
+        restart.addActionListener(new ButtonListener4());
 	this.add(scroller);
 	this.add(sur);
 	this.add(directions);
+        this.add(skipTurn);
+        this.add(restart);
     }
 
     class ButtonListener implements ActionListener{
@@ -71,16 +87,58 @@ public class ButtonAndScrollComponent extends JComponent
 		game.setTurn('B');
 	    }
 	    if(game.getSurrender1() && game.getSurrender2()){
-		game.setSurrendering();
+                game.setSurrendering();
 		char winner = game.getWinner();
-		game.setWinner(winner);
+                //game.setWinner(winner);
 		if(winner == ' ')
-		    md.append("shoot, it's a draw!");
+                    md.append("\nShoot, it's a draw!");
 		else
-		    md.append(winner + " wins! Congratulations!");
+                    md.append("\n" + winner + " wins! Congratulations!");
 	    }
 	}
     }
+
+    class ButtonListener3 implements ActionListener {
+
+        public ButtonListener3(){
+            super();
+        }
+
+        public void actionPerformed (ActionEvent event){
+            char turn = game.getTurn(); //gets player color of whose turn it is
+            if (turn == ' ')
+                return;
+            if (turn == 'B'){
+                game.setTurn('W');
+                md.append("\nBlack skipped a turn.");
+            }
+            if (turn == 'W'){
+                game.setTurn('B');
+                md.append("\nWhite skipped a turn.");
+            }
+        }
+
+    }
+
+
+    class ButtonListener4 implements ActionListener {
+
+        public ButtonListener4(){
+            super();
+        }
+
+        public void actionPerformed (ActionEvent event){
+            game.restart();
+
+            md.append("\nClick first tile to start over, Black");
+
+
+        }
+    }
+
+
+
+
 
     public MessageDestination getmd()
     {

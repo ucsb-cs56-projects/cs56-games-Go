@@ -16,6 +16,6 @@ public class SystemOutMessageDestination implements MessageDestination
     
     public void append(String msg)
     {
-	System.out.println(msg);
+    	System.out.println(msg);
     }
 }

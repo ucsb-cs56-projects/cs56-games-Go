@@ -15,6 +15,8 @@ import java.awt.Color;
   
    @author David Winkenwerder, Dustin Henderson
    @author Keith Waldron, Nick Abrahan
+   @author Jeffrey Liu and Lauren Dumapias
+   @version CS56 2/21/16
 */
 
 public class GoComponent extends JComponent
@@ -50,6 +52,9 @@ public class GoComponent extends JComponent
 	for(int i=1; i<=361; i++) {
 	    JButton jb = new JButton("");
 	    buttons[i] = jb;
+	    Color tan = new Color(210,180,140);
+	    buttons[i].setBackground(tan);
+	    buttons[i].setForeground(tan);
 	    jb.addActionListener(new ButtonListener(i));
 	    this.add(jb);
 	}	
@@ -67,34 +72,35 @@ public class GoComponent extends JComponent
 	}
 
 	public void actionPerformed (ActionEvent event) {
-	    char turn=game.getTurn();
-	    
-	    String nextTurn = "Black" ;
-	    if(turn == 'W')
-		nextTurn = "Black";
-	    if(turn == 'B')
-		nextTurn = "Whites";
+            char turn=game.getTurn();
 
-	    if (turn==' ')
-		return;
+                       String nextTurn = "Black" ;
+                       if(turn == 'W')
+                           nextTurn = "Black";
+                       if(turn == 'B')
+                           nextTurn = "White";
 
-	    if (!game.isBlank(num)) {
-		md.append("\nThat square is already occupied!\n");
-		return;
-	    }  
+                       if (turn==' ')
+                           return;
 
-	    game.setGrid(num,turn);
+                       if (!game.isBlank(num)) {
+                           md.append("\n\nThat square is already occupied!");
+                           return;
+                       }
 
-	    if(game.checkSurrounded(num)){
-		md.append("\nCannot place tile there, it would be surrounded\n");
-		return;
-		}
-
-	    game.setGrid(num,' ');
-	    char winner=game.move(num);
-	    JButton jb = buttons[num];
-	    jb.setFont(new Font("sansserif",Font.BOLD,12));
-	    jb.setText(Character.toString(turn)); // this is how we convert char to String
+		       // makeMove returns true if move is legal, false if move is illegal
+		       if (!game.makeMove(num)) {
+                               md.append("\nCannot place tile there, it would be surrounded\n");
+			       return;
+		       }
+		       
+                       game.changeTurn();
+           //	    char winner=game.move(num);
+           //	    game.move2(num);
+           //	    game.changeTurn();
+                       JButton jb = buttons[num];
+                       jb.setFont(new Font("sansserif",Font.BOLD,12));
+//	    jb.setText(Character.toString(turn)); // this is how we convert char to String
 	    for(int i=1;i<362;i++){
 		if(game.charAt(i) == 'W'){ //if element in Array list is W, set background color of JButton to WHITE
 			buttons[i].setBackground(Color.WHITE);
@@ -104,17 +110,19 @@ public class GoComponent extends JComponent
 			buttons[i].setBackground(Color.BLACK);
 			buttons[i].setForeground(Color.BLACK); // set font color of JButton to White for visibility
 		}
-		else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back  to default or null.
-		    buttons[i].setBackground(null);
+		else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back to tan.
+		    Color tan = new Color(210,180,140);
+		    buttons[i].setBackground(tan);
+		    buttons[i].setForeground(tan);
 		}
-		    
+/*
 		if(game.charAt(i)!=' '){
 		    buttons[i].setText(Character.toString(game.charAt(i)));
 		}
 		else{
 		    buttons[i].setText("");
 		}
-		
+*/		
 	    }
 
 	    //prints current score of game and whos turn it is 
@@ -122,10 +130,11 @@ public class GoComponent extends JComponent
 	    md.append("\n" + nextTurn +"s turn.");
 		
 	    // check for a winner
-	    if (winner=='D')
+/*	    if (winner=='D')
 		md.append("\nPhooey.  It's a draw.\n");
 	    else if (winner!=' ')
-		md.append("\n"+ winner + " wins!\n");
+	    md.append("\n"+ winner + " wins!\n");
+*/
 	}
     }
 

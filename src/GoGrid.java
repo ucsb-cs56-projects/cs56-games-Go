@@ -3,12 +3,13 @@
 import java.util.ArrayList;
 /**
  * A grid for playing Go, with numbers according to row, 1-19 being the first row
-   and 20-39 being the next, etc.
+   and 20-38 being the next, etc.
 
 
    @author David Winkenwerder and Dustin Henderson
    @author Keith Waldron and Nick Abrahan
-   @version CS56 choicepoints 2/28/14
+   @author Jeffrey Liu and Lauren Dumapias
+   @version CS56 2/21/16
    @see GoGridTest
 */
 public class GoGrid implements GoGame
@@ -16,7 +17,7 @@ public class GoGrid implements GoGame
 
     private ArrayList<Character> grid = new ArrayList<Character>();
     private int numMoves=0;
-    private char turn = 'W';
+    private char turn = 'B';
     private int scoreW = 0;//amount of white tiles
     private int scoreB = 0;//amount of black tiles
     private char winner = ' ';
@@ -29,19 +30,41 @@ public class GoGrid implements GoGame
      */
     public GoGrid() {	
 	grid.add('_');
-	for(int i=0;i<362; i++)
+	for(int i=1;i<362; i++)
 	{
 	    grid.add(' ');
 	}
 
     }
 
+
+  /*  public void setGameStatus(boolean boo){
+        this.gameOver = boo;
+    }*/
+
+    public void restart(){
+        for(int i=1;i<362; i++)
+        {
+            setGrid(i, ' ');
+        }
+        numMoves = 0;
+        turn = 'B';
+        scoreW = 0;
+        scoreB = 0;
+        winner = ' ';
+        gameOver = false;
+        surrender1 = false;
+        surrender2 = false;
+        surrendering = false;
+    }
+
+
     public void setTurn(char turn){
 	this.turn = turn;
     }
 
     public void setSurrendering() {
-	this.surrendering = true;
+        this.surrendering = true;
     }
 	
     public void setGrid(int i, char c){
@@ -83,9 +106,31 @@ public class GoGrid implements GoGame
        and false, if it is not.
     */
     
-    public boolean checkSurrounded(int i)
+    public boolean checkSurrounded(int i, char color)
     {
-	char color = grid.get(i);
+        //char color = grid.get(i);
+        ArrayList<Integer> visited = new ArrayList<Integer>();
+	ArrayList<Integer> canVisit = new ArrayList<Integer>();
+	canVisit.add(i);     // we start with a single element in canVisit. the helper function may add more elements to or remove elements from canVisit
+	while(canVisit.size()>0)       // loop exits when we checked all the important stones in the area or when liberty is found
+	    {
+		if(!checkSurroundedHelper(canVisit.get(0),color,visited,canVisit))   // check first element of canVisit
+		    return false;          // there is liberty, function returns
+	    }
+	for(int in: visited)
+	    {
+		grid.set(in,' ');          // no liberty, surrounded stones get removed.
+	    }
+	return true;
+    }
+
+    /**
+       checkSurrounded2 is like checkSurrounded but it doesn't modify the grid. It is useful for checking whether a move is legal.
+    */
+
+    public boolean checkSurrounded2(int i)
+    {
+	char color = grid.get(i);              // the actionPerformed method in GoComponent.java already put the stone in without knowing the legality of the move. Depending on what checksurrounded2 returns, it would either keep the stone or throw it away.
         ArrayList<Integer> visited = new ArrayList<Integer>();
 	ArrayList<Integer> canVisit = new ArrayList<Integer>();
 	canVisit.add(i);
@@ -94,12 +139,10 @@ public class GoGrid implements GoGame
 		if(!checkSurroundedHelper(canVisit.get(0),color,visited,canVisit))
 		    return false;
 	    }
-	for(int in: visited)
-	    {
-		grid.set(in,' ');
-	    }
+	setGrid(i,' ');                  // undo illegal move
 	return true;
     }
+    
     //NOT DONE reason The two work fine as seperate, and we may come back and make them recursive for CP3.
 
     public boolean checkSurroundedHelper(int i,char color,ArrayList visited,ArrayList canVisit) //DONE
@@ -107,47 +150,47 @@ public class GoGrid implements GoGame
 	if(!visited.contains(i)) 
 	    {
 		if(grid.get(i)==' ')
-		    return false;
-		if(grid.get(i)!=color)
+		    return false;                // this means there is liberty
+		if(grid.get(i)!=color)           // it's the color of the opponent's stone
 		    {
 			canVisit.remove(canVisit.indexOf(i));
 		    return true;
 		    }
 		//System.out.println("b");
-		visited.add(i);
-		int v;
-		if((v=canVisit.indexOf(i))!=-1)
+		visited.add(i);                // stones at risk of removal
+		int v = canVisit.indexOf(i);
+		if(v!=-1)         // -1 means not in arraylist
 		    canVisit.remove(v);
 		//find the four neighbors
 		//if not in can visit and not over an edge, add it to canvisit
 		if((i)%19!=0)
 		    {
-			if(canVisit.indexOf(i)==-1)
+			if(!canVisit.contains(i+1))
 			    if(!visited.contains(i+1))
 				canVisit.add(i+1);
 		    }
 		if((i)%19!=1)
 		    {
-			if(canVisit.indexOf(i)==-1)
+			if(!canVisit.contains(i-1))
 			    if(!visited.contains(i-1))
 				canVisit.add(i-1);
 		    }
 		if((i+19)<362)
 		    {
-			if(canVisit.indexOf(i)==-1)
+			if(!canVisit.contains(i+19))
 			    if(!visited.contains(i+19))
 				canVisit.add(i+19);
 		    }
 	       	if((i-19)>0)
 		    {
-			if(canVisit.indexOf(i)==-1)
+			if(!canVisit.contains(i-19))
 			    if(!visited.contains(i-19))
 				canVisit.add(i-19);
 		    }
 	    }
-	int v;
+	/*int v;
 	if((v=canVisit.indexOf(i))!=-1)
-	    canVisit.remove(v);
+	canVisit.remove(v);*/
 	return true;
 	
 
@@ -243,12 +286,13 @@ public class GoGrid implements GoGame
        a GoIllegalMoveException is thrown.
        @return winner 'B', 'W', or 'D' for draw, or ' ' for none yet.
     */
-    public char move(int i) throws GoIllegalMoveException{
+   /* public char move(int i) throws GoIllegalMoveException{
+//@@@    public void move(int i) throws GoIllegalMoveException{
 	/* indexes go from 0 to 361.
 	   Second substring has 362 as last param because second param
 	   to substring is first index NOT included in subsequence.
 	*/
-	if(!this.isBlank(i))
+        /*if(!this.isBlank(i))
 	    throw new GoIllegalMoveException("Square "+i+" occupied\n");
 	//if(this.checkSurrounded(i))
 	//  throw new GoIllegalMoveException("Cannot place piece here, it would be surrounded.\n");
@@ -265,8 +309,64 @@ public class GoGrid implements GoGame
 	numMoves++;
 
 	return this.getWinner(); //may change gameOver and winner as side effect
-    }
+	//	return;
+    }*/
 
+    public boolean makeMove(int i) throws GoIllegalMoveException{
+           /* indexes go from 0 to 361.
+              Second substring has 362 as last param because second param
+              to substring is first index NOT included in subsequence.
+           */
+           if(!this.isBlank(i))
+               throw new GoIllegalMoveException("Square "+i+" occupied\n");
+           //if(this.checkSurrounded(i))
+           //  throw new GoIllegalMoveException("Cannot place piece here, it would be surrounded.\n");
+           char e = ' ', w = ' ', s = ' ', n = ' ';
+           if (i%19!=0)
+               e = grid.get(i+1);
+           if (i%19!=1)
+               w = grid.get(i-1);
+           if (i+19<362)
+               s = grid.get(i+19);
+           if (i-19>0)
+               n = grid.get(i-19);
+           grid.set(i,turn);
+           char turn2 = (turn=='W')?'B':'W';
+           if(i+1<362)
+               checkSurrounded(i+1,turn2);
+           if(i-19>0)
+               checkSurrounded(i-19, turn2);
+           if(i-1>0)
+               checkSurrounded(i-1, turn2);
+           if(i+19<362)
+               checkSurrounded(i+19, turn2);
+           //turn = (turn=='W')?'B':'W'; //change turn
+           //numMoves++;
+
+   //	return this.getWinner(); //may change gameOver and winner as side effect
+           if (i%19!=0) {
+               if (e!=grid.get(i+1))
+                   return true;
+           }
+           if (i%19!=1) {
+               if (w!=grid.get(i-1))
+                   return true;
+           }
+           if (i+19<362) {
+               if (s!=grid.get(i+19))
+                   return true;
+           }
+           if (i-19>0) {
+               if (n!=grid.get(i-19))
+                   return true;
+           }
+           return !checkSurrounded2(i);
+   }
+    
+       public void changeTurn() {
+           turn = (turn=='W')?'B':'W'; //change turn
+           numMoves++;
+         }
 
 
     /** Return game state as a 361 character string.
@@ -288,7 +388,7 @@ public class GoGrid implements GoGame
        return the Go grid with the contents
     */
 
-    public String toString()
+/*    public String toString()
     {
 	final String gridLine = "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-";
 	String result = "";
@@ -302,13 +402,13 @@ public class GoGrid implements GoGame
 			    result = result + grid.get(j+i*19)+ "|";
 			else
 			    result = result + grid.get(j+i*19);
-		    }
-		result+= "\n";
-	
-	    }
-		result +="\n" + gridLine;
-		return result;
-    }
+                    }
+                    result+= "\n";
+
+                }
+                result +="\n" + gridLine;
+
+        }*/
 
 
 public char getTurn()

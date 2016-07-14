@@ -140,14 +140,15 @@ public class ButtonAndScrollComponent extends JComponent
 
         }
     }
-}
 
 
 
 
 
-   /* public MessageDestination getmd()
+
+   public JTextArea getmd()
     {
 	return md;
     }
-}*/
+
+}

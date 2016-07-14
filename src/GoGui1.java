@@ -7,6 +7,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.text.BadLocationException;
 
+import java.awt.Font;
+import java.awt.Color;
 
 /** GoGui01.java is a GUI interface for TicTacToe that uses
     the JTextArea as the destination for messages.
@@ -37,16 +39,27 @@ public class GoGui1 {
 	GoComponent gc = new GoComponent(game, md);	
 	ButtonAndScrollComponent basc = new ButtonAndScrollComponent(game, md, gc);
 	
-	gc.setPreferredSize(new Dimension(1200,800));
-	basc.setPreferredSize(new Dimension(600,800));
+	gc.setPreferredSize(new Dimension(1000,1000));
+	basc.setPreferredSize(new Dimension(400,100));
+	Font f = new Font("Verdana", Font.BOLD, 20);
+	md.setFont(f);
+	Color gray = new Color(213,216,220);
+	md.setForeground(gray);
+
+	//basc.setOpaque(false);
+	Color grayb = new Color(40,55,71);
+	basc.getmd().setBackground(grayb);
+	
+	
 	frame.getContentPane().add(gc);
 	frame.getContentPane().add(basc);
 	// to make sure that grids go left to right, no matter what
 
 	frame .applyComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 	frame. setResizable(false);
-	frame. setSize(1800,800) ;
+	frame. setSize(1400,1300) ;
 	frame. setVisible(true) ;
+
 
 	//so message destination automatically scrolls to the bottom as more is added 
 	try {

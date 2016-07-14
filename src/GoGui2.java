@@ -7,6 +7,11 @@ import java.awt.Dimension;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 
+
+import javax.swing.*;
+import java.awt.*;
+
+
 /** GoGui2.java is a Gui interface for the directions JFrame for the Go game.
     
     @author Sophia Mao and Kai Jann
@@ -33,14 +38,17 @@ public class GoGui2{
 
         JFrame frame2 = new JFrame("Rules");
 	frame2.setVisible(true);
-	frame2.setSize(300,500);
-	JTextArea rules = new JTextArea(50, 40);
+	frame2.setSize(1000,2500);
+	JTextArea rules = new JTextArea(500, 400);
 
 	rules.setEditable(false);
         rules.setText(title + step1 + newLine + step2 + newLine + step3 + newLine +step4 + newLine + step5 + newLine + step6 + newLine + step7 + newLine +step8 +step9);
 	rules.setLineWrap(true);
 	rules.setWrapStyleWord(true);
-	rules.setCaretPosition(0);
+	rules.setCaretPosition(5);
+	Font f = new Font("Arial", Font.PLAIN, 30);
+	rules.setFont(f);
+
 
 	JScrollPane scroller = new JScrollPane(rules);
 	scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);

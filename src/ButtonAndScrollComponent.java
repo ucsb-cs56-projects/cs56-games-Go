@@ -36,7 +36,7 @@ public class ButtonAndScrollComponent extends JComponent
 	this.gc = gc;
 	
 	//this.setLayout(new FlowLayout(2));
-	this.setLayout(new BoxLayout(this,1,1));
+	this.setLayout(new BoxLayout(this,1));
 	
 	
 	sur.addActionListener(new ButtonListener());

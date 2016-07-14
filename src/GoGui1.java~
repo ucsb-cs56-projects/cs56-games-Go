@@ -33,8 +33,8 @@ public class GoGui1 {
 	// we can use GoGame on left hand side.
 	frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(),0));
 	GoGame game = new GoGrid();
-        JTextArea  md = new JTextArea(4,4);
-	GoComponent gc = new GoComponent(game, md);	
+        JTextAreaMessageDestination  md = new JTextAreaMessageDestination(4,4);
+	GoComponent gc = new GoComponent(game, basc.getmd());	
 	ButtonAndScrollComponent basc = new ButtonAndScrollComponent(game, md, gc);
 	
 	gc.setPreferredSize(new Dimension(1200,800));

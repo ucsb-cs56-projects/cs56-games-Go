@@ -23,7 +23,7 @@ public class GoComponent extends JComponent
 {
     private GoGame game; 
     private GoGrid grid;
-    private MessageDestination md;
+    private JTextArea md;
   
     private JButton [] buttons = new JButton[362];
 
@@ -39,7 +39,7 @@ public class GoComponent extends JComponent
 						    swing Widgets, or even to a web page, as needed.
     */
        
-    public GoComponent(GoGame game, MessageDestination md) {
+    public GoComponent(GoGame game, JTextArea md) {
 	super(); // is this line necessary?  what does it do?
 
 	this.game = game;  // the Go game
@@ -57,7 +57,9 @@ public class GoComponent extends JComponent
 	    buttons[i].setForeground(tan);
 	    jb.addActionListener(new ButtonListener(i));
 	    this.add(jb);
-	}	
+	}
+
+	
     }    
 
 
@@ -138,4 +140,11 @@ public class GoComponent extends JComponent
 	}
     }
 
+    public void restart(){
+	for(int i = 1;i<=362;i++){
+	    Color tan = new Color(210,180,140);
+	    buttons[i].setBackground(tan);
+	    buttons[i].setForeground(tan);
+	}
+    }
 }

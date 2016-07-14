@@ -39,9 +39,9 @@ public class GoGui1 {
 	GoComponent gc = new GoComponent(game, md);	
 	ButtonAndScrollComponent basc = new ButtonAndScrollComponent(game, md, gc);
 	
-	gc.setPreferredSize(new Dimension(1000,1000));
-	basc.setPreferredSize(new Dimension(400,100));
-	Font f = new Font("Verdana", Font.BOLD, 20);
+	gc.setPreferredSize(new Dimension(500,500));
+	basc.setPreferredSize(new Dimension(200,150));
+	Font f = new Font("Verdana", Font.BOLD, 15);
 	md.setFont(f);
 	Color gray = new Color(213,216,220);
 	md.setForeground(gray);
@@ -57,7 +57,7 @@ public class GoGui1 {
 
 	frame .applyComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 	frame. setResizable(false);
-	frame. setSize(1400,1300) ;
+	frame. setSize(700,650) ;
 	frame. setVisible(true) ;
 
 

@@ -44,7 +44,7 @@ public class ButtonAndScrollComponent extends JComponent
 	//	JTextAreaMessageDestination text = new JTextAreaMessageDestination(10,30);
 	JScrollPane scroller = new JScrollPane(md);
 	scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-	scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	JButton sur = new JButton("Surrender");
 	sur.addActionListener(new ButtonListener2());
 	JButton directions = new JButton("Directions");

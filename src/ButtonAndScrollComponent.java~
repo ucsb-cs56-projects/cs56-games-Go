@@ -22,29 +22,27 @@ public class ButtonAndScrollComponent extends JComponent
 {
     //add new
     private GoComponent gc;
-    private JTextArea md;
+    private MessageDestination md;
     private GoGame game;
     
     private GoGui2 directionFrame;
 
     private JButton sur = new JButton();
 
-    public ButtonAndScrollComponent(GoGame game, JTextArea md,GoComponent gc){
+    public ButtonAndScrollComponent(GoGame game, MessageDestination md,GoComponent gc){
 	super();
 	this.game=game;
 	this.md = md;
 	this.gc = gc;
 	
-	//this.setLayout(new FlowLayout(2));
 	this.setLayout(new BoxLayout(this,1));
-	
 	
 	sur.addActionListener(new ButtonListener());
         
 	//	JTextAreaMessageDestination text = new JTextAreaMessageDestination(10,30);
-	JScrollPane scroller = new JScrollPane(md);
+	JScrollPane scroller = new JScrollPane((JTextAreaMessageDestination)md);
 	scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-	scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	JButton sur = new JButton("Surrender");
 	sur.addActionListener(new ButtonListener2());
 	JButton directions = new JButton("Directions");
@@ -147,10 +145,8 @@ public class ButtonAndScrollComponent extends JComponent
 
 
 
-
-   public JTextArea getmd()
+    public MessageDestination getmd()
     {
 	return md;
     }
-
 }

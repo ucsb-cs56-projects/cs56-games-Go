@@ -7,8 +7,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.text.BadLocationException;
 
-import java.awt.Font;
-import java.awt.Color;
 
 /** GoGui01.java is a GUI interface for TicTacToe that uses
     the JTextArea as the destination for messages.
@@ -35,31 +33,20 @@ public class GoGui1 {
 	// we can use GoGame on left hand side.
 	frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(),0));
 	GoGame game = new GoGrid();
-        JTextArea  md = new JTextArea(4,4);
-	GoComponent gc = new GoComponent(game, md);	
+        JTextAreaMessageDestination  md = new JTextAreaMessageDestination(4,4);
+	GoComponent gc = new GoComponent(game, basc.getmd());	
 	ButtonAndScrollComponent basc = new ButtonAndScrollComponent(game, md, gc);
 	
-	gc.setPreferredSize(new Dimension(500,500));
-	basc.setPreferredSize(new Dimension(300,150));
-	Font f = new Font("Verdana", Font.BOLD, 15);
-	md.setFont(f);
-	Color gray = new Color(213,216,220);
-	md.setForeground(gray);
-
-	//basc.setOpaque(false);
-	Color grayb = new Color(40,55,71);
-	basc.getmd().setBackground(grayb);
-	
-	
+	gc.setPreferredSize(new Dimension(1200,800));
+	basc.setPreferredSize(new Dimension(600,800));
 	frame.getContentPane().add(gc);
 	frame.getContentPane().add(basc);
 	// to make sure that grids go left to right, no matter what
 
 	frame .applyComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 	frame. setResizable(false);
-	frame. setSize(800,650) ;
+	frame. setSize(1800,800) ;
 	frame. setVisible(true) ;
-
 
 	//so message destination automatically scrolls to the bottom as more is added 
 	try {

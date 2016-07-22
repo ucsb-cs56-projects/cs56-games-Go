@@ -23,7 +23,7 @@ public class GoComponent extends JComponent
 {
     private GoGame game; 
     private GoGrid grid;
-    private MessageDestination md;
+    private JTextArea md;
   
     private JButton [] buttons = new JButton[362];
 
@@ -39,7 +39,7 @@ public class GoComponent extends JComponent
 						    swing Widgets, or even to a web page, as needed.
     */
        
-    public GoComponent(GoGame game, MessageDestination md) {
+    public GoComponent(GoGame game, JTextArea md) {
 	super(); // is this line necessary?  what does it do?
 
 	this.game = game;  // the Go game
@@ -57,7 +57,9 @@ public class GoComponent extends JComponent
 	    buttons[i].setForeground(tan);
 	    jb.addActionListener(new ButtonListener(i));
 	    this.add(jb);
-	}	
+	}
+
+	
     }    
 
 
@@ -99,7 +101,7 @@ public class GoComponent extends JComponent
            //	    game.move2(num);
            //	    game.changeTurn();
                        JButton jb = buttons[num];
-                       jb.setFont(new Font("sansserif",Font.BOLD,12));
+                       jb.setFont(new Font("Arial",Font.BOLD,25));
 //	    jb.setText(Character.toString(turn)); // this is how we convert char to String
 	    for(int i=1;i<362;i++){
 		if(game.charAt(i) == 'W'){ //if element in Array list is W, set background color of JButton to WHITE
@@ -138,4 +140,11 @@ public class GoComponent extends JComponent
 	}
     }
 
+    public void restart(){
+	for(int i = 1;i<=362;i++){
+	    Color tan = new Color(210,180,140);
+	    buttons[i].setBackground(tan);
+	    buttons[i].setForeground(tan);
+	}
+    }
 }

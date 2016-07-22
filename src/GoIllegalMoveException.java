@@ -2,7 +2,8 @@
 /**
    Exception for illegal move in Go. Its used in the GoGrid file.
    @author David Winkenwerder and Dustin Henderson
-   @version CS56 Spring 2012, UCSB
+   @author Chunqing Liu and Xingyuan Zhang
+   @version CS56 Summer 2016, UCSB
    @see GoGrid
 */
     public class GoIllegalMoveException extends RuntimeException {

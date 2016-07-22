@@ -1,4 +1,4 @@
-//package edu.ucsb.cs56.S12.dwinkenwerder.go;
+//package edu.ucsb.cs56.M16.chunqingliu.go;
 import java.awt.GridLayout;
 import javax.swing.JComponent;
 import javax.swing.JButton;
@@ -16,7 +16,8 @@ import java.awt.Color;
    @author David Winkenwerder, Dustin Henderson
    @author Keith Waldron, Nick Abrahan
    @author Jeffrey Liu and Lauren Dumapias
-   @version CS56 2/21/16
+   @author Chunqing LIu and Xingyuan Zhang
+   @version CS56 7/21/16
 */
 
 public class GoComponent extends JComponent
@@ -139,7 +140,8 @@ public class GoComponent extends JComponent
 */
 	}
     }
-
+   /** restart the game by making the grid go back to its origin color
+     */
     public void restart(){
 	for(int i = 1;i<=362;i++){
 	    Color tan = new Color(210,180,140);

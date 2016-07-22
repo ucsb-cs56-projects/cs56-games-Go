@@ -15,7 +15,8 @@ import java.awt.Color;
 
      @author David Winkenwerder and Dustin Henderson
      @author Keith Waldron and Nick Abrahan
-     @version CS56, Winter 2014, UCSB
+     @author Chunqing Liu and Xingyuan Zhang
+     @version CS56, Summer 2016, UCSB
 */
 
 public class GoGui1 {

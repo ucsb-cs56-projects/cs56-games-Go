@@ -5,7 +5,8 @@
    @author David Winkenwerder and Dustin Henderson
    @author Keith Waldron and Nick Abrahan
    @author Jeffrey Liu and Lauren Dumapias
-   @version CS56 2/21/16
+   @author Chunqing Liu and Xingyuan Zhang
+   @version CS56 7/20/16
    @see GoGrid
    @see GoComponent
    @see Go
@@ -46,35 +47,49 @@ public interface GoGame
     /** Allows to set surrendering condition true
      */
     public void setSurrendering();
-
+  /** Allows the game to restart
+     */
     public void restart();
-
+  /**this is the toString conversion method
+     */
     public String toString();
-    
+      /** return the char at the location
+     */
     public char charAt(int i);
-
+  /** check whether surrender is surrending 
+     */
     public boolean getSurrender1();
 
  //   public void setGameStatus(boolean boo);
-    
+      /** the surrender becomes the first player
+     */
     public void setSurrender1(boolean boo);
-    
+      /** check whether surrender is surrending
+     */
     public boolean getSurrender2();
-    
+      /** the surrender becomes the second player
+     */
     public void setSurrender2(boolean boo);
-
+  /** return the winner of the game 
+     */
     public char setWinner(char a);
-    
+      /** check each chess surrended by how many chesses and which color
+     */
     public boolean checkSurrounded(int num, char color);
-
+/** check each chess surrended by how many chesses and which color
+     */
     public boolean checkSurrounded2(int num);
-
+/** change the turn of the player
+     */
     public void changeTurn();
-
+/** set up the chess grid
+     */
     public void setGrid(int i, char c);
-
+   /** get the score of the player who uses white chess
+     */
     public int getWScore();
-
+ /** get the score of the player who uses black chess
+     */
     public int getBScore();
    
 

@@ -9,6 +9,15 @@
   <property name="javadocDest" value="${webRoot}/${projectName}/javadoc" /> 
   <property name="javadocURL" value="${webRoot}/${projectName}/javadoc" /> 
   <property name="mainClass" value="GoGui1" />
+
+
+
+ <property name="public_javadoc_absolute_path" location="../project1_Go_javadoc/javadoc"/>
+
+
+
+
+  
  <target name="compile" description="compile my code">
    <mkdir dir="build" />
    <javac srcdir="src" destdir="build" debug="true" debuglevel="lines,vars,source" includeantruntime="false">
@@ -56,6 +65,32 @@
    <chmod dir="${javadocDest}" perm="755" type="file" includes="**/*" />
    <echo> Javadoc deployed to ${javadocURL} if on CSIL</echo>
    <echo> or if not on CSIL, try file:///${javadocDest}/index.html</echo>
+
+
+
+<delete quiet="true">                                                                        
+      <fileset dir="${public_javadoc_absolute_path}" />                                          
+    </delete>                                                                                    
+    <mkdir dir="${public_javadoc_absolute_path}" />                                              
+    <copy todir="${public_javadoc_absolute_path}">                                               
+      <fileset dir="javadoc" />                                                                  
+    </copy>                                                                                      
+    <echo>                                                                                       
+      javadoc copied to ${public_javadoc_absolute_path}/index.html                               
+      TO PUBLISH: cd into that repo, then git add javadoc;                                       
+        git commit -m "update javadoc"; git push origin gh-pages                                
+    </echo>                                                                                      
+  
+
+
+
+
+
+
+
+
+
+   
    </target>
                                                                         
 

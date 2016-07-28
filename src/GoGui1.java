@@ -10,6 +10,10 @@ import javax.swing.text.BadLocationException;
 import java.awt.Font;
 import java.awt.Color;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.*;
+
 /** GoGui01.java is a GUI interface for TicTacToe that uses
     the JTextArea as the destination for messages.
 
@@ -36,12 +40,15 @@ public class GoGui1 {
 	// we can use GoGame on left hand side.
 	frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(),0));
 	GoGame game = new GoGrid();
-        JTextArea  md = new JTextArea(4,4);
+        JTextArea  md = new JTextArea(4,10);
 	GoComponent gc = new GoComponent(game, md);	
 	ButtonAndScrollComponent basc = new ButtonAndScrollComponent(game, md, gc);
 	
-	gc.setPreferredSize(new Dimension(500,500));
-	basc.setPreferredSize(new Dimension(300,150));
+	//gc.setPreferredSize(new Dimension(500,500));
+	//basc.setPreferredSize(new Dimension(300,150));
+
+	gc.setSize( 570,570);
+	basc.setSize(300,150);
 	Font f = new Font("Verdana", Font.BOLD, 15);
 	md.setFont(f);
 	Color gray = new Color(213,216,220);
@@ -58,7 +65,7 @@ public class GoGui1 {
 
 	frame .applyComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 	frame. setResizable(false);
-	frame. setSize(800,650) ;
+	frame. setSize(870,720) ;
 	frame. setVisible(true) ;
 
 

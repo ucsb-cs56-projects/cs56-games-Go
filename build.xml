@@ -19,7 +19,10 @@
 
   
  <target name="compile" description="compile my code">
-   <mkdir dir="build" />
+   <mkdir dir="build"/>
+    <copy todir="build/images">
+      <fileset dir="images"/>
+    </copy>
    <javac srcdir="src" destdir="build" debug="true" debuglevel="lines,vars,source" includeantruntime="false">
      <classpath>
        <pathelement location="build"/>
@@ -92,6 +95,23 @@
 
    
    </target>
+
+
+
+<target name="jar" description = "Creates a jar file" depends="compile">
+    <mkdir dir="dist" />
+    <copy todir="build/images">
+      <fileset dir="images"/>
+    </copy>
+    <jar destfile="dist/${course}_${quarter}_${projectName}.jar" 
+	 basedir="build" >
+      <manifest>
+	<attribute name="Main-Class" value="${mainClass}" />
+      </manifest>
+    </jar>
+</target>
+   
+   
                                                                         
 
 </project>

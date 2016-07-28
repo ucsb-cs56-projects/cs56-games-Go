@@ -9,6 +9,14 @@ import java.util.ArrayList;
 import javax.swing.JTextArea;
 import java.awt.Color;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.*;
+import java.net.URL;
+
+
+
+
 /**
  * An Swing component for playing go
 
@@ -55,9 +63,31 @@ public class GoComponent extends JComponent
 	    buttons[i] = jb;
 	    Color tan = new Color(210,180,140);
 	    buttons[i].setBackground(tan);
+
 	    buttons[i].setForeground(tan);
+	    buttons[i].setBorderPainted(false);
+	    
+
+	    ImageIcon img = new ImageIcon(getClass().getResource("/images/Picture1.png"));
+	    buttons[i].setSize(3,3);
+	    int width = buttons[i].getWidth();
+	    int height = buttons[i].getHeight();
+
+	    Image imgs = img.getImage();
+	    imgs.getScaledInstance(width,height,1);
+	  
+	    
+				    
+	    buttons[i].setIcon(img);
+	    
+
+	   
+
+	    
 	    jb.addActionListener(new ButtonListener(i));
 	    this.add(jb);
+	    
+	    validate();
 	}
 
 	
@@ -116,7 +146,7 @@ public class GoComponent extends JComponent
 		else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back to tan.
 		    Color tan = new Color(210,180,140);
 		    buttons[i].setBackground(tan);
-		    buttons[i].setForeground(tan);
+		    buttons[i].setForeground(Color.RED);
 		}
 /*
 		if(game.charAt(i)!=' '){
@@ -147,6 +177,12 @@ public class GoComponent extends JComponent
 	    Color tan = new Color(210,180,140);
 	    buttons[i].setBackground(tan);
 	    buttons[i].setForeground(tan);
+
+	     buttons[i].setBorderPainted(false);
+
+	  
+	     //buttons[i].setIcon(new ImageIcon("/images/Picture1.png"));
+
 	}
     }
 }

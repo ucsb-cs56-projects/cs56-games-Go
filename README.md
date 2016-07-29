@@ -14,7 +14,11 @@ NO | mastergberry | kwwham,nickabrahan | A gui version of the Chinese board game
  W14 | jstaahl 4pm | kwwham,nickabrahan | A gui version of the Chinese board game called Go
   W16  | laurendumapias, liujeffreyk | A gui version of the Chinese board game called Go
 ```
+#M16 Final Remarks
+# The current state of the project
+Now, the game works well. We fixed the restart problem. Make restart operate correctly. Also, we change the decoratino of instruction. Make it looks more screen friendly.  Furthermore, we add the music effect for button tool. These are the outline improve. 
 
+The game is able to work. But the interface of stone and the background is not very good. 
 #W16 Final Remarks
 
 # The Current State of the Project

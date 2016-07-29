@@ -69,16 +69,18 @@ public class GoComponent extends JComponent
 	    
 
 	    ImageIcon img = new ImageIcon(getClass().getResource("/images/Picture1.png"));
-	    buttons[i].setSize(3,3);
+
+	    buttons[i].setIcon(img);
+	    /*buttons[i].setSize(30,30);
 	    int width = buttons[i].getWidth();
 	    int height = buttons[i].getHeight();
 
 	    Image imgs = img.getImage();
-	    imgs.getScaledInstance(width,height,1);
-	  
+	    imgs.getScaledInstance(width,height,1);*/
+	    
 	    
 				    
-	    buttons[i].setIcon(img);
+	 
 	    
 
 	   
@@ -136,17 +138,28 @@ public class GoComponent extends JComponent
 //	    jb.setText(Character.toString(turn)); // this is how we convert char to String
 	    for(int i=1;i<362;i++){
 		if(game.charAt(i) == 'W'){ //if element in Array list is W, set background color of JButton to WHITE
-			buttons[i].setBackground(Color.WHITE);
-			buttons[i].setForeground(Color.WHITE); // set font color of JButton to Black for visibility
+		    //buttons[i].setBackground(Color.WHITE);
+		    //buttons[i].setForeground(Color.WHITE); // set font color of JButton to Black for visibility
+
+		    
+
+		     ImageIcon img = new ImageIcon(getClass().getResource("/images/whiteStone.jpg"));
+		     buttons[i].setIcon(img);
 		}
 		else if(game.charAt(i) == 'B'){ //if element in ArrayList is B, set background color of JButton to BLACK
-			buttons[i].setBackground(Color.BLACK);
-			buttons[i].setForeground(Color.BLACK); // set font color of JButton to White for visibility
+		    //buttons[i].setBackground(Color.BLACK);
+		    //buttons[i].setForeground(Color.BLACK); // set font color of JButton to White for visibility
+
+		     ImageIcon img = new ImageIcon(getClass().getResource("/images/blackStone.jpg"));
+		     buttons[i].setIcon(img);
 		}
 		else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back to tan.
 		    Color tan = new Color(210,180,140);
-		    buttons[i].setBackground(tan);
-		    buttons[i].setForeground(Color.RED);
+		    //buttons[i].setBackground(tan);
+		    //buttons[i].setForeground(Color.RED);
+
+		     ImageIcon img = new ImageIcon(getClass().getResource("/images/Picture1.png"));
+		     buttons[i].setIcon(img);
 		}
 /*
 		if(game.charAt(i)!=' '){
@@ -181,7 +194,9 @@ public class GoComponent extends JComponent
 	     buttons[i].setBorderPainted(false);
 
 	  
-	     //buttons[i].setIcon(new ImageIcon("/images/Picture1.png"));
+	      ImageIcon img = new ImageIcon(getClass().getResource("/images/Picture1.png"));
+
+	    buttons[i].setIcon(img);
 
 	}
     }

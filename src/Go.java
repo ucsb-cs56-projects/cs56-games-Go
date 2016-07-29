@@ -1,4 +1,4 @@
-//package edu.ucsb.cs56.W14.kwwham.cp1;
+//package edu.ucsb.cs56.M16.kwwham.cp1;
 
 //import java.util.Scanner;
 
@@ -6,8 +6,8 @@
    A Text UI for playing Go.
 
   
-   @author David Winkenwerder and Dustin Henderson
-   @version CS56 cp1 05.17.2012
+   @author Chunqing Liu ,Xinyuan Zhang
+   @version CS56 cp1 summer 2016
    @see GoGridTest
  */
 /*public class Go

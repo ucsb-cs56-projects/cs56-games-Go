@@ -1,4 +1,4 @@
-//package edu.ucsb.cs56.S12.dwinkenwerder.go;
+//package edu.ucsb.cs56.M16.chunqingliu.go;
 import java.awt.GridLayout;
 import javax.swing.JComponent;
 import javax.swing.JButton;
@@ -9,6 +9,14 @@ import java.util.ArrayList;
 import javax.swing.JTextArea;
 import java.awt.Color;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.*;
+import java.net.URL;
+
+
+
+
 /**
  * An Swing component for playing go
 
@@ -16,7 +24,8 @@ import java.awt.Color;
    @author David Winkenwerder, Dustin Henderson
    @author Keith Waldron, Nick Abrahan
    @author Jeffrey Liu and Lauren Dumapias
-   @version CS56 2/21/16
+   @author Chunqing LIu and Xingyuan Zhang
+   @version CS56 7/21/16
 */
 
 public class GoComponent extends JComponent
@@ -54,9 +63,33 @@ public class GoComponent extends JComponent
 	    buttons[i] = jb;
 	    Color tan = new Color(210,180,140);
 	    buttons[i].setBackground(tan);
+
 	    buttons[i].setForeground(tan);
+	    buttons[i].setBorderPainted(false);
+	    
+
+	    ImageIcon img = new ImageIcon(getClass().getResource("/images/Picture1.png"));
+
+	    buttons[i].setIcon(img);
+	    /*buttons[i].setSize(30,30);
+	    int width = buttons[i].getWidth();
+	    int height = buttons[i].getHeight();
+
+	    Image imgs = img.getImage();
+	    imgs.getScaledInstance(width,height,1);*/
+	    
+	    
+				    
+	 
+	    
+
+	   
+
+	    
 	    jb.addActionListener(new ButtonListener(i));
 	    this.add(jb);
+	    
+	    validate();
 	}
 
 	
@@ -105,17 +138,28 @@ public class GoComponent extends JComponent
 //	    jb.setText(Character.toString(turn)); // this is how we convert char to String
 	    for(int i=1;i<362;i++){
 		if(game.charAt(i) == 'W'){ //if element in Array list is W, set background color of JButton to WHITE
-			buttons[i].setBackground(Color.WHITE);
-			buttons[i].setForeground(Color.WHITE); // set font color of JButton to Black for visibility
+		    //buttons[i].setBackground(Color.WHITE);
+		    //buttons[i].setForeground(Color.WHITE); // set font color of JButton to Black for visibility
+
+		    
+
+		     ImageIcon img = new ImageIcon(getClass().getResource("/images/whiteStone.jpg"));
+		     buttons[i].setIcon(img);
 		}
 		else if(game.charAt(i) == 'B'){ //if element in ArrayList is B, set background color of JButton to BLACK
-			buttons[i].setBackground(Color.BLACK);
-			buttons[i].setForeground(Color.BLACK); // set font color of JButton to White for visibility
+		    //buttons[i].setBackground(Color.BLACK);
+		    //buttons[i].setForeground(Color.BLACK); // set font color of JButton to White for visibility
+
+		     ImageIcon img = new ImageIcon(getClass().getResource("/images/blackStone.jpg"));
+		     buttons[i].setIcon(img);
 		}
 		else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back to tan.
 		    Color tan = new Color(210,180,140);
-		    buttons[i].setBackground(tan);
-		    buttons[i].setForeground(tan);
+		    //buttons[i].setBackground(tan);
+		    //buttons[i].setForeground(Color.RED);
+
+		     ImageIcon img = new ImageIcon(getClass().getResource("/images/Picture1.png"));
+		     buttons[i].setIcon(img);
 		}
 /*
 		if(game.charAt(i)!=' '){
@@ -139,12 +183,21 @@ public class GoComponent extends JComponent
 */
 	}
     }
-
+   /** restart the game by making the grid go back to its origin color
+     */
     public void restart(){
 	for(int i = 1;i<=362;i++){
 	    Color tan = new Color(210,180,140);
 	    buttons[i].setBackground(tan);
 	    buttons[i].setForeground(tan);
+
+	     buttons[i].setBorderPainted(false);
+
+	  
+	      ImageIcon img = new ImageIcon(getClass().getResource("/images/Picture1.png"));
+
+	    buttons[i].setIcon(img);
+
 	}
     }
 }

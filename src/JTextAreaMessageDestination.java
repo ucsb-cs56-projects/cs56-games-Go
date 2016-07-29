@@ -6,7 +6,8 @@ import javax.swing.JTextArea;
  Used in TicTacToeComponent.
   
    @author David Winkewerder and Dustin Henderson
-   @version CS56 lecture notes 05.17.2012
+   @version CS56 summer 2016
+   @author Chunqing Liu and Xingyuan Zhang
    @see GoComponent
  */
 public class JTextAreaMessageDestination extends JTextArea implements MessageDestination

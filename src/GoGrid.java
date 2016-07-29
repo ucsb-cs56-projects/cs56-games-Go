@@ -9,7 +9,8 @@ import java.util.ArrayList;
    @author David Winkenwerder and Dustin Henderson
    @author Keith Waldron and Nick Abrahan
    @author Jeffrey Liu and Lauren Dumapias
-   @version CS56 2/21/16
+   @author Chunqing Liu and Xingyuan Zhang
+   @version CS56 7/21/16
    @see GoGridTest
 */
 public class GoGrid implements GoGame
@@ -41,7 +42,9 @@ public class GoGrid implements GoGame
   /*  public void setGameStatus(boolean boo){
         this.gameOver = boo;
     }*/
-
+ /**
+       the restart function for the game
+          */
     public void restart(){
         for(int i=1;i<362; i++)
         {
@@ -58,15 +61,21 @@ public class GoGrid implements GoGame
         surrendering = false;
     }
 
-
+ /**
+       the function to set the turn of player
+          */
     public void setTurn(char turn){
 	this.turn = turn;
     }
-
+ /**
+       the function to see the player is surrendering 
+          */
     public void setSurrendering() {
         this.surrendering = true;
     }
-	
+	 /**
+     it will call the grit.set function to set up the grid as shown on the right of the game
+          */
     public void setGrid(int i, char c){
 	grid.set(i,c);
     }
@@ -94,7 +103,9 @@ public class GoGrid implements GoGame
        @return 'B','W', or ' '--i.e. contents of square i
      */ 
     //DONE
-
+ /**
+       return the location of the stone player had played
+          */
     public char charAt(int i)
     {
         return grid.get(i);
@@ -144,7 +155,9 @@ public class GoGrid implements GoGame
     }
     
     //NOT DONE reason The two work fine as seperate, and we may come back and make them recursive for CP3.
-
+ /**
+       checkSurroundedHelper is the helper function used in checkSurrounded2 function to check the player's move
+          */
     public boolean checkSurroundedHelper(int i,char color,ArrayList visited,ArrayList canVisit) //DONE
     {
 	if(!visited.contains(i)) 
@@ -197,7 +210,9 @@ public class GoGrid implements GoGame
 
     }
 
-
+  /**
+      return the score of the white player 
+    */
 
    public int getWScore(){
 	int wcount=0;
@@ -207,7 +222,9 @@ public class GoGrid implements GoGame
 	   }
 	return wcount;
 }
-
+ /**
+      return of the score of the black player 
+    */
    public int getBScore(){
 	int bcount=0;
 	for(char c : grid){
@@ -362,7 +379,9 @@ public class GoGrid implements GoGame
            }
            return !checkSurrounded2(i);
    }
-    
+      /**
+      changing the turn of each player
+    */
        public void changeTurn() {
            turn = (turn=='W')?'B':'W'; //change turn
            numMoves++;
@@ -417,17 +436,30 @@ public char getTurn()
 
 }
 
+    /**
+      return whether the surrender 1 is surrending
+    */
 public boolean getSurrender1(){
     return surrender1;
 }
+    
+    /**
+      surrender 1 is surrending, set surrending condition
+    */
 public void setSurrender1(boolean boo){
 
     this.surrender1=boo;
     }
 
+    /**
+      return whether the surrender 2 is surrending
+    */
 public boolean getSurrender2(){
     return surrender2;
 }
+      /**
+      surrender 2 is surrending, set surrending condition
+    */
 public void setSurrender2(boolean boo){
 
     this.surrender2=boo;

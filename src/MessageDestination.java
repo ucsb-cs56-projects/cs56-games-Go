@@ -5,7 +5,8 @@
  Used in GoComponent
   
    @author Phill David Winkenwerder and Dustin Henderson
-   @version CS56 cp1 05.17.2012
+   @version CS56 summer 2016
+   @author Chunqing Liu and Xingyuan Zhang
    @see GoComponent
  */
 public interface MessageDestination

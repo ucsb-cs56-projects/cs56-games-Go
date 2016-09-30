@@ -1,3 +1,9 @@
+```
+
+Before everything, make sure your partner and you have one mac and one windows/linux machine. 
+The reason being that, there is a bug of this software that only shows on mac instead of other platform.
+
+```
 cs56-games-Go
 =============
 

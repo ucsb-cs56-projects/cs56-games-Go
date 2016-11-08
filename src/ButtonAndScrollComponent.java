@@ -79,21 +79,16 @@ public class ButtonAndScrollComponent extends JComponent
             if(turn==' ')
                 return;
             if (turn=='B'){
-                game.setSurrender2(true);
-                game.setTurn('W');
+                game.setSurrendering();
+                String winner = "White";
+                md.append("\n" + winner + " wins! Congratulations!");
             }
             if(turn=='W'){
-                game.setSurrender1(true);
-                game.setTurn('B');
-            }
-            if(game.getSurrender1() && game.getSurrender2()){
                 game.setSurrendering();
-                char winner = game.getWinner();
-                if(winner == ' ')
-                    md.append("\nShoot, it's a draw!");
-                else
-                    md.append("\n" + winner + " wins! Congratulations!");
+                String winner = "Black";
+                md.append("\n" + winner + " wins! Congratulations!");
             }
+    
         }
     }
     

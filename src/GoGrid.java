@@ -333,21 +333,4 @@ public class GoGrid implements GoGame
         
     }
     
-    public boolean getSurrender1(){
-        return surrender1;
-    }
-    public void setSurrender1(boolean boo){
-        
-        this.surrender1=boo;
-    }
-    
-    public boolean getSurrender2(){
-        return surrender2;
-    }
-    public void setSurrender2(boolean boo){
-        
-        this.surrender2=boo;
-    }
-    
-    
 }

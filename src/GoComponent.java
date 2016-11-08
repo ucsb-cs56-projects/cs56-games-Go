@@ -107,10 +107,14 @@ public class GoComponent extends JComponent
 		if(game.charAt(i) == 'W'){ //if element in Array list is W, set background color of JButton to WHITE
 			buttons[i].setBackground(Color.WHITE);
 			buttons[i].setForeground(Color.WHITE); // set font color of JButton to Black for visibility
+			buttons[i].setOpaque(true);
+			buttons[i].setBorderPainted(false);
 		}
 		else if(game.charAt(i) == 'B'){ //if element in ArrayList is B, set background color of JButton to BLACK
 			buttons[i].setBackground(Color.BLACK);
 			buttons[i].setForeground(Color.BLACK); // set font color of JButton to White for visibility
+			buttons[i].setOpaque(true);
+			buttons[i].setBorderPainted(false);
 		}
 		else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back to tan.
 		    Color tan = new Color(210,180,140);

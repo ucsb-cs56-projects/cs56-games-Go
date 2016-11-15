@@ -76,7 +76,6 @@ public interface GoGame
     public int getWScore();
 
     public int getBScore();
-
-    public boolean skip();
+   
 
 }

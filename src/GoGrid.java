@@ -24,11 +24,8 @@ public class GoGrid implements GoGame
     private boolean gameOver = false;
     private boolean surrender1 = false; boolean surrender2=false; boolean surrendering = false;
     //add spaces to the game state equal to the number of spaces on the board: 362.
-
-    private int W_skips = 0;//keeps track how many times white has skipped a turn
-    private int B_skips = 0;//keeps track of how many times black has skipped a turn
-     
-/**
+    
+    /**
      * Default constructor for objects of the class GoGrid
      */
     public GoGrid() {	
@@ -59,14 +56,8 @@ public class GoGrid implements GoGame
         surrender1 = false;
         surrender2 = false;
         surrendering = false;
-	B_skips = 0;
-	W_skips = 0;
     }
 
-
-    public boolean isGameOver(){
-	return gameOver;
-    }
 
     public void setTurn(char turn){
 	this.turn = turn;
@@ -326,11 +317,6 @@ public class GoGrid implements GoGame
               Second substring has 362 as last param because second param
               to substring is first index NOT included in subsequence.
            */
-	if(turn == 'B')
-	    resetBSkips();
-	if(turn == 'W')
-	    resetWSkips();
-
            if(!this.isBlank(i))
                throw new GoIllegalMoveException("Square "+i+" occupied\n");
            //if(this.checkSurrounded(i))
@@ -354,8 +340,10 @@ public class GoGrid implements GoGame
                checkSurrounded(i-1, turn2);
            if(i+19<362)
                checkSurrounded(i+19, turn2);
-        
-  
+           //turn = (turn=='W')?'B':'W'; //change turn
+           //numMoves++;
+
+   //	return this.getWinner(); //may change gameOver and winner as side effect
            if (i%19!=0) {
                if (e!=grid.get(i+1))
                    return true;
@@ -396,7 +384,33 @@ public class GoGrid implements GoGame
     }
 
 
-   
+    /**
+       return the Go grid with the contents
+    */
+
+/*    public String toString()
+    {
+	final String gridLine = "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-";
+	String result = "";
+	int i,j;
+	result +=gridLine + "\n";
+	for(i=0;i<19;i++)
+	    {
+		for(j=1;j<20;j++)
+		    {
+			if(i!=19)
+			    result = result + grid.get(j+i*19)+ "|";
+			else
+			    result = result + grid.get(j+i*19);
+                    }
+                    result+= "\n";
+
+                }
+                result +="\n" + gridLine;
+
+        }*/
+
+
 public char getTurn()
 {
     return turn;
@@ -419,31 +433,5 @@ public void setSurrender2(boolean boo){
     this.surrender2=boo;
     }
 
-    public boolean skip(){
-	if(turn == 'B'){
-	    B_skips++;
-	    if(B_skips == 2){
-		//end game
-		setWinner('W');
-		return true;
-	    }
-	}
-	if(turn == 'W'){
-	    W_skips++;
-	    if(W_skips == 2){
-		//end game
-		setWinner('B');
-		return true;
-	    }
-	}
-	return false;
-}
-    
-    public void resetWSkips(){
-	W_skips = 0;
-    }
-    public void resetBSkips(){
-	B_skips = 0;
-    }
 
 }

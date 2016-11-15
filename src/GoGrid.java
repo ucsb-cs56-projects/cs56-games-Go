@@ -23,6 +23,7 @@ public class GoGrid implements GoGame
     private boolean gameOver = false;
     private boolean surrender1 = false; boolean surrender2=false; boolean surrendering = false;
     //add spaces to the game state equal to the number of spaces on the board: 362.
+<<<<<<< HEAD
     
     // Default constructor for objects of the class GoGrid
     public GoGrid() {
@@ -32,6 +33,22 @@ public class GoGrid implements GoGame
             grid.add(' ');
         }
         
+=======
+
+    private int W_skips = 0;//keeps track how many times white has skipped a turn
+    private int B_skips = 0;//keeps track of how many times black has skipped a turn
+     
+/**
+     * Default constructor for objects of the class GoGrid
+     */
+    public GoGrid() {	
+	grid.add('_');
+	for(int i=1;i<362; i++)
+	{
+	    grid.add(' ');
+	}
+
+>>>>>>> UCSB-CS56-Projects/master
     }
     
     public void restart(){
@@ -48,9 +65,20 @@ public class GoGrid implements GoGame
         surrender1 = false;
         surrender2 = false;
         surrendering = false;
+	B_skips = 0;
+	W_skips = 0;
     }
+<<<<<<< HEAD
     
     
+=======
+
+
+    public boolean isGameOver(){
+	return gameOver;
+    }
+
+>>>>>>> UCSB-CS56-Projects/master
     public void setTurn(char turn){
         this.turn = turn;
     }
@@ -261,6 +289,7 @@ public class GoGrid implements GoGame
     }
     
     public boolean makeMove(int i) throws GoIllegalMoveException{
+<<<<<<< HEAD
         /* indexes go from 0 to 361.
          Second substring has 362 as last param because second param
          to substring is first index NOT included in subsequence.
@@ -313,6 +342,67 @@ public class GoGrid implements GoGame
     }
     
     
+=======
+           /* indexes go from 0 to 361.
+              Second substring has 362 as last param because second param
+              to substring is first index NOT included in subsequence.
+           */
+	if(turn == 'B')
+	    resetBSkips();
+	if(turn == 'W')
+	    resetWSkips();
+
+           if(!this.isBlank(i))
+               throw new GoIllegalMoveException("Square "+i+" occupied\n");
+           //if(this.checkSurrounded(i))
+           //  throw new GoIllegalMoveException("Cannot place piece here, it would be surrounded.\n");
+           char e = ' ', w = ' ', s = ' ', n = ' ';
+           if (i%19!=0)
+               e = grid.get(i+1);
+           if (i%19!=1)
+               w = grid.get(i-1);
+           if (i+19<362)
+               s = grid.get(i+19);
+           if (i-19>0)
+               n = grid.get(i-19);
+           grid.set(i,turn);
+           char turn2 = (turn=='W')?'B':'W';
+           if(i+1<362)
+               checkSurrounded(i+1,turn2);
+           if(i-19>0)
+               checkSurrounded(i-19, turn2);
+           if(i-1>0)
+               checkSurrounded(i-1, turn2);
+           if(i+19<362)
+               checkSurrounded(i+19, turn2);
+        
+  
+           if (i%19!=0) {
+               if (e!=grid.get(i+1))
+                   return true;
+           }
+           if (i%19!=1) {
+               if (w!=grid.get(i-1))
+                   return true;
+           }
+           if (i+19<362) {
+               if (s!=grid.get(i+19))
+                   return true;
+           }
+           if (i-19>0) {
+               if (n!=grid.get(i-19))
+                   return true;
+           }
+           return !checkSurrounded2(i);
+   }
+    
+       public void changeTurn() {
+           turn = (turn=='W')?'B':'W'; //change turn
+           numMoves++;
+         }
+
+
+>>>>>>> UCSB-CS56-Projects/master
     /** Return game state as a 361 character string.
      This is mostly for testing purposes.
      
@@ -326,6 +416,7 @@ public class GoGrid implements GoGame
         retval.remove(0);
         return retval.toString();
     }
+<<<<<<< HEAD
     
     public char getTurn()
     {
@@ -333,4 +424,58 @@ public class GoGrid implements GoGame
         
     }
     
+=======
+
+
+   
+public char getTurn()
+{
+    return turn;
+
+}
+
+public boolean getSurrender1(){
+    return surrender1;
+}
+public void setSurrender1(boolean boo){
+
+    this.surrender1=boo;
+    }
+
+public boolean getSurrender2(){
+    return surrender2;
+}
+public void setSurrender2(boolean boo){
+
+    this.surrender2=boo;
+    }
+
+    public boolean skip(){
+	if(turn == 'B'){
+	    B_skips++;
+	    if(B_skips == 2){
+		//end game
+		setWinner('W');
+		return true;
+	    }
+	}
+	if(turn == 'W'){
+	    W_skips++;
+	    if(W_skips == 2){
+		//end game
+		setWinner('B');
+		return true;
+	    }
+	}
+	return false;
+}
+    
+    public void resetWSkips(){
+	W_skips = 0;
+    }
+    public void resetBSkips(){
+	B_skips = 0;
+    }
+
+>>>>>>> UCSB-CS56-Projects/master
 }

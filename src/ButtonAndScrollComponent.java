@@ -79,21 +79,16 @@ public class ButtonAndScrollComponent extends JComponent
             if(turn==' ')
                 return;
             if (turn=='B'){
-                game.setSurrender2(true);
-                game.setTurn('W');
+                game.setSurrendering();
+                String winner = "White";
+                md.append("\n" + winner + " wins! Congratulations!");
             }
             if(turn=='W'){
-                game.setSurrender1(true);
-                game.setTurn('B');
-            }
-            if(game.getSurrender1() && game.getSurrender2()){
                 game.setSurrendering();
-                char winner = game.getWinner();
-                if(winner == ' ')
-                    md.append("\nShoot, it's a draw!");
-                else
-                    md.append("\n" + winner + " wins! Congratulations!");
+                String winner = "Black";
+                md.append("\n" + winner + " wins! Congratulations!");
             }
+    
         }
     }
     
@@ -108,13 +103,28 @@ public class ButtonAndScrollComponent extends JComponent
             if (turn == ' ')
                 return;
             if (turn == 'B'){
+		boolean gameOver = game.skip();
                 game.setTurn('W');
-                md.append("\nBlack skipped a turn.");
-            }
+		if(gameOver){
+		    //skipping ended the game
+		    game.setWinner('W');
+		    md.append("\nBlack skipped two times consecutively.\n  White wins the game!");
+		}else{
+		    md.append("\nBlack skipped a turn.");
+		}
+	    }
             if (turn == 'W'){
+		boolean gameOver = game.skip();
+
+		if(gameOver){
+		    //skipping ended the game
+		    game.setWinner('B');
+		    md.append("\nWhite skipped two times consecutively. \n Black wins the game!");
+		}else{
                 game.setTurn('B');
                 md.append("\nWhite skipped a turn.");
-            }
+		}
+	    }
         }
         
     }

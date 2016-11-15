@@ -108,13 +108,28 @@ public class ButtonAndScrollComponent extends JComponent
             if (turn == ' ')
                 return;
             if (turn == 'B'){
+		boolean gameOver = game.skip();
                 game.setTurn('W');
-                md.append("\nBlack skipped a turn.");
-            }
+		if(gameOver){
+		    //skipping ended the game
+		    game.setWinner('W');
+		    md.append("\nBlack skipped two times consecutively.\n  White wins the game!");
+		}else{
+		    md.append("\nBlack skipped a turn.");
+		}
+	    }
             if (turn == 'W'){
+		boolean gameOver = game.skip();
+
+		if(gameOver){
+		    //skipping ended the game
+		    game.setWinner('B');
+		    md.append("\nWhite skipped two times consecutively. \n Black wins the game!");
+		}else{
                 game.setTurn('B');
                 md.append("\nWhite skipped a turn.");
-            }
+		}
+	    }
         }
         
     }

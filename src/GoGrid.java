@@ -331,11 +331,40 @@ public class GoGrid implements GoGame
     {
         return turn;
         
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
     }
     
-    public boolean getSurrender1(){
-        return surrender1;
+=======
+>>>>>>> c8f1ae51fce1b4da78f6b5b32d1fac9571f9d58c
+=======
+
+
+   
+public char getTurn()
+{
+    return turn;
+
+}
+
+public boolean getSurrender1(){
+    return surrender1;
+}
+public void setSurrender1(boolean boo){
+
+    this.surrender1=boo;
+
     }
+
+public boolean getSurrender2(){
+    return surrender2;
+}
+public void setSurrender2(boolean boo){
+
+    this.surrender2=boo;
+    }
+
     public void setSurrender1(boolean boo){
         
         this.surrender1=boo;
@@ -348,6 +377,34 @@ public class GoGrid implements GoGame
         
         this.surrender2=boo;
     }
+
+
+    public boolean skip(){
+	if(turn == 'B'){
+	    B_skips++;
+	    if(B_skips == 2){
+		//end game
+		setWinner('W');
+		return true;
+	    }
+	}
+	if(turn == 'W'){
+	    W_skips++;
+	    if(W_skips == 2){
+		//end game
+		setWinner('B');
+		return true;
+	    }
+	}
+	return false;
+}
     
-    
+    public void resetWSkips(){
+	W_skips = 0;
+    }
+    public void resetBSkips(){
+	B_skips = 0;
+    }
+
+
 }

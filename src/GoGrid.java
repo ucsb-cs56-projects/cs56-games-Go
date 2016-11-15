@@ -422,8 +422,11 @@ public class GoGrid implements GoGame
     {
         return turn;
         
+<<<<<<< HEAD
     }
     
+=======
+>>>>>>> c8f1ae51fce1b4da78f6b5b32d1fac9571f9d58c
 =======
 
 
@@ -440,6 +443,10 @@ public boolean getSurrender1(){
 public void setSurrender1(boolean boo){
 
     this.surrender1=boo;
+<<<<<<< HEAD
+=======
+>>>>>>> UCSB-CS56-Projects/master
+>>>>>>> c8f1ae51fce1b4da78f6b5b32d1fac9571f9d58c
     }
 
 public boolean getSurrender2(){
@@ -449,6 +456,25 @@ public void setSurrender2(boolean boo){
 
     this.surrender2=boo;
     }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    public void setSurrender1(boolean boo){
+        
+        this.surrender1=boo;
+    }
+    
+    public boolean getSurrender2(){
+        return surrender2;
+    }
+    public void setSurrender2(boolean boo){
+        
+        this.surrender2=boo;
+    }
+    
+    
+=======
+>>>>>>> c8f1ae51fce1b4da78f6b5b32d1fac9571f9d58c
 
     public boolean skip(){
 	if(turn == 'B'){

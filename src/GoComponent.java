@@ -116,6 +116,10 @@ public class GoComponent extends JComponent
 		    buttons[i].setOpaque(true);
 		    buttons[i].setBorderPainted(false);
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> c8f1ae51fce1b4da78f6b5b32d1fac9571f9d58c
 		/*                else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back to tan.
                     Color tan = new Color(210,180,140);
                     buttons[i].setBackground(tan);
@@ -132,6 +136,7 @@ public class GoComponent extends JComponent
             
         }
 =======
+<<<<<<< HEAD
 
                        String nextTurn = "Black" ;
                        if(turn == 'W')
@@ -174,6 +179,8 @@ public class GoComponent extends JComponent
 		    buttons[i].setBackground(tan);
 		    buttons[i].setForeground(tan);
 		}
+=======
+>>>>>>> c8f1ae51fce1b4da78f6b5b32d1fac9571f9d58c
 		
 	    }
 

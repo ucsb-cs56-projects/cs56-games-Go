@@ -51,6 +51,17 @@ public interface GoGame
         
         public char charAt(int i);
         
+<<<<<<< HEAD
+=======
+        public boolean getSurrender1();
+        
+        public void setSurrender1(boolean boo);
+        
+        public boolean getSurrender2();
+        
+        public void setSurrender2(boolean boo);
+        
+>>>>>>> c8f1ae51fce1b4da78f6b5b32d1fac9571f9d58c
         public char setWinner(char a);
         
         public boolean checkSurrounded(int num, char color);

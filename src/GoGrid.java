@@ -368,5 +368,4 @@ public char getTurn()
 	B_skips = 0;
     }
 
-
 }

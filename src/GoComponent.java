@@ -115,14 +115,6 @@ public class GoComponent extends JComponent
 		    buttons[i].setOpaque(true);
 		    buttons[i].setBorderPainted(false);
 		}
-
-		/*                else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back to tan.
-                    Color tan = new Color(210,180,140);
-                    buttons[i].setBackground(tan);
-                    buttons[i].setForeground(tan);
-		    //   buttons[i].setOpaque(true);
-		    //buttons[i].setBorderPainted(false);
-		    }*/
                 
             }
             
@@ -154,12 +146,9 @@ public class GoComponent extends JComponent
 		       }
 		       
                        game.changeTurn();
-           //	    char winner=game.move(num);
-           //	    game.move2(num);
-           //	    game.changeTurn();
                        JButton jb = buttons[num];
                        jb.setFont(new Font("Arial",Font.BOLD,25));
-//	    jb.setText(Character.toString(turn)); // this is how we convert char to String
+
 	    for(int i=1;i<362;i++){
 		if(game.charAt(i) == 'W'){ //if element in Array list is W, set background color of JButton to WHITE
 			buttons[i].setBackground(Color.WHITE);
@@ -182,13 +171,9 @@ public class GoComponent extends JComponent
 	    md.append("\n\nWhite Score: " + game.getWScore() + "\nBlack Score: " + game.getBScore());
 	    md.append("\n" + nextTurn +"s turn.");
 		
-	    // check for a winner
-/*	    if (winner=='D')
-		md.append("\nPhooey.  It's a draw.\n");
-	    else if (winner!=' ')
-	    md.append("\n"+ winner + " wins!\n");
-*/
+
 	}
+
 
     }
     

@@ -16,7 +16,7 @@ import java.awt.Color;
  @author Keith Waldron, Nick Abrahan
  @author Jeffrey Liu and Lauren Dumapias
  @version CS56 2/21/16
- */
+*/
 
 public class GoComponent extends JComponent
 {
@@ -28,15 +28,15 @@ public class GoComponent extends JComponent
     
     /** Constructor
      
-     @param game an object that implements the GoGame interface to keep track
-     of the moves in each game, ensuring the rules are followed and detecting
-     when someone has won.
-     @param md an object that implements the MessageDestination interface.  This is just
-     a place to send any messages that need to be communicated to the user.
-     Making this separate allows a user of this components to decide to
-     send those messages to the console, or to a variety of different
-     swing Widgets, or even to a web page, as needed.
-     */
+	@param game an object that implements the GoGame interface to keep track
+	of the moves in each game, ensuring the rules are followed and detecting
+	when someone has won.
+	@param md an object that implements the MessageDestination interface.  This is just
+	a place to send any messages that need to be communicated to the user.
+	Making this separate allows a user of this components to decide to
+	send those messages to the console, or to a variety of different
+	swing Widgets, or even to a web page, as needed.
+    */
     
     public GoComponent(GoGame game, JTextArea md) {
         
@@ -114,36 +114,30 @@ public class GoComponent extends JComponent
                     buttons[i].setForeground(Color.BLACK); // set font color of JButton to White for visibility
 		    buttons[i].setOpaque(true);
 		    buttons[i].setBorderPainted(false);
+		}else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back to tan.
+		    Color tan = new Color(210,180,140);
+		    buttons[i].setBackground(tan);
+		    buttons[i].setForeground(tan);
 		}
-
-
-		
-	    }
-
-	    //prints current score of game and whos turn it is 
-	    md.append("\n\nWhite Score: " + game.getWScore() + "\nBlack Score: " + game.getBScore());
-	    md.append("\n" + nextTurn +"s turn.");
-		
-	    // check for a winner
-/*	    if (winner=='D')
-		md.append("\nPhooey.  It's a draw.\n");
-	    else if (winner!=' ')
-	    md.append("\n"+ winner + " wins!\n");
-*/
+                
+            }
+            
+            //prints current score of game and whos turn it is
+            md.append("\n\nWhite Score: " + game.getWScore() + "\nBlack Score: " + game.getBScore());
+            md.append("\n" + nextTurn +"s turn.");
+            
 	}
-
     }
-    
     public void restart(){
-
-       
-        for(int i = 1;i<=362;i++){
-            Color tan = new Color(210,180,140);
-            buttons[i].setBackground(tan);
-            buttons[i].setForeground(tan);
-	    buttons[i].setOpaque(false);//todo check with maggie
-	    buttons[i].setBorderPainted(true);//todo check with maggie
-        }
-
+	
+	for(int i = 1;i<=362;i++){
+	    Color tan = new Color(210,180,140);
+	    buttons[i].setBackground(tan);
+	    buttons[i].setForeground(tan);
+	    buttons[i].setOpaque(false);
+	    buttons[i].setBorderPainted(true);
+	}
     }
 }
+
+

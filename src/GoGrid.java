@@ -23,6 +23,7 @@ public class GoGrid implements GoGame
     private boolean gameOver = false;
     private boolean surrender1 = false; boolean surrender2=false; boolean surrendering = false;
     //add spaces to the game state equal to the number of spaces on the board: 362.
+
     private int W_skips = 0;//keeps track how many times white has skipped a turn
     private int B_skips = 0;//keeps track of how many times black has skipped a turn
      
@@ -52,10 +53,7 @@ public class GoGrid implements GoGame
         surrender1 = false;
         surrender2 = false;
         surrendering = false;
-	B_skips = 0;
-	W_skips = 0;
     }
-
 
     public boolean isGameOver(){
 	return gameOver;
@@ -344,18 +342,12 @@ public class GoGrid implements GoGame
         retval.remove(0);
         return retval.toString();
     }
-
     
     public char getTurn()
     {
         return turn;    
 
     }
-    
-    public boolean getSurrender1(){
-        return surrender1;
-    }
-
 
     public boolean skip(){
 	if(turn == 'B'){
@@ -375,7 +367,7 @@ public class GoGrid implements GoGame
 	    }
 	}
 	return false;
-}
+    }
     
     public void resetWSkips(){
 	W_skips = 0;
@@ -383,6 +375,5 @@ public class GoGrid implements GoGame
     public void resetBSkips(){
 	B_skips = 0;
     }
-
 
 }

@@ -67,5 +67,7 @@ public interface GoGame
 	public boolean skip();
         
         
+
 }
+
 

@@ -65,7 +65,7 @@ public class GoGui1 {
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-      
+
         
     }
 }

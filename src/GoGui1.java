@@ -65,12 +65,7 @@ public class GoGui1 {
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-        
-        
-        if(game.getSurrender1() && game.getSurrender2()){
-            game.setSurrendering();
-            
-        }
+      
         
     }
 }

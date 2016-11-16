@@ -115,23 +115,8 @@ public class GoComponent extends JComponent
 		    buttons[i].setOpaque(true);
 		    buttons[i].setBorderPainted(false);
 		}
-<<<<<<< HEAD
-		/*                else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back to tan.
-                    Color tan = new Color(210,180,140);
-                    buttons[i].setBackground(tan);
-                    buttons[i].setForeground(tan);
-		    //   buttons[i].setOpaque(true);
-		    //buttons[i].setBorderPainted(false);
-		    }*/
-                
-            }
-            
-            //prints current score of game and whos turn it is
-            md.append("\n\nWhite Score: " + game.getWScore() + "\nBlack Score: " + game.getBScore());
-            md.append("\n" + nextTurn +"s turn.");
-            
-        }
-=======
+
+
 		
 	    }
 
@@ -146,25 +131,19 @@ public class GoComponent extends JComponent
 	    md.append("\n"+ winner + " wins!\n");
 */
 	}
->>>>>>> UCSB-CS56-Projects/master
+
     }
     
     public void restart(){
-<<<<<<< HEAD
+
        
         for(int i = 1;i<=362;i++){
             Color tan = new Color(210,180,140);
             buttons[i].setBackground(tan);
             buttons[i].setForeground(tan);
-	    buttons[i].setOpaque(false);
-	    buttons[i].setBorderPainted(true);
+	    buttons[i].setOpaque(false);//todo check with maggie
+	    buttons[i].setBorderPainted(true);//todo check with maggie
         }
-=======
-	for(int i = 1;i<362;i++){
-	    Color tan = new Color(210,180,140);
-	    buttons[i].setBackground(tan);
-	    buttons[i].setForeground(tan);
-	}
->>>>>>> UCSB-CS56-Projects/master
+
     }
 }

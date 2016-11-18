@@ -118,14 +118,7 @@ public class GoComponent extends JComponent
 		    buttons[i].setBackground(tan);
 		    buttons[i].setForeground(tan);
 		}
-/*
-		if(game.charAt(i)!=' '){
-		    buttons[i].setText(Character.toString(game.charAt(i)));
-		}
-		else{
-		    buttons[i].setText("");
-		}
-*/		
+		
 	    }
 
 	    //prints current score of game and whos turn it is 
@@ -142,7 +135,7 @@ public class GoComponent extends JComponent
     }
 
     public void restart(){
-	for(int i = 1;i<=362;i++){
+	for(int i = 1;i<362;i++){
 	    Color tan = new Color(210,180,140);
 	    buttons[i].setBackground(tan);
 	    buttons[i].setForeground(tan);

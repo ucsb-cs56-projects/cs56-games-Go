@@ -53,6 +53,9 @@ public class GoGrid implements GoGame
         surrender1 = false;
         surrender2 = false;
         surrendering = false;
+	W_skips = 0;
+	B_skips = 0;
+
     }
 
     public boolean isGameOver(){

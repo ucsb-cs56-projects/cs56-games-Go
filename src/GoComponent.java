@@ -16,6 +16,7 @@ import java.awt.Color;
    @author David Winkenwerder, Dustin Henderson
    @author Keith Waldron, Nick Abrahan
    @author Jeffrey Liu and Lauren Dumapias
+   @author Dong He and Margaret Schmit
    @version CS56 2/21/16
 */
 

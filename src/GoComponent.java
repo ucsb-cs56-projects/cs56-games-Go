@@ -131,7 +131,7 @@ public class GoComponent extends JComponent
     }
     public void restart(){
 	
-	for(int i = 1;i<=362;i++){
+	for(int i = 1;i<=361;i++){
 	    Color tan = new Color(210,180,140);
 	    buttons[i].setBackground(tan);
 	    buttons[i].setForeground(tan);

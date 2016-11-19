@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import javax.swing.JTextArea;
 import java.awt.Color;
 
+
+import java.io.*;
+import java.net.URL;
+import javax.sound.sampled.*;
+import javax.swing.*;
 /**
  * An Swing component for playing go
   
@@ -78,6 +83,9 @@ public class GoComponent extends JComponent
         public void actionPerformed (ActionEvent event) {
             
             char turn=game.getTurn();
+
+	    SoundEffect effect = new SoundEffect();
+	    effect.playEffect();
             
             String nextTurn = "Black" ;
             if(turn == 'W')

@@ -46,11 +46,17 @@ public class ButtonAndScrollComponent extends JComponent
         skipTurn.addActionListener(new ButtonListener3());
         JButton restart = new JButton("Restart");
         restart.addActionListener(new ButtonListener4());
+
+	JButton sound = new JButton("Sound Effects On/Off");
+	sound.addActionListener(new PlaySoundButtonListener());
+	
+
         this.add(scroller);
         this.add(sur);
         this.add(directions);
         this.add(skipTurn);
         this.add(restart);
+	this.add(sound);
     }
     
     class ButtonListener implements ActionListener{
@@ -146,6 +152,17 @@ public class ButtonAndScrollComponent extends JComponent
             gc.restart();
             
         }
+    }
+
+    class PlaySoundButtonListener implements ActionListener{
+	public PlaySoundButtonListener(){
+	    super();
+	}
+
+	public void actionPerformed (ActionEvent event){
+	    boolean sound = gc.getPlaySound();
+	    gc.setPlaySound(!sound);
+	}
     }
     
     public JTextArea getmd()

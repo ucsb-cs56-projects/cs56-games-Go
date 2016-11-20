@@ -275,6 +275,8 @@ public class GoGrid implements GoGame
               Second substring has 362 as last param because second param
               to substring is first index NOT included in subsequence.
            */
+
+	
 	if(turn == 'B')
 	    resetBSkips();
 	if(turn == 'W')

@@ -22,6 +22,9 @@ public class ButtonAndScrollComponent extends JComponent
     
     private GoGui2 directionFrame;
     
+    private boolean playMusic = true;
+    private BackgroundMusic m = new BackgroundMusic();
+    
     private JButton sur = new JButton();
     
     public ButtonAndScrollComponent(GoGame game, JTextArea md,GoComponent gc){
@@ -32,7 +35,8 @@ public class ButtonAndScrollComponent extends JComponent
         this.gc = gc;
         
         this.setLayout(new BoxLayout(this,1));
-        
+	
+	m.playMusic();
         
         sur.addActionListener(new ButtonListener());
         JScrollPane scroller = new JScrollPane(md);
@@ -49,7 +53,9 @@ public class ButtonAndScrollComponent extends JComponent
 
 	JButton sound = new JButton("Sound Effects On/Off");
 	sound.addActionListener(new PlaySoundButtonListener());
-	
+	JButton music = new JButton("Music On/Off");
+	music.addActionListener(new PlayMusicButtonListener());
+
 
         this.add(scroller);
         this.add(sur);
@@ -57,6 +63,7 @@ public class ButtonAndScrollComponent extends JComponent
         this.add(skipTurn);
         this.add(restart);
 	this.add(sound);
+	this.add(music);
     }
     
     class ButtonListener implements ActionListener{
@@ -162,6 +169,23 @@ public class ButtonAndScrollComponent extends JComponent
 	public void actionPerformed (ActionEvent event){
 	    boolean sound = gc.getPlaySound();
 	    gc.setPlaySound(!sound);
+	}
+    }
+
+    class PlayMusicButtonListener implements ActionListener{
+	public PlayMusicButtonListener(){
+	    super();
+	}
+
+	public void actionPerformed (ActionEvent event){
+	    if(playMusic){
+		playMusic = false;
+		m.endMusic();
+	    }else{
+		m = new BackgroundMusic();
+		playMusic = true;
+		m.playMusic();
+	    }
 	}
     }
     

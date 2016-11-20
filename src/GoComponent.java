@@ -31,7 +31,10 @@ public class GoComponent extends JComponent
     private JTextArea md;
     
     private JButton [] buttons = new JButton[362];
-    
+
+
+    private boolean playSound = true;
+    private boolean playMusic = true;
     /** Constructor
      
 	@param game an object that implements the GoGame interface to keep track
@@ -83,10 +86,10 @@ public class GoComponent extends JComponent
         public void actionPerformed (ActionEvent event) {
             
             char turn=game.getTurn();
-
-	    SoundEffect effect = new SoundEffect();
-	    effect.playEffect();
-            
+	    if(playSound){
+		SoundEffect effect = new SoundEffect();
+		effect.playEffect();
+            }
             String nextTurn = "Black" ;
             if(turn == 'W')
                 nextTurn = "Black";
@@ -146,6 +149,14 @@ public class GoComponent extends JComponent
 	    buttons[i].setOpaque(false);
 	    buttons[i].setBorderPainted(true);
 	}
+    }
+
+    public void setPlaySound(boolean b){
+	playSound = b;
+    }
+
+    public boolean getPlaySound(){
+	return playSound;
     }
 }
 

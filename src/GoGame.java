@@ -44,30 +44,39 @@ public interface GoGame
         // Allows to set surrendering condition true
         public void setSurrendering();
         
+        //Restart method
         public void restart();
         
+        //Output method
         public String toString();
         
+        //Checks char at position
         public char charAt(int i);
         
+        //Set winner method
         public char setWinner(char a);
         
+        //Two methods for different cases to check illegal moves
         public boolean checkSurrounded(int num, char color);
         
         public boolean checkSurrounded2(int num);
         
+        //Sets turn to a different
         public void changeTurn();
         
+        //Makes grid
         public void setGrid(int i, char c);
         
+        //Gets scores
         public int getWScore();
         
         public int getBScore();
-
-	public boolean skip();
+        
+        //Skip method
+        public boolean skip();
         
         
-
-}
+        
+    }
 
 

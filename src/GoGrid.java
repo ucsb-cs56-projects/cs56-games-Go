@@ -39,6 +39,7 @@ public class GoGrid implements GoGame
 
     }
     
+    //Restarts the game, restarts all information
     public void restart(){
         for(int i=1;i<362; i++)
         {
@@ -58,19 +59,22 @@ public class GoGrid implements GoGame
 
     }
 
+    //How to tell if the game is over
     public boolean isGameOver(){
 	return gameOver;
     }
 
-
+    //Used to change turns
     public void setTurn(char turn){
         this.turn = turn;
     }
     
+    //Used to signal surrender
     public void setSurrendering() {
         this.surrendering = true;
     }
     
+    //Used to set grids
     public void setGrid(int i, char c){
         grid.set(i,c);
     }
@@ -88,8 +92,6 @@ public class GoGrid implements GoGame
      @return turn 'B' or 'W' for turn
      */
     
-    //DONE
-    
     public char GoGrid(ArrayList gameState) {
         this.grid = gameState;
         return turn;
@@ -99,7 +101,6 @@ public class GoGrid implements GoGame
      @param i is number of square (like telephone pad)
      @return 'B','W', or ' '--i.e. contents of square i
      */
-    //DONE
     
     public char charAt(int i)
     {
@@ -197,6 +198,7 @@ public class GoGrid implements GoGame
         
     }
     
+    //Gets score of white player
     public int getWScore(){
         int wcount=0;
         for(char c : grid){
@@ -206,6 +208,7 @@ public class GoGrid implements GoGame
         return wcount;
     }
     
+    //Gets score of black player
     public int getBScore(){
         int bcount=0;
         for(char c : grid){
@@ -354,6 +357,7 @@ public class GoGrid implements GoGame
 
     }
 
+    //Skip method, checks for too many skips in a row, in which game should end
     public boolean skip(){
 	if(turn == 'B'){
 	    B_skips++;
@@ -374,6 +378,7 @@ public class GoGrid implements GoGame
 	return false;
     }
     
+    //Used to reset skip count when the game is reset
     public void resetWSkips(){
 	W_skips = 0;
     }

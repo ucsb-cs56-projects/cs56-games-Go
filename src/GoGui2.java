@@ -23,6 +23,7 @@ public class GoGui2{
     
     public GoGui2(){
         
+        //This is what you see in the instructions popup, each line is a instruction line
         String newLine = "\n \n";
         String title = "RULES: \n \n \n";
         String step1 = "1. At the beginning of the game, the board is empty.";
@@ -35,12 +36,13 @@ public class GoGui2{
         String step8 = "8. A player's score is the number of empty points enclosed only by his stones plus the number of points occupied by his stones. The player with the higher score wins. \n \n";
         String step9 = " Source: http://www.kiseido.com/ff.htm ";
         
-        
+        //Sets frame to visible and make the frame with the pre-set size and make the text area
         JFrame frame2 = new JFrame("Rules");
         frame2.setVisible(true);
         frame2.setSize(1000,2500);
         JTextArea rules = new JTextArea(500, 400);
-        
+    
+        //Sets out how the lines of instructions get printed out
         rules.setEditable(false);
         rules.setText(title + step1 + newLine + step2 + newLine + step3 + newLine +step4 + newLine + step5 + newLine + step6 + newLine + step7 + newLine +step8 +step9);
         rules.setLineWrap(true);
@@ -49,7 +51,7 @@ public class GoGui2{
         Font f = new Font("Arial", Font.PLAIN, 30);
         rules.setFont(f);
         
-        
+        //Makes scrollbar if needed
         JScrollPane scroller = new JScrollPane(rules);
         scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);

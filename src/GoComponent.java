@@ -15,14 +15,14 @@ import javax.sound.sampled.*;
 import javax.swing.*;
 /**
  * An Swing component for playing go
-  
-   @author David Winkenwerder, Dustin Henderson
-   @author Keith Waldron, Nick Abrahan
-   @author Jeffrey Liu and Lauren Dumapias
-   @author Dong He and Margaret Schmit
-   @version CS56 2/21/16
-
-*/
+ 
+ @author David Winkenwerder, Dustin Henderson
+ @author Keith Waldron, Nick Abrahan
+ @author Jeffrey Liu and Lauren Dumapias
+ @author Dong He and Margaret Schmit
+ @version CS56 2/21/16
+ 
+ */
 
 public class GoComponent extends JComponent
 {
@@ -31,21 +31,21 @@ public class GoComponent extends JComponent
     private JTextArea md;
     
     private JButton [] buttons = new JButton[362];
-
-
+    
+    
     private boolean playSound = true;
     private boolean playMusic = true;
     /** Constructor
      
-	@param game an object that implements the GoGame interface to keep track
-	of the moves in each game, ensuring the rules are followed and detecting
-	when someone has won.
-	@param md an object that implements the MessageDestination interface.  This is just
-	a place to send any messages that need to be communicated to the user.
-	Making this separate allows a user of this components to decide to
-	send those messages to the console, or to a variety of different
-	swing Widgets, or even to a web page, as needed.
-    */
+     @param game an object that implements the GoGame interface to keep track
+     of the moves in each game, ensuring the rules are followed and detecting
+     when someone has won.
+     @param md an object that implements the MessageDestination interface.  This is just
+     a place to send any messages that need to be communicated to the user.
+     Making this separate allows a user of this components to decide to
+     send those messages to the console, or to a variety of different
+     swing Widgets, or even to a web page, as needed.
+     */
     
     public GoComponent(GoGame game, JTextArea md) {
         
@@ -58,7 +58,7 @@ public class GoComponent extends JComponent
         
         this.setLayout(new GridLayout(19,0));
         
-        for(int i=1; i<=361; i++) {
+        for(int i=1; i<=361; i++) { //Code for adding all the buttons
             JButton jb = new JButton("");
             buttons[i] = jb;
             Color tan = new Color(210,180,140);
@@ -71,7 +71,7 @@ public class GoComponent extends JComponent
         
     }
     
-    
+    //Adds actionlistener for the tiles
     class ButtonListener implements ActionListener {
         
         private int num;
@@ -86,10 +86,10 @@ public class GoComponent extends JComponent
         public void actionPerformed (ActionEvent event) {
             
             char turn=game.getTurn();
-	    if(playSound){
-		SoundEffect effect = new SoundEffect();
-		effect.playEffect();
-            }
+            if(playSound){ //If sound is on, play it when the tile is clicked
+                SoundEffect effect = new SoundEffect();
+                effect.playEffect();
+            } //basic stuff for showing who's turn it is and who's turn is next
             String nextTurn = "Black" ;
             if(turn == 'W')
                 nextTurn = "Black";
@@ -99,18 +99,18 @@ public class GoComponent extends JComponent
             if (turn==' ')
                 return;
             
-            if (!game.isBlank(num)) {
+            if (!game.isBlank(num)) { //This is output for clicking occupied tiles
                 md.append("\n\nThat square is already occupied!");
                 return;
             }
             
             // makeMove returns true if move is legal, false if move is illegal
-            if (!game.makeMove(num)) {
+            if (!game.makeMove(num)) { //If illegal, returns this
                 md.append("\nCannot place tile there, it would be surrounded\n");
                 return;
             }
             
-            game.changeTurn();
+            game.changeTurn(); //Changes turn
             JButton jb = buttons[num];
             jb.setFont(new Font("Arial",Font.BOLD,25));
             
@@ -118,19 +118,19 @@ public class GoComponent extends JComponent
                 if(game.charAt(i) == 'W'){ //if element in Array list is W, set background color of JButton to WHITE
                     buttons[i].setBackground(Color.WHITE);
                     buttons[i].setForeground(Color.WHITE); // set font color of JButton to Black for visibility
-		    buttons[i].setOpaque(true);
-		    buttons[i].setBorderPainted(false);
+                    buttons[i].setOpaque(true);
+                    buttons[i].setBorderPainted(false);
                 }
                 else if(game.charAt(i) == 'B'){ //if element in ArrayList is B, set background color of JButton to BLACK
                     buttons[i].setBackground(Color.BLACK);
                     buttons[i].setForeground(Color.BLACK); // set font color of JButton to White for visibility
-		    buttons[i].setOpaque(true);
-		    buttons[i].setBorderPainted(false);
-		}else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back to tan.
-		    Color tan = new Color(210,180,140);
-		    buttons[i].setBackground(tan);
-		    buttons[i].setForeground(tan);
-		}
+                    buttons[i].setOpaque(true);
+                    buttons[i].setBorderPainted(false);
+                }else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back to tan.
+                    Color tan = new Color(210,180,140);
+                    buttons[i].setBackground(tan);
+                    buttons[i].setForeground(tan);
+                }
                 
             }
             
@@ -138,25 +138,27 @@ public class GoComponent extends JComponent
             md.append("\n\nWhite Score: " + game.getWScore() + "\nBlack Score: " + game.getBScore());
             md.append("\n" + nextTurn +"s turn.");
             
-	}
+        }
     }
     public void restart(){
-	
-	for(int i = 1;i<=361;i++){
-	    Color tan = new Color(210,180,140);
-	    buttons[i].setBackground(tan);
-	    buttons[i].setForeground(tan);
-	    buttons[i].setOpaque(false);
-	    buttons[i].setBorderPainted(true);
-	}
+        
+        //Resets colors of the tiles on restart
+        for(int i = 1;i<=361;i++){
+            Color tan = new Color(210,180,140);
+            buttons[i].setBackground(tan);
+            buttons[i].setForeground(tan);
+            buttons[i].setOpaque(false); //This line and next line for making tiles show up on mac
+            buttons[i].setBorderPainted(true);
+        }
     }
-
+    
+    //Following two methods are just for making sound playing work
     public void setPlaySound(boolean b){
-	playSound = b;
+        playSound = b;
     }
-
+    
     public boolean getPlaySound(){
-	return playSound;
+        return playSound;
     }
 }
 

@@ -12,17 +12,17 @@ import java.io.*;
 
 public class SoundEffect {
 
-  
+    //Method for the sound effect playing, soundName is the name of the default audio file, looks for that name
     public void playEffect(){
 	String soundName = "button.wav";    
 
 	try{
-	AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
-	Clip clip = AudioSystem.getClip();
-	clip.open(audioInputStream);
+	AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile()); //Attempt to pull the aforementioned file
+	Clip clip = AudioSystem.getClip(); //Make a clip from the file if pulled properly from input stream
+	clip.open(audioInputStream); //Opens the clip and starts it
 	clip.start();
 	}catch(Exception e){
-	    System.out.println(e.getMessage());
+	    System.out.println(e.getMessage()); //If file is unfound throw exception
 	}
     }
 }

@@ -24,20 +24,26 @@ public class GoGui1 {
      */
     
     public static void main (String[] args) {
+        //Creation of new frame, set frame to close when x is hit
         JFrame frame = new JFrame() ;
         frame. setDefaultCloseOperation(JFrame. EXIT_ON_CLOSE) ;
+        //Initialize no winner and set the surrender states
         char winner=' ';
-        boolean surrender1=false;boolean surrender2=false;
+        boolean surrender1=false;
+        boolean surrender2=false;
         
         
         // since GoGrid implements the GoGame interface,
         // we can use GoGame on left hand side.
+        // Sets layout of the frame, makes a new grid and text area, etc
         frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(),0));
         GoGame game = new GoGrid();
         JTextArea  md = new JTextArea(4,4);
         GoComponent gc = new GoComponent(game, md);
         ButtonAndScrollComponent basc = new ButtonAndScrollComponent(game, md, gc);
         
+        //Sets ideal sizes for default construction
+        //and font of the texts and other misc. stuff
         gc.setPreferredSize(new Dimension(500,500));
         basc.setPreferredSize(new Dimension(300,150));
         Font f = new Font("Verdana", Font.BOLD, 15);

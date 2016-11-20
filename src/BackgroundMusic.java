@@ -9,30 +9,26 @@ public class BackgroundMusic {
 
     public BackgroundMusic(){
 	try{
-	    as1 = AudioSystem.getAudioInputStream(new File("medley.wav").getAbsoluteFile());
-	    clip1 = AudioSystem.getClip();
+	    as1 = AudioSystem.getAudioInputStream(new File("medley.wav").getAbsoluteFile()); //Sets input stream
+	    clip1 = AudioSystem.getClip(); //Gets the clip from the input stream
 	}catch(Exception e){
-	    System.out.println(e.getMessage());
+	    System.out.println(e.getMessage()); //Throws exception if fail
 	}
     }
 
-    public void playMusic(){
+    public void playMusic(){ //method for starting music
 
 	try{
-	    //AudioInputStream as1 = AudioSystem.getAudioInputStream(new File("medley.wav").getAbsoluteFile());
-	    //clip1 = AudioSystem.getClip();
-	    
-	
-	    clip1.open(as1);
-     	    clip1.loop(Clip.LOOP_CONTINUOUSLY);
-       	    clip1.start();
+	    clip1.open(as1); //Opens music clip
+     	    clip1.loop(Clip.LOOP_CONTINUOUSLY); //Sets music to loop
+       	    clip1.start(); //Starts
 		
 	}catch(Exception e){
-	    System.out.println(e.getMessage());
+	    System.out.println(e.getMessage()); //exception for failure to open clip
 	}
     }
 
-    public void endMusic(){
+    public void endMusic(){ //method for stopping music
 	clip1.close();
     }
 

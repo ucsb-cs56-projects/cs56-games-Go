@@ -1,5 +1,3 @@
-//package edu.ucsb.cs56.W14.kwwham.cp1;
-
 /**
  An interface to represent a place to send messages.
  Used in GoComponent
@@ -8,6 +6,7 @@
    @version CS56 cp1 05.17.2012
    @see GoComponent
  */
+
 public interface MessageDestination
 {
     /** 

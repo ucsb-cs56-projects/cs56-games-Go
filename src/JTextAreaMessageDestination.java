@@ -1,4 +1,3 @@
-//package edu.ucsb.cs56.W14.kwwham.cp1;
 import javax.swing.JTextArea;
 
 /**
@@ -9,6 +8,7 @@ import javax.swing.JTextArea;
    @version CS56 lecture notes 05.17.2012
    @see GoComponent
  */
+
 public class JTextAreaMessageDestination extends JTextArea implements MessageDestination
 {
     /** 

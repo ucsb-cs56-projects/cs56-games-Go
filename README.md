@@ -57,7 +57,7 @@ SoundEffect.java -- Represents a sound effect object. Has a method that is calle
 MessageDestination.java/SystemOutMessageDestination.java -- The interface and the implementation, respectively; Simply contains an easier way to output messages to the system instead of having to put "System.out.println("x")". Might be useful only for Go.java's main and unnecessary for GoGui1.java's main.
 
 # **Running the Game**
-ant test
+ant run
 
 see the picture in W16 final remarks to see what the game looks like
 

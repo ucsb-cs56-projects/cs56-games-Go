@@ -1,4 +1,4 @@
-# Go Heirarchy
+# Tsumego Implementaion Heirarchy
 
 1. class Board()
 	* private
@@ -16,34 +16,34 @@
 
 2. class Player()
 
-..*private
-...-color(String)
-...-groupsPossessed(ArrayList<Group>)
-...-opponentStonesCaptured(ArrayList<int[2])
-...-stoneCapturedLastTurn(int[2]) **for Ko Rule **
+	* private
+		- color(String)
+		- groupsPossessed(ArrayList<Group>)
+		- opponentStonesCaptured(ArrayList<int[2])
+		- stoneCapturedLastTurn(int[2]) **for** **Ko** **Rule**
 
-..*public
-...-addGroupAsPossessed(Group)
-...-subtractGroupAsPossessed(Group)
+	* public
+		- addGroupAsPossessed(Group)
+		- ubtractGroupAsPossessed(Group)
 
 3. class Group()
 
-..*private
-...-positionOfStones(ArrayList<int[2]>)
-...-numOfStone (int)
-...-positionsOfLiberties(ArrayList<int[2]>)
-...-numOfLiberties(int)
-...-ownerOfGroup(String)
-...-isGroupClosed(bool)
+	* private
+		- positionOfStones(ArrayList<int[2]>)
+		- numOfStone (int)
+		- positionsOfLiberties(ArrayList<int[2]>)
+		- numOfLiberties(int)
+		- ownerOfGroup(String)
+		- isGroupClosed(bool)
 
-..*public
-...-setStonePositions()
-...-getStonePositions()
-...-setLibertyPositions()
-...-getStonePositions()
-...-LibertiesThreatened()
-...-isGroup
+	* public
+		- setStonePositions()
+		- getStonePositions()
+		- getLibertyPositions()
+		- getStonePositions()
+		- LibertiesThreatened()
+		- isGroup
 
 4. class GameHelper()
-..*
+
 

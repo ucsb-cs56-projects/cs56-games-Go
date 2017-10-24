@@ -49,13 +49,13 @@
 4. class TsumegoHelper()
 	* private
 	* public
----
+~~~~
 void executeTurn(int[2] position, String Turn){
 	if
 }
----
+~~~~
 
----
+~~~~
 class Main(){
 	Board tsumego = new Board(whosTurn = "black");
 	Player Black = new Player("black");
@@ -66,3 +66,4 @@ class Main(){
 		excuteTurn(tsumego.getPlayerMoveChoice(), whosTurn);
 	}while(gameStillInPlay)
 }
+~~~~

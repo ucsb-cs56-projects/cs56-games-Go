@@ -1,19 +1,18 @@
-#Go Heirarchy
+# Go Heirarchy
 
 1. class Board()
+	* private
+		- numberOfStones(int)
+		- forbiddenPositions(ArrayList<int[2]>)
+		- turn(String)
 
-..*private
-...-numberOfStones(int)
-...-forbiddenPositions(ArrayList<int[2]>)
-...-turn(String)
-
-..*public
-...-Main()
-...-resetGame()
-...-surrender()
-...-getTurn
-...-Action listeners for new stones placed
-...-Action listeners for menu items selected
+	* public
+		- Main()
+		- resetGame()
+		- surrender()
+		- getTurn
+		- Action listeners for new stones placed
+		- Action listeners for menu items selected
 
 2. class Player()
 

@@ -4,13 +4,15 @@
 	* private
 		- numberOfStones(int)
 		- forbiddenPositions(ArrayList<int[2]>)
-		- whosTurn(String)
+		- whosTurn(Player)
 		- gameStillInPlay(boolean)
 
 	* public
 		- resetGame()
 		- surrender()
 		- int[2] getPlayerMoveChoice() **must not match list of stones in forbiddenPositions**
+		- isGameInPlay(return gameStillInPlay)
+		- getWhosTurn {return whosTurn}
 		- swithTurn(String currentTurn)
 		- Action listeners for new stones placed
 		- Action listeners for menu items selected
@@ -26,6 +28,8 @@
 	* public
 		- void addGroupAsPossessed(Group)
 		- void ubtractGroupAsPossessed(Group)
+		- ArrayList<int[2]> getGroupsPossessed()
+		- void executeTurn()
 
 3. class Group()
 
@@ -49,21 +53,35 @@
 4. class TsumegoHelper()
 	* private
 	* public
+		- getPlayerMoveChoice()
+		- executeTurn()
 ~~~~
-void executeTurn(int[2] position, String Turn){
-	if
+void executeTurn(Group stone){
+	Group playersPossessedGroups = this.getGroupsPosessed();
+	if position isIn tsumego.forbiddenPositions{
+		throw runtimeexception;
+	}
+	else{
+		this.groupsNextToThisGroup(stone){
+			if none
+			if one
+			if multiple
+		}
+	}
 }
 ~~~~
 
 ~~~~
 class Main(){
 	Board tsumego = new Board(whosTurn = "black");
-	Player Black = new Player("black");
+	Player Black = new Player("black"); //create player instances in board constructor
 	Player White = new Player("white");
+	TsumegoHelper helper = new TsumegoHelper();
 
 	
 	do{
-		excuteTurn(tsumego.getPlayerMoveChoice(), whosTurn);
-	}while(gameStillInPlay)
+		Group newStone = new Group(helper.getPlayerMoeChoice() );
+		tsumego.getWhosTurn().excuteTurn( newStone );
+	}while(tsumego.isGameInPlay())
 }
 ~~~~

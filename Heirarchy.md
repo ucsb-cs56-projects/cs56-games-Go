@@ -9,7 +9,7 @@
 
 	* public
 		- resetGame()
-		- surrender()
+		
 		- int[2] getPlayerMoveChoice() **must not match list of stones in forbiddenPositions**
 		- isGameInPlay(return gameStillInPlay)
 		- getWhosTurn {return whosTurn}
@@ -24,12 +24,14 @@
 		- groupsPossessed(ArrayList<Group>)
 		- opponentStonesCaptured(ArrayList<int[2])
 		- stoneCapturedLastTurn(int[2]) **for** **Ko** **Rule**
+		- numberOfSkips int
 
 	* public
 		- void addGroupAsPossessed(Group)
 		- void ubtractGroupAsPossessed(Group)
 		- ArrayList<int[2]> getGroupsPossessed()
 		- void executeTurn()
+		- surrender()
 
 3. class Group()
 

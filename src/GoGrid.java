@@ -57,6 +57,8 @@ public class GoGrid implements GoGame
 	W_skips = 0;
 	B_skips = 0;
 
+    //TODO:: Must reset GUI so board appears cleared
+
     }
 
     //How to tell if the game is over

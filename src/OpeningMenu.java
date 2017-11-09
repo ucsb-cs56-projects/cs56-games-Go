@@ -2,10 +2,11 @@
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.event. ActionEvent;
+import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
@@ -19,6 +20,8 @@ class OpeningMenu extends JComponent
 {
 	
 	JFrame frame;
+	JPanel panel;
+
 
 	public OpeningMenu(){
 		
@@ -26,13 +29,33 @@ class OpeningMenu extends JComponent
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		frame.getContentPane();
-
-		frame.pack();
+		//frame.getContentPane();
+		frame.setSize(300,300);
 
 		frame.setVisible(true);
 
-		//Action listen for Game Button will Instantiate GoToGme object;
+
+		panel = new JPanel();
+		frame.add(panel);
+
+		JButton button1 = new JButton("Start New Game");
+		panel.add(button1);
+		button1.addActionListener(new StartGameAction());
+
+		JButton button2 = new JButton("Instructions");
+
+		JButton button3 = new JButton("Load Saved Game");
+
+		JButton button4 = new JButton("About the Authors");
+		
 
 	}
+
+	class StartGameAction implements ActionListener{
+
+			public void actionPerformed (ActionEvent e){
+				ChooseBoardSize board = new ChooseBoardSize(); 
+			}
+
+		}
 }

@@ -12,7 +12,7 @@ import java.awt.Color;
 
 public class GoToGame extends JComponent{
 
-	public GoToGame() {
+	public GoToGame(int row, int col) {
 
 	//Creation of new frame, set frame to close when x is hit
 	JFrame frame = new JFrame() ;

@@ -74,7 +74,7 @@ public class ButtonAndScrollComponent extends JComponent
         }
         
         public void actionPerformed (ActionEvent event){
-            GoGui2 direction = new GoGui2();
+            GoInstructions direction = new GoInstructions();
             
         }
         

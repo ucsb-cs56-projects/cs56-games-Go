@@ -19,9 +19,9 @@ import java.awt.*;
  @version CS56, Winter 2014, UCSB
  */
 
-public class GoGui2{
+public class GoInstructions{
     
-    public GoGui2(){
+    public GoInstructions(){
         
         //This is what you see in the instructions popup, each line is a instruction line
         String newLine = "\n \n";

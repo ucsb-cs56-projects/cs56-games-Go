@@ -25,12 +25,12 @@ class OpeningMenu extends JComponent
 
 	public OpeningMenu(){
 		
-		frame = new JFrame("FrameDemo");
+		frame = new JFrame("Tsumego Menu");
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//frame.getContentPane();
-		frame.setSize(300,300);
+		frame.pack();
 
 		frame.setVisible(true);
 
@@ -40,22 +40,64 @@ class OpeningMenu extends JComponent
 
 		JButton button1 = new JButton("Start New Game");
 		panel.add(button1);
-		button1.addActionListener(new StartGameAction());
+		button1.addActionListener(new StartGameButtonListener());
 
 		JButton button2 = new JButton("Instructions");
+		panel.add(button2);
+		button2.addActionListener(new InstructionsButtonListener());
 
 		JButton button3 = new JButton("Load Saved Game");
+		panel.add(button3);
+		button3.addActionListener(new SaveGameButtonListener());
 
 		JButton button4 = new JButton("About the Authors");
+		panel.add(button4);
+		button4.addActionListener(new AuthorBioButtonListener());
 		
 
 	}
 
-	class StartGameAction implements ActionListener{
+	class StartGameButtonListener implements ActionListener{
 
-			public void actionPerformed (ActionEvent e){
-				ChooseBoardSize board = new ChooseBoardSize(); 
-			}
-
+		public void actionPerformed (ActionEvent e){
+			ChooseBoardSize board = new ChooseBoardSize();
 		}
+	}
+
+	class InstructionsButtonListener implements ActionListener{
+
+		public void actionPerformed (ActionEvent e){
+			GoInstructions instruction = new GoInstructions();
+		}
+	}
+
+	class SaveGameButtonListener implements ActionListener{
+
+		public void actionPerformed (ActionEvent e){
+			//serialize objects
+		}
+	}
+
+	class AuthorBioButtonListener implements ActionListener{
+
+		public void actionPerformed (ActionEvent e){
+			//insert bios
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

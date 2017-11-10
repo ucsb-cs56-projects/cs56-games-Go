@@ -33,6 +33,7 @@ class OpeningMenu extends JComponent
 		frame.pack();
 
 		frame.setVisible(true);
+		frame.setSize(300,300);
 
 
 		panel = new JPanel();

@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 /**
- * A grid for playing Go, with numbers according to row, 1-19 being the first row
+ * A grid for playing Go, with numbers according to row, 1-gridSideLength being the first row
  and 20-38 being the next, etc.
  
  
  @author David Winkenwerder and Dustin Henderson
  @author Keith Waldron and Nick Abrahan
  @author Jeffrey Liu and Lauren Dumapias
+ @author Brian Humphreys and Henry Jeng
  @version CS56 2/21/16
  @see GoGridTest
  */
@@ -26,22 +27,28 @@ public class GoGrid implements GoGame
 
     private int W_skips = 0;//keeps track how many times white has skipped a turn
     private int B_skips = 0;//keeps track of how many times black has skipped a turn
-     
+
+    private int gridSize;
+    private int gridSideLength;
+
 /**
      * Default constructor for objects of the class GoGrid
      */
-    public GoGrid() {	
-	grid.add('_');
-	for(int i=1;i<362; i++)
-	{
-	    grid.add(' ');
-	}
+    public GoGrid(int gridSize, int gridSideLength) {	
+        this.gridSize = gridSize;
+        this.gridSideLength = gridSideLength;
+
+    	grid.add('_');
+    	for(int i=0;i<gridSize; i++)
+    	{
+    	    grid.add(' ');
+    	}
 
     }
     
     //Restarts the game, restarts all information
     public void restart(){
-        for(int i=1;i<362; i++)
+        for(int i=0;i<gridSize; i++)
         {
             setGrid(i, ' ');
         }
@@ -59,6 +66,14 @@ public class GoGrid implements GoGame
 
     //TODO:: Must reset GUI so board appears cleared
 
+    }
+
+    public int getSideLength(){
+        return gridSideLength;
+    }
+
+    public int getGridSize(){
+        return gridSize;
     }
 
     //How to tell if the game is over
@@ -170,29 +185,29 @@ public class GoGrid implements GoGame
                 canVisit.remove(v);
             //find the four neighbors
             //if not in can visit and not over an edge, add it to canvisit
-            if((i)%19!=0)
+            if((i)%gridSideLength!=0)
             {
                 if(!canVisit.contains(i+1))
                     if(!visited.contains(i+1))
                         canVisit.add(i+1);
             }
-            if((i)%19!=1)
+            if((i)%gridSideLength!=1)
             {
                 if(!canVisit.contains(i-1))
                     if(!visited.contains(i-1))
                         canVisit.add(i-1);
             }
-            if((i+19)<362)
+            if((i+gridSideLength)<=gridSize)
             {
-                if(!canVisit.contains(i+19))
-                    if(!visited.contains(i+19))
-                        canVisit.add(i+19);
+                if(!canVisit.contains(i+gridSideLength))
+                    if(!visited.contains(i+gridSideLength))
+                        canVisit.add(i+gridSideLength);
             }
-            if((i-19)>0)
+            if((i-gridSideLength)>0)
             {
-                if(!canVisit.contains(i-19))
-                    if(!visited.contains(i-19))
-                        canVisit.add(i-19);
+                if(!canVisit.contains(i-gridSideLength))
+                    if(!visited.contains(i-gridSideLength))
+                        canVisit.add(i-gridSideLength);
             }
         }
         
@@ -295,40 +310,40 @@ public class GoGrid implements GoGame
            //if(this.checkSurrounded(i))
            //  throw new GoIllegalMoveException("Cannot place piece here, it would be surrounded.\n");
            char e = ' ', w = ' ', s = ' ', n = ' ';
-           if (i%19!=0)
+           if (i%gridSideLength!=0)
                e = grid.get(i+1);
-           if (i%19!=1)
+           if (i%gridSideLength!=1)
                w = grid.get(i-1);
-           if (i+19<362)
-               s = grid.get(i+19);
-           if (i-19>0)
-               n = grid.get(i-19);
+           if (i+gridSideLength<=gridSize)
+               s = grid.get(i+gridSideLength);
+           if (i-gridSideLength>0)
+               n = grid.get(i-gridSideLength);
            grid.set(i,turn);
            char turn2 = (turn=='W')?'B':'W';
-           if(i+1<362)
+           if(i+1<=gridSize)
                checkSurrounded(i+1,turn2);
-           if(i-19>0)
-               checkSurrounded(i-19, turn2);
+           if(i-gridSideLength>0)
+               checkSurrounded(i-gridSideLength, turn2);
            if(i-1>0)
                checkSurrounded(i-1, turn2);
-           if(i+19<362)
-               checkSurrounded(i+19, turn2);
+           if(i+gridSideLength<=gridSize)
+               checkSurrounded(i+gridSideLength, turn2);
         
   
-           if (i%19!=0) {
+           if (i%gridSideLength!=0) {
                if (e!=grid.get(i+1))
                    return true;
            }
-           if (i%19!=1) {
+           if (i%gridSideLength!=1) {
                if (w!=grid.get(i-1))
                    return true;
            }
-           if (i+19<362) {
-               if (s!=grid.get(i+19))
+           if (i+gridSideLength<=gridSize) {
+               if (s!=grid.get(i+gridSideLength))
                    return true;
            }
-           if (i-19>0) {
-               if (n!=grid.get(i-19))
+           if (i-gridSideLength>0) {
+               if (n!=grid.get(i-gridSideLength))
                    return true;
            }
            return !checkSurrounded2(i);

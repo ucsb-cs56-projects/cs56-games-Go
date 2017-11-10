@@ -30,7 +30,9 @@ public class GoComponent extends JComponent
     private GoGrid grid;
     private JTextArea md;
     
-    private JButton [] buttons = new JButton[362];
+    private JButton [] buttons = new JButton[360];
+    private int gridSize;
+    private int gridSideLength;
     
     
     private boolean playSound = true;
@@ -53,12 +55,16 @@ public class GoComponent extends JComponent
         this.game = game;  // the Go game
         this.md = md;  // a place we can write messages to
         
+        gridSize = game.getGridSize();
+        gridSideLength = game.getSideLength();
+
+
         // note columns ignored when rows are set
         // number of columns is implicit from the number of things added
         
-        this.setLayout(new GridLayout(19,0));
+        this.setLayout(new GridLayout(gridSideLength,0));
         
-        for(int i=1; i<=361; i++) { //Code for adding all the buttons
+        for(int i=0; i<gridSize; i++) { //Code for adding all the buttons
             JButton jb = new JButton("");
             buttons[i] = jb;
             Color tan = new Color(210,180,140);
@@ -114,7 +120,7 @@ public class GoComponent extends JComponent
             JButton jb = buttons[num];
             jb.setFont(new Font("Arial",Font.BOLD,25));
             
-            for(int i=1;i<362;i++){
+            for(int i=0;i<gridSize;i++){
                 if(game.charAt(i) == 'W'){ //if element in Array list is W, set background color of JButton to WHITE
                     buttons[i].setBackground(Color.WHITE);
                     buttons[i].setForeground(Color.WHITE); // set font color of JButton to Black for visibility
@@ -143,7 +149,7 @@ public class GoComponent extends JComponent
     public void restart(){
         
         //Resets colors of the tiles on restart
-        for(int i = 1;i<=361;i++){
+        for(int i = 0;i<gridSize;i++){
             Color tan = new Color(210,180,140);
             buttons[i].setBackground(tan);
             buttons[i].setForeground(tan);

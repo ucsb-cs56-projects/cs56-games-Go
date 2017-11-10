@@ -37,6 +37,12 @@ public interface GoGame
          */
         
         public boolean makeMove(int i) throws GoIllegalMoveException;
+
+        //Gets number of intersections on the side of the board
+        public int getSideLength();
+
+        //Gets number of intersections on the entire board
+        public int getGridSize();
         
         // Allows the game to end when both parties are surrendering
         public char getWinner();

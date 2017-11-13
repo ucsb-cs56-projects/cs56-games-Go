@@ -20,7 +20,7 @@ public class ButtonAndScrollComponent extends JComponent
     private JTextArea md;
     private GoGame game;
     
-    private GoGui2 directionFrame;
+    private GoInstructions directionFrame;
     
     private boolean playMusic = true; //Default music to be on
     private BackgroundMusic m = new BackgroundMusic();

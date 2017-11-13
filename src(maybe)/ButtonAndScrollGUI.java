@@ -2,7 +2,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.event. ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
@@ -13,21 +13,21 @@ import java.awt.Dimension;
 import javax.swing.text.BadLocationException;
 
 
-public class ButtonAndScrollComponent extends JComponent
+public class ButtonAndScrollGUI extends JComponent
 {
     //new gocomponent, textarea, game, frames
-    private GoComponent gc;
+    private  gc;
     private JTextArea md;
     private GoGame game;
     
-    private GoInstructions directionFrame;
+    private GoGui2 directionFrame;
     
     private boolean playMusic = true; //Default music to be on
     private BackgroundMusic m = new BackgroundMusic();
     
     private JButton sur = new JButton();
     
-    public ButtonAndScrollComponent(GoGame game, JTextArea md,GoComponent gc){
+    public ButtonAndScrollGUI(GoGame game, JTextArea md,GoComponent gc){
         
         super();
         this.game=game;
@@ -74,7 +74,7 @@ public class ButtonAndScrollComponent extends JComponent
         }
         
         public void actionPerformed (ActionEvent event){
-            GoInstructions direction = new GoInstructions();
+            GoGui2 direction = new GoGui2();
             
         }
         

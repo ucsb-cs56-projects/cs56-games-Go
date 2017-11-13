@@ -1,3 +1,4 @@
+//board gui
 import java.awt.GridLayout;
 import javax.swing.JComponent;
 import javax.swing.JButton;
@@ -24,19 +25,14 @@ import javax.swing.*;
  
  */
 
-public class GoComponent extends JComponent
+public class BoardGUI extends JComponent
 {
-    private GoGame game;
-    private GoGrid grid;
+    private TsumegoGameBoard game;
     private JTextArea md;
     
-    private MyButton [] buttons = new MyButton[360];
-    private int gridSize;
-    private int gridSideLength;
+    private JButton [][] buttons = new JButton[19][19];
     
     
-    private boolean playSound = true;
-    private boolean playMusic = true;
     /** Constructor
      
      @param game an object that implements the GoGame interface to keep track
@@ -49,61 +45,50 @@ public class GoComponent extends JComponent
      swing Widgets, or even to a web page, as needed.
      */
     
-    public GoComponent(GoGame game, JTextArea md) {
+    public BoardGUI(TsumegoGameBoard game, JTextArea md) {
         
         super(); // is this line necessary?  what does it do?
         this.game = game;  // the Go game
         this.md = md;  // a place we can write messages to
         
-        gridSize = game.getGridSize();
-        gridSideLength = game.getSideLength();
-
-
         // note columns ignored when rows are set
         // number of columns is implicit from the number of things added
         
-        this.setLayout(new GridLayout(gridSideLength,0));
+        this.setLayout(new GridLayout(19,0));
         
-        for(int i=0; i<gridSize; i++) { //Code for adding all the buttons
-            MyButton jb = new MyButton();
-            buttons[i] = jb;
+        for(int rows=1; rows<=19; rows++) { //Code for adding all the buttons
+        	for(int cols=1; cols<=19; cols++)
+
+            JButton jb = new JButton("");
+            buttons[rows][cols] = jb;
             Color tan = new Color(210,180,140);
-            buttons[i].setBackground(tan);
-            buttons[i].setForeground(tan);
-            jb.addActionListener(new ButtonListener(i));
+            buttons[rows][cols].setBackground(tan);
+            buttons[rows][cols].setForeground(tan);
+            jb.addActionListener(new PlayTurnListener(rows,cols));
             this.add(jb);
         }
+        
+        
     }
-    
+
     //Adds actionlistener for the tiles
-    class ButtonListener implements ActionListener {
+    class PlayTurnListener implements ActionListener {
         
-        private int num;
+        private int[2] position;
         
         
-        public ButtonListener(int i) {
+        public PlayTurnListener(int row, int col) {
             super();  // is this line necessary? what does it do?
-            this.num = i;
+            this.position[0] = row;
+            this.position[1] = col;
             
         }
         
         public void actionPerformed (ActionEvent event) {
             
-            char turn=game.getTurn();
-            if(playSound){ //If sound is on, play it when the tile is clicked
-                SoundEffect effect = new SoundEffect();
-                effect.playEffect();
-            } //basic stuff for showing who's turn it is and who's turn is next
-            String nextTurn = "Black" ;
-            if(turn == 'W')
-                nextTurn = "Black";
-            if(turn == 'B')
-                nextTurn = "White";
-            
-            if (turn==' ')
-                return;
-            
-            if (!game.isBlank(num)) { //This is output for clicking occupied tiles
+            Player playerInTurn=game.getTurn();
+          
+            if (game.positionIsOccupied(position)) { //This is output for clicking occupied tiles
                 md.append("\n\nThat square is already occupied!");
                 return;
             }
@@ -114,16 +99,22 @@ public class GoComponent extends JComponent
                 return;
             }
             
-            game.changeTurn(); //Changes turn
-            MyButton jb = buttons[num];
+            game.switchTurn(); //Changes turn
+            JButton jb = buttons[num];
             jb.setFont(new Font("Arial",Font.BOLD,25));
             
-            for(int i=0;i<gridSize;i++){
+            for(int i=1;i<362;i++){
                 if(game.charAt(i) == 'W'){ //if element in Array list is W, set background color of JButton to WHITE
-		buttons[i].drawSomething(Color.WHITE);
+                    buttons[i].setBackground(Color.WHITE);
+                    buttons[i].setForeground(Color.WHITE); // set font color of JButton to Black for visibility
+                    buttons[i].setOpaque(true);
+                    buttons[i].setBorderPainted(false);
                 }
                 else if(game.charAt(i) == 'B'){ //if element in ArrayList is B, set background color of JButton to BLACK
-                    buttons[i].drawSomething(Color.BLACK);
+                    buttons[i].setBackground(Color.BLACK);
+                    buttons[i].setForeground(Color.BLACK); // set font color of JButton to White for visibility
+                    buttons[i].setOpaque(true);
+                    buttons[i].setBorderPainted(false);
                 }else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back to tan.
                     Color tan = new Color(210,180,140);
                     buttons[i].setBackground(tan);
@@ -138,10 +129,12 @@ public class GoComponent extends JComponent
             
         }
     }
+    
+    
     public void restart(){
         
         //Resets colors of the tiles on restart
-        for(int i = 0;i<gridSize;i++){
+        for(int i = 1;i<=361;i++){
             Color tan = new Color(210,180,140);
             buttons[i].setBackground(tan);
             buttons[i].setForeground(tan);
@@ -149,15 +142,3 @@ public class GoComponent extends JComponent
             buttons[i].setBorderPainted(true);
         }
     }
-    
-    //Following two methods are just for making sound playing work
-    public void setPlaySound(boolean b){
-        playSound = b;
-    }
-    
-    public boolean getPlaySound(){
-        return playSound;
-    }
-}
-
-

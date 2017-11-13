@@ -30,7 +30,7 @@ public class GoComponent extends JComponent
     private GoGrid grid;
     private JTextArea md;
     
-    private JButton [] buttons = new JButton[360];
+    private MyButton [] buttons = new MyButton[360];
     private int gridSize;
     private int gridSideLength;
     
@@ -65,7 +65,7 @@ public class GoComponent extends JComponent
         this.setLayout(new GridLayout(gridSideLength,0));
         
         for(int i=0; i<gridSize; i++) { //Code for adding all the buttons
-            JButton jb = new JButton("");
+            MyButton jb = new MyButton();
             buttons[i] = jb;
             Color tan = new Color(210,180,140);
             buttons[i].setBackground(tan);
@@ -73,8 +73,6 @@ public class GoComponent extends JComponent
             jb.addActionListener(new ButtonListener(i));
             this.add(jb);
         }
-        
-        
     }
     
     //Adds actionlistener for the tiles
@@ -117,21 +115,15 @@ public class GoComponent extends JComponent
             }
             
             game.changeTurn(); //Changes turn
-            JButton jb = buttons[num];
+            MyButton jb = buttons[num];
             jb.setFont(new Font("Arial",Font.BOLD,25));
             
             for(int i=0;i<gridSize;i++){
                 if(game.charAt(i) == 'W'){ //if element in Array list is W, set background color of JButton to WHITE
-                    buttons[i].setBackground(Color.WHITE);
-                    buttons[i].setForeground(Color.WHITE); // set font color of JButton to Black for visibility
-                    buttons[i].setOpaque(true);
-                    buttons[i].setBorderPainted(false);
+		buttons[i].drawSomething(Color.WHITE);
                 }
                 else if(game.charAt(i) == 'B'){ //if element in ArrayList is B, set background color of JButton to BLACK
-                    buttons[i].setBackground(Color.BLACK);
-                    buttons[i].setForeground(Color.BLACK); // set font color of JButton to White for visibility
-                    buttons[i].setOpaque(true);
-                    buttons[i].setBorderPainted(false);
+                    buttons[i].drawSomething(Color.BLACK);
                 }else if(game.charAt(i) == ' '){ //if ' ' element in Arraylist, set background color back to tan.
                     Color tan = new Color(210,180,140);
                     buttons[i].setBackground(tan);

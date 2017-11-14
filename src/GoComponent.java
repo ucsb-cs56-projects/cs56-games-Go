@@ -30,7 +30,7 @@ public class GoComponent extends JComponent
     private GoGrid grid;
     private JTextArea md;
     
-    private MyButton [] buttons = new MyButton[360];
+    private MyButton [] buttons = new MyButton[362];
     private int gridSize;
     private int gridSideLength;
     

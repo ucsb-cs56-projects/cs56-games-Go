@@ -13,7 +13,7 @@ import java.awt.Point;
 public class Grid{
 
     private final int SIZE;
-	private int moveNumber;
+    private int moveNumber;
     private int whiteStones;
     private int blackStones;
     private int whiteScore;
@@ -22,7 +22,7 @@ public class Grid{
     private Stone lastBlackMove;
     private Map<Point, Stone> capturedByBlack;
     private Map<Point, Stone> capturedByWhite;
-	private Map<Point, Stone> stonesOnBoard;
+    private Map<Point, Stone> stonesOnBoard;
 
     /**
      * Creates empty grid with 
@@ -32,10 +32,10 @@ public class Grid{
     
 
     public Grid(int col, int row) {
-		
+        
         SIZE = col;
-    	stonesOnBoard = new LinkedHashMap<Point, Stone>(SIZE*SIZE);
-    	moveNumber = 0;
+        stonesOnBoard = new LinkedHashMap<Point, Stone>(SIZE*SIZE);
+        moveNumber = 0;
         whiteStones = 0;
         blackStones = 0;
         whiteScore = 0;
@@ -52,15 +52,15 @@ public class Grid{
      * @param black
      */
     public void addStone(Point point, State state) {
-		
-		Stone newStone = new Stone(point, state, moveNumber);
+        
+        Stone newStone = new Stone(point, state, moveNumber);
 
         System.out.println("stone position: " + newStone.getLocation() + "\n");
-		
-		stonesOnBoard.put(point,newStone);
+        
+        stonesOnBoard.put(point,newStone);
 
-		// find newly killed opponent groups using floodfill method
-		Map<String,LinkedHashMap<Point,Stone>> deadGroups = checkForDeadOpponentGroups(newStone);
+        // find newly killed opponent groups using floodfill method
+        Map<String,LinkedHashMap<Point,Stone>> deadGroups = checkForDeadOpponentGroups(newStone);
 
         collectDeadStones(deadGroups,state);
 
@@ -85,7 +85,7 @@ public class Grid{
      * @param stone
      */
     public void addMove(Stone newStone){
-    	this.moveNumber++;
+        this.moveNumber++;
         if(moveNumber%2 == 0){
             whiteStones++;
             lastWhiteMove = newStone;
@@ -115,59 +115,59 @@ public class Grid{
         if(currentPlayerState == State.WHITE)
             opponentState = State.BLACK;
         else opponentState = State.WHITE;
-    	
+        
         //find groups around the recently placed stone 
         //then see if they are dead with doLibertiesExist()
         //Only looks at OPPONENT stones ADJACENT
         Stone up = stonesOnBoard.get(new Point(stone.getX(), stone.getY() - 1));
         if(up != null){
-        	if ((stone.getY() > 0) && (up.getState() == opponentState))
+            if ((stone.getY() > 0) && (up.getState() == opponentState))
             {
                 LinkedHashMap<Point,Stone> upGroup = new LinkedHashMap<Point,Stone>();
                 
                 boolean libertiesExist = doLibertiesExist(up,opponentState,upGroup);
 
                 if(!libertiesExist) deadGroups.put("up",upGroup);
-    		}
+            }
         }
 
         Stone down = stonesOnBoard.get(new Point(stone.getX(), stone.getY() + 1));
         if(down != null){
-    		if ((stone.getY() < SIZE - 1) && (down.getState() == opponentState))
+            if ((stone.getY() < SIZE - 1) && (down.getState() == opponentState))
             {
                 LinkedHashMap<Point,Stone> downGroup = new LinkedHashMap<Point,Stone>();
-    			
+                
                 boolean libertiesExist = doLibertiesExist(down,opponentState,downGroup);
 
                 if(!libertiesExist) deadGroups.put("down",downGroup);
-    		}
+            }
         }
 
         Stone left = stonesOnBoard.get(new Point(stone.getX() - 1, stone.getY()));
         if(left != null){
-    		if ((stone.getX() > 0) && (left.getState() == opponentState))
+            if ((stone.getX() > 0) && (left.getState() == opponentState))
             {
                 LinkedHashMap<Point,Stone> leftGroup = new LinkedHashMap<Point,Stone>();
-    			
+                
                 boolean libertiesExist = doLibertiesExist(left,opponentState,leftGroup);
 
                 if(!libertiesExist) deadGroups.put("left",leftGroup); 
-    		}
+            }
         }
 
         Stone right = stonesOnBoard.get(new Point(stone.getX() + 1, stone.getY()));
         if(right != null){
-    		if ((stone.getX() < SIZE - 1) && (right.getState() == opponentState))
+            if ((stone.getX() < SIZE - 1) && (right.getState() == opponentState))
             {
                 LinkedHashMap<Point,Stone> rightGroup = new LinkedHashMap<Point,Stone>();
-    			
+                
                 boolean libertiesExist = doLibertiesExist(right,opponentState,rightGroup);
 
                 if(!libertiesExist) deadGroups.put("right",rightGroup);  
-    		}
+            }
         }
 
-		return deadGroups;
+        return deadGroups;
     }
 
     public boolean doLibertiesExist(
@@ -177,13 +177,13 @@ public class Grid{
         )
     {
             
-    	if(!stonesOnBoard.containsValue(stone)) return true;
+        if(!stonesOnBoard.containsValue(stone)) return true;
         
         else if(stone.getState() != state) return false;
 
-    	else{
+        else{
 
-		      //check if we have visted this stone before
+              //check if we have visted this stone before
             if(!stonesInGroup.containsValue(stone)){
 
                 // if this square is the colour expected and has not been visited before
@@ -198,7 +198,7 @@ public class Grid{
                         //test with system.ou.println
                         if(up) return up;    
                 }
-        	   
+               
                 if (stone.getY() < SIZE - 1){
                     Stone newStone = stonesOnBoard.get(new Point(stone.getX(), stone.getY() + 1));
 
@@ -282,13 +282,16 @@ public class Grid{
     public boolean isMoveAllowed(Stone stone, State state){
         boolean firstAssessment = !isOccupied(stone.getLocation());
         boolean secondAssessment = followsKORule(stone,state);
+        //add one to check if stone is inside strongly closed group
         return firstAssessment && secondAssessment;
 
     }
 
 
     public boolean followsKORule(Stone stone, State state){
+        System.out.println("KO is going\n");
 
+        //checks if the last move made is the same as the current move.  KO prevents this.
         if(state == State.WHITE){
             if(lastWhiteMove != null){
                 if(lastWhiteMove.getX() == stone.getX()
@@ -311,27 +314,41 @@ public class Grid{
             }
         }
 
-        
+        //Create Stone objects on each side of the stone-to-be-place
+        Stone up = stonesOnBoard.get(new Point(stone.getX(), stone.getY() - 1));
+        Stone down = stonesOnBoard.get(new Point(stone.getX(), stone.getY() + 1));
+        Stone left = stonesOnBoard.get(new Point(stone.getX() - 1, stone.getY()));
+        Stone right = stonesOnBoard.get(new Point(stone.getX() + 1, stone.getY()));
 
+        //Create vaiables that hold truth values for if a stone is on a certain edge
+        boolean isOnTopEdge = false;
+        if(stone.getY() == 0) isOnTopEdge = true;
+        boolean isOnBottomEdge = false;
+        if(stone.getY() == SIZE - 1) isOnBottomEdge = true;
+        boolean isOnLeftEdge = false;
+        if(stone.getX() == 0) isOnLeftEdge = true;
+        boolean isOnRightEdge = false;
+        if(stone.getX() == SIZE - 1) isOnRightEdge = true;
 
         //check to see if surrounding points all have a stone. if they do not, return true.
         //If stones are completely surrounding the move, check to see if they are opponent stones
-        if(stonesOnBoard.get(new Point(stone.getX(), stone.getY() - 1)) != null
-            && stonesOnBoard.get(new Point(stone.getX(), stone.getY() + 1)) != null
-            && stonesOnBoard.get(new Point(stone.getX() - 1, stone.getY())) != null
-            && stonesOnBoard.get(new Point(stone.getX() + 1, stone.getY())) != null)
+        //The right side of each OR statement checks if the stone is on the edge of the board
+        if( ((up != null) || isOnTopEdge)
+            && ((down != null) || isOnBottomEdge)
+            && ((left != null) || isOnLeftEdge)
+            && ((right != null) || isOnRightEdge)  )
         {
+            System.out.println("its me 1\n");
             
-            
-
-
             //if surreounding stones are opponent stones, check KO
             //if they are not, return true because you can play within your own eye
-            if(stonesOnBoard.get(new Point(stone.getX(), stone.getY() - 1)).getState() != state
-                && stonesOnBoard.get(new Point(stone.getX(), stone.getY() + 1)).getState() != state
-                && stonesOnBoard.get(new Point(stone.getX() - 1, stone.getY())).getState() != state
-                && stonesOnBoard.get(new Point(stone.getX() + 1, stone.getY())).getState() != state)
+            //TODO@ FIX:: this so there will be a try catch for NullPointerException
+            if(((up.getState() != state) || isOnTopEdge)
+                && ((down.getState() != state) || isOnBottomEdge)
+                && ((left.getState() != state) || isOnLeftEdge)
+                && ((right.getState() != state) || isOnRightEdge) )
             {
+                System.out.println("its me 2\n");
                 //temporarily add the stone to the board so getLiberties() will work properly!!
                 Point temp = new Point(stone.getX(), stone.getY());
                 stonesOnBoard.put(temp, stone);
@@ -347,7 +364,10 @@ public class Grid{
             }
             else return true;
         }
-        else return true;
+        else {
+            System.out.println("its me 3\n");
+            return true;
+        }
 
         //check to see if surrounding are opponent state. If they are, see if you will break their eye
 

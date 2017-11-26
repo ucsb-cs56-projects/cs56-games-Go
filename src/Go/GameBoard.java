@@ -64,7 +64,8 @@ public class GameBoard extends JPanel {
                     return;
                 }
 
-                if(grid.isMoveAllowed(new Stone(newPoint,current_player,0), current_player)){
+                //check if each rule is not being violated
+                if(grid.isMoveAllowed(new Stone(newPoint,current_player,0),current_player)){
                     grid.addStone(newPoint, current_player);
 
                     textArea.append("\nMove number: " + grid.getMoveNumber());

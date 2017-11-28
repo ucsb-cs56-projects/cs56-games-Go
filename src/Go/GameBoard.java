@@ -30,19 +30,18 @@ public class GameBoard extends JPanel {
     private State current_player;
     private Grid grid;
     private Point lastMove;
-
+    public boolean surrender = false;
     public GameBoard(int x, int y, JTextArea textArea) {
 
         gridSize = x;
         numberOfTiles = gridSize - 1;
         tileSize = 40;
         borderSize = tileSize;
-
+         
     	this.setBackground(Color.ORANGE);
     	grid = new Grid(x, y);
     	// Black always starts
     	current_player = State.BLACK;
-
     	this.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -50,6 +49,7 @@ public class GameBoard extends JPanel {
 
                 // Converts to float for float division and then rounds to
                 // provide nearest intersection.
+                if (!surrender) {
                 int row = Math.round((float) (e.getY() - borderSize)
     				 / tileSize);
                 int col = Math.round((float) (e.getX() - borderSize)
@@ -80,7 +80,7 @@ public class GameBoard extends JPanel {
                             current_player = State.BLACK;
                         }
                 }
-
+                }
                 repaint();
             }
 	    });

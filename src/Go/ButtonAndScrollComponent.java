@@ -22,21 +22,21 @@ public class ButtonAndScrollComponent extends JComponent
     private Grid grid;
     private JTextArea textArea;
     private GameBoard board;
-    
+    private GameCreator gCreator;
     private GoInstructions directionFrame;
     
     private boolean playMusic = true; //Default music to be on
     private BackgroundMusic m = new BackgroundMusic();
     
     private JButton sur = new JButton();
-    
-    public ButtonAndScrollComponent(GameBoard board, JTextArea textArea, Grid grid){
+    public boolean surrender = false;    
+    public ButtonAndScrollComponent(GameBoard board, JTextArea textArea, Grid grid, GameCreator gCreator){
         
         super();
         this.board=board;
         this.textArea = textArea;
         this.grid = grid;
-        
+        this.gCreator = gCreator;
         this.setLayout(new BoxLayout(this,1));
         
         m.playMusic(); //Starts music
@@ -92,7 +92,8 @@ public class ButtonAndScrollComponent extends JComponent
         }
         
         public void actionPerformed (ActionEvent event) {
-            
+            surrender = true;
+	    gCreator.Surrender();
         }
     }
     
@@ -104,7 +105,6 @@ public class ButtonAndScrollComponent extends JComponent
         }
         
         public void actionPerformed (ActionEvent event){
-               
         }
         
     }
@@ -117,6 +117,8 @@ public class ButtonAndScrollComponent extends JComponent
         }
         
         public void actionPerformed (ActionEvent event){
+	   System.out.println("Restart");
+           gCreator.ReDraw();
         }
     }
     

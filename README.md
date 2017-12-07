@@ -111,5 +111,12 @@ ant run
 
 ![](http://i63.tinypic.com/fekpas.png?1)
 
+# F17 Final Remarks
+
+Do not look at the file explaination section as a guide.  The code was heavily refactored and most of the functionality was thrown out to make the grid hold values in a Map instead of an 2D array.  
+1. All rules for the game have been implemented so do not worry about this.
+2. Every time a stone is placed(if the move is legal), a recursive step is taken to see if the stone will cause a capture of opponent stones.  This recursive method is in the Grid.java class and is referred to as a 'floodfill' method.  Look this method up online if the code confuses you.
+3. Some code like the background music, is still in place but has not been plugged back into the program since refactoring took place, so this shoudl be an easy fix.
+
  
 

@@ -1,4 +1,4 @@
-Gehrig weber, Github ID: praxideus
+Gehrig Weber, Github ID: praxideus
 
 Misha Zaied, Github ID: shnube
 

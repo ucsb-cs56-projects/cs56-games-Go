@@ -49,8 +49,8 @@ Then, I would add descriptions for each of the files in the repo. I would also a
 
 
 
-(i)
+(i) The code has each individual feature separated into its own .java file, past the point of practicality and efficiency. That being said, most filenames make clear exactly what their functions are, even if you have to follow the breadcrumb trail of function calls to find the source of the coded action. The code itself is clear enough, though some refactoring of the code to a more natural flow couldn't hurt readability. In an oversimplified overview, the code is connected as such: the ButtonsAndScrollComponent.java file creates all the user interfaces on the main menu screen, with buttons that link to various other .java files to open different options. The GameCreator.java file creates the initialized gameboard, and each click creates a Stone.java class object. It is still unclear to me how the program recognizes legal/illegal moves. 
 
 
 
-(j)
+(j) Insofar there are no JUnit tests. There are plans to remedy this problem later in the quarter, not only to improve our coding experience, but to help the next pair working on this project continue to improve the code. This will involve developing a comprehensive test suite for every aspect of the game code.

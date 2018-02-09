@@ -40,6 +40,7 @@ public class ButtonAndScrollComponent extends JComponent
         this.setLayout(new BoxLayout(this,1));
         
         m.playMusic(); //Starts music
+        SFX_On_Or_Off.setSFXonOrOff(true);
         
         sur.addActionListener(new ButtonListener());
         JScrollPane scroller = new JScrollPane(textArea); //This and next two line set scrollbar if the window needs it
@@ -47,14 +48,14 @@ public class ButtonAndScrollComponent extends JComponent
         scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         JButton sur = new JButton("Surrender"); //Makes the surrender button and adds a listener
         sur.addActionListener(new ButtonListener2());
-        JButton directions = new JButton("Directions"); //Makes the directions button and addes a listener
+        JButton directions = new JButton("Directions"); //Makes the directions button and adds a listener
         directions.addActionListener(new ButtonListener());
         JButton skipTurn = new JButton("Skip Turn"); //Makes the skip turn button and adds a listener
         skipTurn.addActionListener(new ButtonListener3());
         JButton restart = new JButton("Restart"); //Makes a restart button and adds a listener
         restart.addActionListener(new ButtonListener4());
         
-        JButton sound = new JButton("Sound Effects On/Off"); //Makes a sound effects button and adds a listner
+        JButton sound = new JButton("Sound Effects On/Off"); //Makes a sound effects button and adds a listener
         sound.addActionListener(new PlaySoundButtonListener());
         JButton music = new JButton("Music On/Off"); //Makes a music button and adds a listener
         music.addActionListener(new PlayMusicButtonListener());
@@ -118,7 +119,8 @@ public class ButtonAndScrollComponent extends JComponent
         
         public void actionPerformed (ActionEvent event){
 	   System.out.println("Restart");
-           gCreator.ReDraw();
+	   m.endMusic();
+	   gCreator.ReDraw();
         }
     }
     
@@ -129,8 +131,12 @@ public class ButtonAndScrollComponent extends JComponent
         }
         
         public void actionPerformed (ActionEvent event){
-            //boolean sound = grid.getPlaySound(); //Checks if sound should be played
-            //gc.setPlaySound(!sound); //Plays if it the boolean is true
+            if (SFX_On_Or_Off.getSFXonOrOff()) {
+                SFX_On_Or_Off.setSFXonOrOff(false);
+            }
+            else {
+                SFX_On_Or_Off.setSFXonOrOff(true);
+            }
         }
     }
     

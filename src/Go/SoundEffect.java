@@ -16,7 +16,7 @@ public class SoundEffect {
 
     //Method for the sound effect playing, soundName is the name of the default audio file, looks for that name
     public void playEffect(){
-	String soundName = "button.wav";    
+	String soundName = "wavFiles/button.wav";
 
 	try{
 	AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile()); //Attempt to pull the aforementioned file

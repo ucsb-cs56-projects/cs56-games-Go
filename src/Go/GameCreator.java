@@ -83,7 +83,7 @@ public class GameCreator extends JComponent{
                 this.col = col;
                 this.row = row;
 		f = new JFrame();
-//		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setTitle(TITLE);
 
 		f.getContentPane().setLayout(new BoxLayout(f.getContentPane(),0));

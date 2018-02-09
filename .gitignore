@@ -2,7 +2,7 @@
 *~
 .DS_Store
 .idea
-.iml
+*.iml
 
 # Package Files #
 *.jar

@@ -11,7 +11,7 @@ public class BackgroundMusic {
 
     public BackgroundMusic(){
 	try{
-	    as1 = AudioSystem.getAudioInputStream(new File("medley.wav").getAbsoluteFile()); //Sets input stream
+	    as1 = AudioSystem.getAudioInputStream(new File("wavFiles/jazz.wav").getAbsoluteFile()); //Sets input stream
 	    clip1 = AudioSystem.getClip(); //Gets the clip from the input stream
 	}catch(Exception e){
 	    System.out.println(e.getMessage()); //Throws exception if fail

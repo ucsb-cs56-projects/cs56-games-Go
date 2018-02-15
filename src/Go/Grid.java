@@ -76,12 +76,7 @@ public class Grid{
             System.out.println("last white move: " + lastWhiteMove.getLocation());
         if(lastBlackMove != null)
             System.out.println("last black move: " + lastBlackMove.getLocation());
-
-        SoundEffect stoneSound = new SoundEffect();
-        if (SFX_On_Or_Off.getSFXonOrOff()) {
-            stoneSound.playEffect();
-        }
-
+     
         addMove(newStone);
 
     }

@@ -1,7 +1,5 @@
 *.class
-*~
-.DS_Store
-.idea
+*~ 
 
 # Package Files #
 *.jar

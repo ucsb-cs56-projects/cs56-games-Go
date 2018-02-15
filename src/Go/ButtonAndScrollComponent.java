@@ -141,14 +141,14 @@ public class ButtonAndScrollComponent extends JComponent
         }
         
         public void actionPerformed (ActionEvent event){
-            if(playMusic){
-                playMusic = false; //Check if music button is switched to off
-                m.endMusic(); //Ends music
-            }else{
-                m = new BackgroundMusic(); //Otherwise make new background music
-                playMusic = true; //Set true
-                m.playMusic(); //Play it
-            }
+            ////if(playMusic){
+                //playMusic = false; //Check if music button is switched to off
+                //m.endMusic(); //Ends music
+            //}else{
+              //  m = new BackgroundMusic(); //Otherwise make new background music
+                //playMusic = true; //Set true
+                //m.playMusic(); //Play it
+            //}
         }
     }
     

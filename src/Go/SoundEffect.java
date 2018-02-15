@@ -24,7 +24,7 @@ public class SoundEffect {
 	clip.open(audioInputStream); //Opens the clip and starts it
 	clip.start();
 	}catch(Exception e){
-	    System.out.println(e.getMessage()); //If file is unfound throw exception
+	    System.out.println(e.getMessage()); //If file is not found throw exception
 	}
     }
 }

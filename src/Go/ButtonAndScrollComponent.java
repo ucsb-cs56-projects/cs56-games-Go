@@ -9,11 +9,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
-import java.awt.Color;
-import javax.swing.JFrame;
-import java.awt.ComponentOrientation;
-import java.awt.Dimension;
-import javax.swing.text.BadLocationException;
 
 
 public class ButtonAndScrollComponent extends JComponent
@@ -40,7 +35,7 @@ public class ButtonAndScrollComponent extends JComponent
         this.setLayout(new BoxLayout(this,1));
         
         m.playMusic(); //Starts music
-        SFX_On_Or_Off.setSFXonOrOff(true);
+        Status.setSFXonOrOff(true);
         
         sur.addActionListener(new ButtonListener());
         JScrollPane scroller = new JScrollPane(textArea); //This and next two line set scrollbar if the window needs it
@@ -106,6 +101,7 @@ public class ButtonAndScrollComponent extends JComponent
         }
         
         public void actionPerformed (ActionEvent event){
+            Status.setSkippedTurn(Status.getSkippedTurn() + 1);
         }
         
     }
@@ -120,6 +116,7 @@ public class ButtonAndScrollComponent extends JComponent
         public void actionPerformed (ActionEvent event){
 	   System.out.println("Restart");
 	   m.endMusic();
+	   Status.setSkippedTurn(0);
 	   gCreator.ReDraw();
         }
     }
@@ -131,11 +128,11 @@ public class ButtonAndScrollComponent extends JComponent
         }
         
         public void actionPerformed (ActionEvent event){
-            if (SFX_On_Or_Off.getSFXonOrOff()) {
-                SFX_On_Or_Off.setSFXonOrOff(false);
+            if (Status.getSFXonOrOff()) {
+                Status.setSFXonOrOff(false);
             }
             else {
-                SFX_On_Or_Off.setSFXonOrOff(true);
+                Status.setSFXonOrOff(true);
             }
         }
     }

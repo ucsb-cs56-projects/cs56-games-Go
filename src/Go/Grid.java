@@ -1,7 +1,6 @@
 package Go;
 
 
-import Go.State;
 import java.util.*;
 import java.awt.Point;
 
@@ -26,7 +25,7 @@ public class Grid{
 
     /**
      * Creates empty grid with 
-     *@param int  number of columns in the grid 
+     *@param int  number of columns in the grid
      *@param row  number of rows in the grid
      */
     
@@ -72,13 +71,14 @@ public class Grid{
         System.out.println("White score: " + whiteScore);
         System.out.println("Black score: " + blackScore + "\n");
 
+
         if(lastWhiteMove != null) 
             System.out.println("last white move: " + lastWhiteMove.getLocation());
         if(lastBlackMove != null)
             System.out.println("last black move: " + lastBlackMove.getLocation());
 
         SoundEffect stoneSound = new SoundEffect();
-        if (SFX_On_Or_Off.getSFXonOrOff()) {
+        if (Status.getSFXonOrOff()) {
             stoneSound.playEffect();
         }
 

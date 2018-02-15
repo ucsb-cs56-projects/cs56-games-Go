@@ -47,6 +47,16 @@ public class GameBoard extends JPanel {
             @Override
     	    public void mouseReleased(MouseEvent e) {
 
+                if (Status.getSkippedTurn() % 2 == 1) {
+                    // Switch current player
+                    if (current_player == State.BLACK) {
+                        current_player = State.WHITE;
+                    } else {
+                        current_player = State.BLACK;
+                    }
+                    Status.setSkippedTurn(0);
+                }
+
                 // Converts to float for float division and then rounds to
                 // provide nearest intersection.
                 if (!surrender) {
@@ -65,7 +75,7 @@ public class GameBoard extends JPanel {
                 }
 
                 //check if each rule is not being violated
-                if(grid.isMoveAllowed(new Stone(newPoint,current_player,0),current_player)){
+                if(grid.isMoveAllowed(new Stone(newPoint,current_player,0),current_player)) {
                     grid.addStone(newPoint, current_player);
 
                     textArea.append("\nMove number: " + grid.getMoveNumber());
@@ -74,12 +84,13 @@ public class GameBoard extends JPanel {
 
                     lastMove = new Point(col, row);
 
-                        // Switch current player
-                        if (current_player == State.BLACK) {
-                            current_player = State.WHITE;
-                        } else {
-                            current_player = State.BLACK;
-                        }
+                    // Switch current player
+                    if (current_player == State.BLACK) {
+                        current_player = State.WHITE;
+                    } else {
+                        current_player = State.BLACK;
+                    }
+
                 }
                 }
                 repaint();

@@ -92,6 +92,18 @@ public class ButtonAndScrollComponent extends JComponent
                 surrender = true;
                 gCreator.Surrender();
 
+                if (board.getCurrent_player() == State.WHITE) {
+                    textArea.append("\nWhite has surrendered.\n");
+                    textArea.append("By default, Black has\nwon the match!\n");
+                }
+
+                else if (board.getCurrent_player() == State.BLACK) {
+                    textArea.append("Black has surrendered.\n");
+                    textArea.append("By default, White has\nwon the match!\n");
+                }
+
+                textArea.append("\nPress the restart button\nto play again.\n");
+                Status.setGameIsOver(true);
             }
 
         }
@@ -131,7 +143,7 @@ public class ButtonAndScrollComponent extends JComponent
                     textArea.append("White's " + Status.getWhiteScore() + " " + Wpoints + ",\n");
                     textArea.append("Black has won the match!\n");
                 } else {
-                    textArea.append("No one! Both players have " + Status.getWhiteScore() + " " + Bpoints + "!\n");
+                    textArea.append("No one!\nBoth players have " + Status.getWhiteScore() + " " + Bpoints + "!\n");
                     textArea.append("This match is a draw!\n");
                 }
 

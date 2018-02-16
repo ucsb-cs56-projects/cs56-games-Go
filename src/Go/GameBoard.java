@@ -79,6 +79,12 @@ public class GameBoard extends JPanel {
                     grid.addStone(newPoint, current_player);
 
                     textArea.append("\nMove number: " + grid.getMoveNumber());
+                    if (current_player == State.BLACK) {
+                        textArea.append("\nIt is White's turn.");
+                    }
+                    else {
+                        textArea.append("\nIt is Black's turn.");
+                    }
                     textArea.append("\nBlack score: " + grid.getBlackScore());
                     textArea.append("\nWhite score: " + grid.getWhiteScore() + "\n");
 
@@ -148,4 +154,7 @@ public class GameBoard extends JPanel {
 			 numberOfTiles * tileSize + borderSize * 2);
 }
 
+    public State getCurrent_player() {
+        return current_player;
+    }
 }

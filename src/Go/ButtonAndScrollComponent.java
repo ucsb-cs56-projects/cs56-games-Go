@@ -43,14 +43,14 @@ public class ButtonAndScrollComponent extends JComponent
         scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         JButton sur = new JButton("Surrender"); //Makes the surrender button and adds a listener
         sur.addActionListener(new ButtonListener2());
-        JButton directions = new JButton("Directions"); //Makes the directions button and adds a listener
+        JButton directions = new JButton("Directions"); //Makes the directions button and addes a listener
         directions.addActionListener(new ButtonListener());
         JButton skipTurn = new JButton("Skip Turn"); //Makes the skip turn button and adds a listener
         skipTurn.addActionListener(new ButtonListener3());
         JButton restart = new JButton("Restart"); //Makes a restart button and adds a listener
         restart.addActionListener(new ButtonListener4());
         
-        JButton sound = new JButton("Sound Effects On/Off"); //Makes a sound effects button and adds a listener
+        JButton sound = new JButton("Sound Effects On/Off"); //Makes a sound effects button and adds a listner
         sound.addActionListener(new PlaySoundButtonListener());
         JButton music = new JButton("Music On/Off"); //Makes a music button and adds a listener
         music.addActionListener(new PlayMusicButtonListener());
@@ -199,14 +199,14 @@ public class ButtonAndScrollComponent extends JComponent
         }
         
         public void actionPerformed (ActionEvent event){
-            if(playMusic){
-                playMusic = false; //Check if music button is switched to off
-                m.endMusic(); //Ends music
-            }else{
-                m = new BackgroundMusic(); //Otherwise make new background music
-                playMusic = true; //Set true
-                m.playMusic(); //Play it
-            }
+            ////if(playMusic){
+                //playMusic = false; //Check if music button is switched to off
+                //m.endMusic(); //Ends music
+            //}else{
+              //  m = new BackgroundMusic(); //Otherwise make new background music
+                //playMusic = true; //Set true
+                //m.playMusic(); //Play it
+            //}
         }
     }
     

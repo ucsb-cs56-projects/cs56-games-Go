@@ -86,7 +86,6 @@ public class Grid{
         if (Status.getSFXonOrOff()) {
             stoneSound.playEffect();
         }
-
         addMove(newStone);
 
     }

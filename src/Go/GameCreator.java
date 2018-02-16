@@ -99,6 +99,10 @@ public class GameCreator extends JComponent{
 			)
 		);
 
+		Status.setSkippedTurn(false);
+		Status.setBlackScore(0);
+		Status.setWhiteScore(0);
+		Status.setSFXonOrOff(true);
 		
 		grid = new Grid(col,row);
 		textArea = new JTextArea(4,4);

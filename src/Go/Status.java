@@ -2,19 +2,49 @@ package Go;
 
 public class Status {
     private static boolean SFXonOrOff;
-    private static int SkippedTurn;
+    private static boolean SkippedTurn;
+    private static boolean GameIsOver;
+    private static int WhiteScore;
+    private static int BlackScore;
 
 
     public Status() {
         SFXonOrOff = true;
-        SkippedTurn = 0;
+        SkippedTurn = false;
+        WhiteScore = 0;
+        BlackScore = 0;
+        GameIsOver = false;
     }
 
-    public static int getSkippedTurn() {
+    public static int getWhiteScore() {
+        return WhiteScore;
+    }
+
+    public static void setWhiteScore(int whiteScore) {
+        WhiteScore = whiteScore;
+    }
+
+    public static int getBlackScore() {
+        return BlackScore;
+    }
+
+    public static void setBlackScore(int blackScore) {
+        BlackScore = blackScore;
+    }
+
+    public static boolean getGameIsOver() {
+        return GameIsOver;
+    }
+
+    public static void setGameIsOver(boolean gameIsOver) {
+        GameIsOver = gameIsOver;
+    }
+
+    public static boolean getSkippedTurn() {
         return SkippedTurn;
     }
 
-    public static void setSkippedTurn(int skippedTurn) {
+    public static void setSkippedTurn(boolean skippedTurn) {
         SkippedTurn = skippedTurn;
     }
 

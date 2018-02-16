@@ -58,7 +58,12 @@ public class Grid{
         
         stonesOnBoard.put(point,newStone);
 
-        
+        if (state == State.WHITE) {
+            Status.setWhiteScore(Status.getWhiteScore() + 1);
+        }
+        else {
+            Status.setBlackScore(Status.getBlackScore() + 1);
+        }
 
         // find newly killed opponent groups using floodfill method
         Map<String,LinkedHashMap<Point,Stone>> deadGroups = checkForDeadOpponentGroups(newStone);
@@ -267,12 +272,16 @@ public class Grid{
                 if(state == State.BLACK){
                     capturedByBlack.put(point,chain.get(point));
                     blackScore++;
+                    Status.setWhiteScore(Status.getWhiteScore() - 1);
+                    Status.setBlackScore(Status.getBlackScore() + 1);
 
                     System.out.println(point);
                 }
                 if(state == State.WHITE){
                     capturedByWhite.put(point,chain.get(point));
                     whiteScore++;
+                    Status.setBlackScore(Status.getBlackScore() - 1);
+                    Status.setWhiteScore(Status.getWhiteScore() + 1);
 
                     System.out.println(point);
                 }

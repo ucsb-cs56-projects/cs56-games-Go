@@ -100,8 +100,45 @@ public class ButtonAndScrollComponent extends JComponent
             super();
         }
         
-        public void actionPerformed (ActionEvent event){
-            Status.setSkippedTurn(Status.getSkippedTurn() + 1);
+        public void actionPerformed (ActionEvent event) {
+            if (Status.getSkippedTurn()) {
+                gCreator.Surrender();
+
+                String Bpoints = "points";
+                String Wpoints = "points";
+
+                if (Status.getBlackScore() == 1) {
+                    Bpoints = "point";
+                }
+                if (Status.getWhiteScore() == 1) {
+                    Wpoints = "point";
+                }
+                textArea.append("\nBoth players have\nskipped their turn.\n");
+                textArea.append("A winner will now be calculated.\n");
+                textArea.append("\nThe winner is...\n");
+
+                if (Status.getWhiteScore() > Status.getBlackScore()) {
+                    textArea.append("White! With " + Status.getWhiteScore() + " " + Wpoints + " to\n");
+                    textArea.append("Black's " + Status.getBlackScore() + " " + Bpoints + ",\n");
+                    textArea.append("White has won the match!\n");
+                }
+
+                else if (Status.getWhiteScore() < Status.getBlackScore()) {
+                    textArea.append("Black! With " + Status.getBlackScore() + " " + Bpoints + " to\n");
+                    textArea.append("White's " + Status.getWhiteScore() + " " + Wpoints + ",\n");
+                    textArea.append("Black has won the match!\n");
+                }
+
+                else {
+                    textArea.append("No one! Both players have " + Status.getWhiteScore() + " " + Bpoints + "!\n");
+                    textArea.append("This match is a draw!\n");
+                }
+
+                textArea.append("\nPress the restart button\nto play again.\n");
+
+            } else {
+                Status.setSkippedTurn(true);
+            }
         }
         
     }
@@ -116,7 +153,9 @@ public class ButtonAndScrollComponent extends JComponent
         public void actionPerformed (ActionEvent event){
 	   System.out.println("Restart");
 	   m.endMusic();
-	   Status.setSkippedTurn(0);
+	   Status.setSkippedTurn(false);
+	   Status.setWhiteScore(0);
+	   Status.setBlackScore(0);
 	   gCreator.ReDraw();
         }
     }

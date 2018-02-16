@@ -47,14 +47,14 @@ public class GameBoard extends JPanel {
             @Override
     	    public void mouseReleased(MouseEvent e) {
 
-                if (Status.getSkippedTurn() % 2 == 1) {
+                if (Status.getSkippedTurn()) {
                     // Switch current player
                     if (current_player == State.BLACK) {
                         current_player = State.WHITE;
                     } else {
                         current_player = State.BLACK;
                     }
-                    Status.setSkippedTurn(0);
+                    Status.setSkippedTurn(false);
                 }
 
                 // Converts to float for float division and then rounds to

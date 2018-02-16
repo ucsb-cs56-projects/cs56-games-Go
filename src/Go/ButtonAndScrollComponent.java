@@ -88,8 +88,12 @@ public class ButtonAndScrollComponent extends JComponent
         }
         
         public void actionPerformed (ActionEvent event) {
-            surrender = true;
-	    gCreator.Surrender();
+            if (!Status.getGameIsOver()) {
+                surrender = true;
+                gCreator.Surrender();
+
+            }
+
         }
     }
     
@@ -101,11 +105,12 @@ public class ButtonAndScrollComponent extends JComponent
         }
         
         public void actionPerformed (ActionEvent event) {
-            if (Status.getSkippedTurn()) {
-                gCreator.Surrender();
+           if (!Status.getGameIsOver()) {
 
-                String Bpoints = "points";
-                String Wpoints = "points";
+             if (Status.getSkippedTurn()) {
+                 gCreator.Surrender();
+                 String Bpoints = "points";
+                 String Wpoints = "points";
 
                 if (Status.getBlackScore() == 1) {
                     Bpoints = "point";
@@ -121,24 +126,22 @@ public class ButtonAndScrollComponent extends JComponent
                     textArea.append("White! With " + Status.getWhiteScore() + " " + Wpoints + " to\n");
                     textArea.append("Black's " + Status.getBlackScore() + " " + Bpoints + ",\n");
                     textArea.append("White has won the match!\n");
-                }
-
-                else if (Status.getWhiteScore() < Status.getBlackScore()) {
+                } else if (Status.getWhiteScore() < Status.getBlackScore()) {
                     textArea.append("Black! With " + Status.getBlackScore() + " " + Bpoints + " to\n");
                     textArea.append("White's " + Status.getWhiteScore() + " " + Wpoints + ",\n");
                     textArea.append("Black has won the match!\n");
-                }
-
-                else {
+                } else {
                     textArea.append("No one! Both players have " + Status.getWhiteScore() + " " + Bpoints + "!\n");
                     textArea.append("This match is a draw!\n");
                 }
 
                 textArea.append("\nPress the restart button\nto play again.\n");
+                Status.setGameIsOver(true);
 
             } else {
                 Status.setSkippedTurn(true);
             }
+        }
         }
         
     }
@@ -154,6 +157,7 @@ public class ButtonAndScrollComponent extends JComponent
 	   System.out.println("Restart");
 	   m.endMusic();
 	   Status.setSkippedTurn(false);
+	   Status.setGameIsOver(false);
 	   Status.setWhiteScore(0);
 	   Status.setBlackScore(0);
 	   gCreator.ReDraw();

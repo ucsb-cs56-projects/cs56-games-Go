@@ -1,19 +1,78 @@
 package Go;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
 public class Status {
     private static boolean SFXonOrOff;
+    private static boolean MusicOnOrOff;
     private static boolean SkippedTurn;
     private static boolean GameIsOver;
     private static int WhiteScore;
     private static int BlackScore;
+    private static ArrayList<String> Moves;
+    private static int boardSize;
+
 
 
     public Status() {
         SFXonOrOff = true;
+        MusicOnOrOff = true;
         SkippedTurn = false;
         WhiteScore = 0;
         BlackScore = 0;
         GameIsOver = false;
+
+        Moves = new ArrayList<String>();
+        boardSize = 0;
+    }
+
+    public static void addMove(int col, int row, int state) {
+        String aMove = col + "," + row + "," + state;
+        Moves.add(aMove);
+    }
+
+    public static void storeGame() {
+        try {
+            FileOutputStream fileStream = new FileOutputStream("save.ser");
+            ObjectOutputStream oStream = new ObjectOutputStream(fileStream);
+
+            int storeSize = boardSize;
+            ArrayList<String> storage = Moves;
+            boolean storeSFX = SFXonOrOff;
+            boolean storeMusic = MusicOnOrOff;
+            boolean storeSkip = SkippedTurn;
+
+            oStream.writeObject(storeSize);
+            oStream.writeObject(storage);
+            oStream.writeObject(storeSFX);
+            oStream.writeObject(storeMusic);
+            oStream.writeObject(storeSkip);
+
+            oStream.close();
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static ArrayList<String> getMoves() {
+        return Moves;
+    }
+
+    public static void setMoves(ArrayList<String> moves) {
+        Moves = moves;
+    }
+
+    public static int getBoardSize() {
+        return boardSize;
+    }
+
+    public static void setBoardSize(int boardSize) {
+        Status.boardSize = boardSize;
+
     }
 
     public static int getWhiteScore() {
@@ -55,4 +114,14 @@ public class Status {
     public static void setSFXonOrOff(boolean SFXonOrOff) {
         Status.SFXonOrOff = SFXonOrOff;
     }
+
+
+    public static boolean getMusicOnOrOff() {
+        return MusicOnOrOff;
+    }
+
+    public static void setMusicOnOrOff(boolean musicOnOrOff) {
+        MusicOnOrOff = musicOnOrOff;
+    }
+
 }

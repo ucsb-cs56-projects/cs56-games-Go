@@ -1,6 +1,9 @@
 package Go;
 
 
+
+import java.io.Serializable;
+
 import java.util.*;
 import java.awt.Point;
 
@@ -9,7 +12,7 @@ import java.awt.Point;
  *  
  *
  */
-public class Grid{
+public class Grid {
 
     private final int SIZE;
     private int moveNumber;
@@ -86,6 +89,7 @@ public class Grid{
         if (Status.getSFXonOrOff()) {
             stoneSound.playEffect();
         }
+
         addMove(newStone);
 
     }

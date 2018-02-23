@@ -13,18 +13,19 @@ import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.ComponentOrientation;
+import java.io.Serializable;
 
 /**
  * Builds UI and starts the game.
  *
  */
-public class GameCreator extends JComponent{
+public class GameCreator extends JComponent {
 
     public static final String TITLE = "Japanese Tsumego";
     public static final int BORDER_SIZE = 25;
     int col, row;
-    public  JFrame f=null;
-    public JPanel goPanel=null;
+    transient public  JFrame f=null;
+    transient public JPanel goPanel=null;
     public Grid grid = null;
     public GameBoard board = null;
     public JTextArea textArea = null;
@@ -83,7 +84,7 @@ public class GameCreator extends JComponent{
                 this.col = col;
                 this.row = row;
 		f = new JFrame();
-//		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setTitle(TITLE);
 
 		f.getContentPane().setLayout(new BoxLayout(f.getContentPane(),0));

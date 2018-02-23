@@ -6,6 +6,10 @@ import javax.swing.JComponent;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
@@ -15,15 +19,16 @@ public class ButtonAndScrollComponent extends JComponent
 {
     //new gocomponent, textarea, game, frames
     private Grid grid;
-    private JTextArea textArea;
+    transient private JTextArea textArea;
     private GameBoard board;
     private GameCreator gCreator;
-    private GoInstructions directionFrame;
+    transient private GoInstructions directionFrame;
+
     
     private boolean playMusic = true; //Default music to be on
     private BackgroundMusic m = new BackgroundMusic();
     
-    private JButton sur = new JButton();
+    transient private JButton sur = new JButton();
     public boolean surrender = false;    
     public ButtonAndScrollComponent(GameBoard board, JTextArea textArea, Grid grid, GameCreator gCreator){
         
@@ -43,17 +48,20 @@ public class ButtonAndScrollComponent extends JComponent
         scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         JButton sur = new JButton("Surrender"); //Makes the surrender button and adds a listener
         sur.addActionListener(new ButtonListener2());
-        JButton directions = new JButton("Directions"); //Makes the directions button and addes a listener
+        JButton directions = new JButton("Directions"); //Makes the directions button and adds a listener
         directions.addActionListener(new ButtonListener());
         JButton skipTurn = new JButton("Skip Turn"); //Makes the skip turn button and adds a listener
         skipTurn.addActionListener(new ButtonListener3());
         JButton restart = new JButton("Restart"); //Makes a restart button and adds a listener
         restart.addActionListener(new ButtonListener4());
         
-        JButton sound = new JButton("Sound Effects On/Off"); //Makes a sound effects button and adds a listner
+        JButton sound = new JButton("Sound Effects On/Off"); //Makes a sound effects button and adds a listener
         sound.addActionListener(new PlaySoundButtonListener());
         JButton music = new JButton("Music On/Off"); //Makes a music button and adds a listener
         music.addActionListener(new PlayMusicButtonListener());
+
+        JButton save = new JButton("Save Game"); //Makes a save game button and adds a listener
+        save.addActionListener(new SaveGameButtonListener());
         
         //These lines of code add the aforementioned buttons
         this.add(scroller);
@@ -63,6 +71,7 @@ public class ButtonAndScrollComponent extends JComponent
         this.add(restart);
         this.add(sound);
         this.add(music);
+        this.add(save);
     }
     
     //Actionlistner for opening directions interface
@@ -199,14 +208,27 @@ public class ButtonAndScrollComponent extends JComponent
         }
         
         public void actionPerformed (ActionEvent event){
-            ////if(playMusic){
-                //playMusic = false; //Check if music button is switched to off
-                //m.endMusic(); //Ends music
-            //}else{
-              //  m = new BackgroundMusic(); //Otherwise make new background music
-                //playMusic = true; //Set true
-                //m.playMusic(); //Play it
-            //}
+            if(playMusic){
+                playMusic = false; //Check if music button is switched to off
+                m.endMusic(); //Ends music
+                Status.setMusicOnOrOff(false); //For saving and loading, nothing else
+            }else{
+                m = new BackgroundMusic(); //Otherwise make new background music
+                playMusic = true; //Set true
+                m.playMusic(); //Play it
+                Status.setMusicOnOrOff(true); //For saving and loading, nothing else
+            }
+        }
+    }
+
+    //Actionlistener for save game button
+    class SaveGameButtonListener implements ActionListener{
+        public SaveGameButtonListener(){
+            super();
+        }
+
+        public void actionPerformed (ActionEvent event){
+            Status.storeGame();
         }
     }
     

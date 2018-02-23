@@ -9,6 +9,9 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -66,6 +69,13 @@ public class GameBoard extends JPanel {
     				 / tileSize);
                 System.out.println("row index: " + row);
                 System.out.println("col index: " + col);
+
+                if (current_player == State.BLACK) {
+                    Status.addMove(col, row, 1);
+                }
+                else {
+                    Status.addMove(col, row, 0);
+                }
 
                 Point newPoint = new Point(col,row);
 
@@ -157,4 +167,56 @@ public class GameBoard extends JPanel {
     public State getCurrent_player() {
         return current_player;
     }
-}
+
+
+    public void restoreGame(ArrayList<String> history, JTextArea textArea) {
+        for (String move : history) {
+            String [] coordinates = move.split(Pattern.quote(","));
+            int col = Integer.parseInt(coordinates[0]);
+            int row = Integer.parseInt(coordinates[1]);
+            int state = Integer.parseInt(coordinates[2]);
+
+            if (state == 1) {
+                current_player = State.BLACK;
+            }
+            else {
+                current_player = State.WHITE;
+            }
+
+            Point newPoint = new Point(col,row);
+
+            // Check wherever it's valid
+            if (newPoint.getY() >= gridSize || newPoint.getX() >= gridSize || newPoint.getY() < 0 || newPoint.getX() < 0) {
+                return;
+            }
+
+            //check if each rule is not being violated
+            if(grid.isMoveAllowed(new Stone(newPoint,current_player,0),current_player)) {
+                grid.addStone(newPoint, current_player);
+
+                textArea.append("\nMove number: " + grid.getMoveNumber());
+                if (current_player == State.BLACK) {
+                    textArea.append("\nIt is White's turn.");
+                }
+                else {
+                    textArea.append("\nIt is Black's turn.");
+                }
+                textArea.append("\nBlack score: " + grid.getBlackScore());
+                textArea.append("\nWhite score: " + grid.getWhiteScore() + "\n");
+
+                lastMove = new Point(col, row);
+
+                // Switch current player
+                if (current_player == State.BLACK) {
+                    current_player = State.WHITE;
+                } else {
+                    current_player = State.BLACK;
+                }
+
+            }
+        }
+        repaint();
+    }
+
+    }
+

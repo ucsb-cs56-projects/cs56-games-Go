@@ -168,6 +168,7 @@ public class GameBoard extends JPanel {
         return current_player;
     }
 
+
     public void restoreGame(ArrayList<String> history, JTextArea textArea) {
         for (String move : history) {
             String [] coordinates = move.split(Pattern.quote(","));
@@ -218,3 +219,4 @@ public class GameBoard extends JPanel {
     }
 
     }
+

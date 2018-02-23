@@ -16,6 +16,7 @@ public class Status {
     private static int boardSize;
 
 
+
     public Status() {
         SFXonOrOff = true;
         MusicOnOrOff = true;
@@ -23,6 +24,7 @@ public class Status {
         WhiteScore = 0;
         BlackScore = 0;
         GameIsOver = false;
+
         Moves = new ArrayList<String>();
         boardSize = 0;
     }
@@ -70,6 +72,7 @@ public class Status {
 
     public static void setBoardSize(int boardSize) {
         Status.boardSize = boardSize;
+
     }
 
     public static int getWhiteScore() {
@@ -112,6 +115,7 @@ public class Status {
         Status.SFXonOrOff = SFXonOrOff;
     }
 
+
     public static boolean getMusicOnOrOff() {
         return MusicOnOrOff;
     }
@@ -119,4 +123,5 @@ public class Status {
     public static void setMusicOnOrOff(boolean musicOnOrOff) {
         MusicOnOrOff = musicOnOrOff;
     }
+
 }

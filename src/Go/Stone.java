@@ -2,7 +2,8 @@ package Go;
 
 import Go.State;
 import java.awt.Point;
-import java.lang.Double; 
+import java.io.Serializable;
+import java.lang.Double;
 /**
  * The piece that is placed by a player each move.
  *

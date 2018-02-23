@@ -54,6 +54,7 @@ public class ChooseBoardSizeScreen extends JComponent
 
 			public void actionPerformed (ActionEvent e){
 				GameCreator mini = new GameCreator(5,5);
+				Status.setBoardSize(5);
 			}
 		}
 
@@ -61,6 +62,7 @@ public class ChooseBoardSizeScreen extends JComponent
 
 			public void actionPerformed (ActionEvent e){
 				GameCreator small = new GameCreator(9,9);
+				Status.setBoardSize(9);
 			}
 		}
 
@@ -68,6 +70,7 @@ public class ChooseBoardSizeScreen extends JComponent
 
 			public void actionPerformed (ActionEvent e){
 				GameCreator medium = new GameCreator(13,13);
+				Status.setBoardSize(13);
 			}
 		}
 
@@ -75,6 +78,7 @@ public class ChooseBoardSizeScreen extends JComponent
 
 			public void actionPerformed (ActionEvent e){
 				GameCreator large = new GameCreator(19,19);
+				Status.setBoardSize(19);
 			}
 		}
 

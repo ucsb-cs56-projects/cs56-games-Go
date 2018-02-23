@@ -1,7 +1,7 @@
 package Go;
 
 
-import Go.State;
+import java.io.Serializable;
 import java.util.*;
 import java.awt.Point;
 
@@ -10,7 +10,7 @@ import java.awt.Point;
  *  
  *
  */
-public class Grid{
+public class Grid {
 
     private final int SIZE;
     private int moveNumber;
@@ -26,7 +26,7 @@ public class Grid{
 
     /**
      * Creates empty grid with 
-     *@param int  number of columns in the grid 
+     *@param int  number of columns in the grid
      *@param row  number of rows in the grid
      */
     
@@ -59,7 +59,12 @@ public class Grid{
         
         stonesOnBoard.put(point,newStone);
 
-        
+        if (state == State.WHITE) {
+            Status.setWhiteScore(Status.getWhiteScore() + 1);
+        }
+        else {
+            Status.setBlackScore(Status.getBlackScore() + 1);
+        }
 
         // find newly killed opponent groups using floodfill method
         Map<String,LinkedHashMap<Point,Stone>> deadGroups = checkForDeadOpponentGroups(newStone);
@@ -72,11 +77,17 @@ public class Grid{
         System.out.println("White score: " + whiteScore);
         System.out.println("Black score: " + blackScore + "\n");
 
+
         if(lastWhiteMove != null) 
             System.out.println("last white move: " + lastWhiteMove.getLocation());
         if(lastBlackMove != null)
             System.out.println("last black move: " + lastBlackMove.getLocation());
-     
+
+        SoundEffect stoneSound = new SoundEffect();
+        if (Status.getSFXonOrOff()) {
+            stoneSound.playEffect();
+        }
+
         addMove(newStone);
 
     }
@@ -262,12 +273,16 @@ public class Grid{
                 if(state == State.BLACK){
                     capturedByBlack.put(point,chain.get(point));
                     blackScore++;
+                    Status.setWhiteScore(Status.getWhiteScore() - 1);
+                    Status.setBlackScore(Status.getBlackScore() + 1);
 
                     System.out.println(point);
                 }
                 if(state == State.WHITE){
                     capturedByWhite.put(point,chain.get(point));
                     whiteScore++;
+                    Status.setBlackScore(Status.getBlackScore() - 1);
+                    Status.setWhiteScore(Status.getWhiteScore() + 1);
 
                     System.out.println(point);
                 }

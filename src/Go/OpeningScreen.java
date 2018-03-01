@@ -91,7 +91,7 @@ class OpeningScreen extends JComponent
 	class AuthorBioButtonListener implements ActionListener{
 
 		public void actionPerformed (ActionEvent e){
-			//insert bios
+			AboutTheAuthors about = new AboutTheAuthors();
 		}
 	}
 

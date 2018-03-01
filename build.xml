@@ -8,6 +8,7 @@
     <property name="projectName" value="cs56-games-Go" />
     <property name="mainClass" value="Go.Main" />
     <property name="javadoc_absolute_path" location="docs/javadoc"/>
+    <property name="public_javadoc_path" location="../public_javadoc_workaround/javadoc"/>
     <target name="compile" depends="clean" description="compile my code">
         <mkdir dir="build" />
         <javac srcdir="src" destdir="build" debug="true" debuglevel="lines,vars,source" includeantruntime="false">
@@ -34,18 +35,35 @@
         <delete dir="javadoc" quiet="true" />
     </target>
 
-    <target name="javadoc" depends="compile">
-	    <delete dir="docs/javadoc" quiet="true" />
-	    <javadoc  destdir="docs/javadoc" author="true" version="true" use="true" >
-            <fileset dir="src" includes="**/*.java"/>
-            <classpath refid="project.class.path" />
+    <target name="javadoc" depends="compile" description="generate javadoc">
+    <delete quiet="true">
+      <fileset dir="javadoc" />
+    </delete>
+    <javadoc destdir="javadoc">
+      <fileset dir="src" >
+	      <include name="**/*.java"/>
+      </fileset>
+      <classpath refid="project.class.path" />
+      <link href="https://docs.oracle.com/javase/8/docs/api/" />          
     </javadoc>
+    <echo>                                                                                       
+      javadoc written to file://${javadoc_path}/index.html                              
+      copying to ${public_javadoc_path}/index.html                                      
+    </echo>                                                                                      
+    <delete quiet="true">                                                                        
+      <fileset dir="${public_javadoc_path}" />                                          
+    </delete>                                                                                    
+    <mkdir dir="${public_javadoc_path}" />                                              
+    <copy todir="${public_javadoc_path}">                                               
+      <fileset dir="javadoc" />                                                                  
+    </copy>                                                                                      
+    <echo>                                                                                       
+      javadoc copied to ${public_javadoc_path}/index.html                               
+      TO PUBLISH: cd into that repo, then git add javadoc;                                       
+        git commit -m "update javadoc"; git push origin master                               
+    </echo>                                                                                     
+  </target>     
 
-        <echo>
-	        javadoc written to file://${javadoc_absolute_path}/index.html
-        </echo>
-        
-    </target>
     
     
 </project>

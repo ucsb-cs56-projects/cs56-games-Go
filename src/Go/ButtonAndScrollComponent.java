@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
@@ -25,7 +26,7 @@ public class ButtonAndScrollComponent extends JComponent
     transient private GoInstructions directionFrame;
 
     
-    private boolean playMusic = true; //Default music to be on
+
     private BackgroundMusic m = new BackgroundMusic();
     
     transient private JButton sur = new JButton();
@@ -38,9 +39,11 @@ public class ButtonAndScrollComponent extends JComponent
         this.grid = grid;
         this.gCreator = gCreator;
         this.setLayout(new BoxLayout(this,1));
-        
-        m.playMusic(); //Starts music
-        Status.setSFXonOrOff(true);
+
+        if (Status.getMusicOnOrOff()) {
+            m.playMusic(); //Starts music
+        }
+
         
         sur.addActionListener(new ButtonListener());
         JScrollPane scroller = new JScrollPane(textArea); //This and next two line set scrollbar if the window needs it
@@ -104,11 +107,13 @@ public class ButtonAndScrollComponent extends JComponent
                 if (board.getCurrent_player() == State.WHITE) {
                     textArea.append("\nWhite has surrendered.\n");
                     textArea.append("By default, Black has\nwon the match!\n");
+                    Status.setWhiteSurrendered(true);
                 }
 
                 else if (board.getCurrent_player() == State.BLACK) {
-                    textArea.append("Black has surrendered.\n");
+                    textArea.append("\nBlack has surrendered.\n");
                     textArea.append("By default, White has\nwon the match!\n");
+                    Status.setBlackSurrendered(true);
                 }
 
                 textArea.append("\nPress the restart button\nto play again.\n");
@@ -179,8 +184,11 @@ public class ButtonAndScrollComponent extends JComponent
 	   m.endMusic();
 	   Status.setSkippedTurn(false);
 	   Status.setGameIsOver(false);
+	   Status.setWhiteSurrendered(false);
+	   Status.setBlackSurrendered(false);
 	   Status.setWhiteScore(0);
 	   Status.setBlackScore(0);
+	   Status.setMoves(new ArrayList<String>());
 	   gCreator.ReDraw();
         }
     }
@@ -208,13 +216,11 @@ public class ButtonAndScrollComponent extends JComponent
         }
         
         public void actionPerformed (ActionEvent event){
-            if(playMusic){
-                playMusic = false; //Check if music button is switched to off
+            if(Status.getMusicOnOrOff()){
                 m.endMusic(); //Ends music
                 Status.setMusicOnOrOff(false); //For saving and loading, nothing else
             }else{
                 m = new BackgroundMusic(); //Otherwise make new background music
-                playMusic = true; //Set true
                 m.playMusic(); //Play it
                 Status.setMusicOnOrOff(true); //For saving and loading, nothing else
             }

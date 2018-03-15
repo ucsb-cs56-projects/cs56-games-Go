@@ -1,3 +1,5 @@
+JAVDOC FOUND AT: https://shnube.github.io/proj01-javadoc-praxideus-shnube/public_javadoc_workaround/javadoc/
+
 ```
 
 Before everything, make sure your partner and you have one mac and one windows/linux machine. 

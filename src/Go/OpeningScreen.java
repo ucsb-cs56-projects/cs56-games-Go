@@ -64,10 +64,14 @@ class OpeningScreen extends JComponent
 		panel.add(button4);
 		button4.addActionListener(new AuthorBioButtonListener());
 
+		JButton button5 = new JButton("Single Player");
+		panel.add(button5);
+		button5.addActionListener(new SoloButtonListener());
+
 		Status start = new Status();
 
 		//frame.setResizable(false);
-		
+   		
 
 	}
 
@@ -166,7 +170,7 @@ class OpeningScreen extends JComponent
 				//If the game is over because someone has surrendered
 				if (Status.getGameIsOver() && (Status.getBlackSurrendered() || Status.getWhiteSurrendered())) {
 					savedGame.Surrender();
-
+   
 					if (Status.getWhiteSurrendered()) {
 						savedGame.textArea.append("\nWhite has surrendered.\n");
 						savedGame.textArea.append("By default, Black has\nwon the match!\n");
@@ -196,4 +200,10 @@ class OpeningScreen extends JComponent
 		}
 	}
 
+	class SoloButtonListener implements ActionListener{
+
+		public void actionPerformed (ActionEvent e){
+			AIBoardSizeScreen screen = new AIBoardSizeScreen();
+		}
+	}
 }

@@ -54,8 +54,10 @@ public class GameBoard extends JPanel {
                     // Switch current player
                     if (current_player == State.BLACK) {
                         current_player = State.WHITE;
+
                     } else {
                         current_player = State.BLACK;
+
                     }
                     Status.setSkippedTurn(false);
                 }

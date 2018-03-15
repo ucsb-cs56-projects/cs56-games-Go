@@ -57,6 +57,17 @@ public class AIGameBoard extends JPanel {
                 int row;
                 int col;
                 Point newPoint;
+
+                if (Status.getSkippedTurn()) {
+                    // Switch current player
+                    if (current_player == State.BLACK) {
+                        current_player = State.WHITE;
+                    } else {
+                        current_player = State.BLACK;
+                    }
+                    Status.setSkippedTurn(false);
+                }
+
                 if (!surrender) {
                     if (current_player == State.BLACK) {
                         row = Math.round((float) (e.getY() - borderSize)
@@ -85,6 +96,12 @@ public class AIGameBoard extends JPanel {
                         grid.addStone(newPoint, current_player);
 
                         textArea.append("\nMove number: " + grid.getMoveNumber());
+                        if (current_player == State.BLACK) {
+                            textArea.append("\nIt is the Computer's turn.\nPlease click anywhere to have\nthe Computer move.\nIf there are no more\nmoves available for the\nComputer, please skip their turn.");
+                        }
+                        else {
+                            textArea.append("\nIt is your turn.");
+                        }
                         textArea.append("\nBlack score: " + grid.getBlackScore());
                         textArea.append("\nWhite score: " + grid.getWhiteScore() + "\n");
 

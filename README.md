@@ -136,6 +136,8 @@ In the Two-player mode, the player must click for the AI to place their stone, b
 
 This README was useless when W18 started because of F17's rework. W18 seeks to fix that. Please enjoy the information below.
 
+IntelliJ made working on this a lot easier. Please consider using it as a replacement for emacs or vim.
+
 The code works but it is pretty repetitive. It is basically understandable, but some aspects of the code could be more concise and the method names could be clearer. A little problem you might run into also, is trying to understand the game itself. It's a pretty deep game, with little intricacies here and there that makes the gameplay a little more confusing than usual. But the rules are in the game, as well as a source that goes into a little more detail than the in-game instructions panel does.
 
 So I would suggest:

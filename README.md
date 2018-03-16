@@ -9,11 +9,11 @@ The reason being that, there is a bug of this software that only shows on mac in
 cs56-games-Go
 =============
 
-A gui version of the Chinese board game called Go.
-README file updated by Nicholas Abrahan & Keith Waldron, CS56, W14, Proj1;
-Previously only contained "How to Run" and a screenshot.
-README file updated by Jeffrey Liu & Lauren Dumapias, CS56, W16;
-README file updated by Gehrig Weber & Misha Zaied, CS56, W18;
+A gui version of the Chinese board game called Go.  
+README file updated by Nicholas Abrahan & Keith Waldron, CS56, W14, Proj1;  
+Previously only contained "How to Run" and a screenshot.  
+README file updated by Jeffrey Liu & Lauren Dumapias, CS56, W16;  
+README file updated by Gehrig Weber & Misha Zaied, CS56, W18;  
 
 
 project history

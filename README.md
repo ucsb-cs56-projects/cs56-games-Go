@@ -27,16 +27,16 @@ NO | mastergberry | kwwham,nickabrahan | A gui version of the Chinese board game
 ```
 # F16 Final Remarks (Inaccurate due to F17 rework, please skip to W18 Final Remarks)
 
-# ** The Current State of the Project **
+## ** The Current State of the Project **
 The game works, but has a few bugs. We still haven't implemented the KO rule of the game, and there is a bug (on windows) where the mouse causes any stone that it hovers over to turn white after you've restarted the game (though the restart button works on mac systems). 
 
 Everything that worked in W16 still works. You should be able to play the game (one time without restarting) fairly well.
 
-# ** Developer Notes **
+## ** Developer Notes **
 
 The code works, but is very confusing and does not always follow good OOP practices. We spent a considerable amount of time deleting commented out code and trying to clean up the files. Method names could definitely be clearer, and there is no practice of loose coupling here. If time, it would be worth it to restructure the code to adhere to good OOP practices and implement loose coupling, as now the code is very interrelated and it is difficult to make a change without causing an error somewhere else in the code.
 
-# **File Explanation **
+## **File Explanation **
 
 BackgroundMusic.java -- Represents a music object. Has methods to turn the music on and off
 
@@ -60,7 +60,7 @@ SoundEffect.java -- Represents a sound effect object. Has a method that is calle
 
 MessageDestination.java/SystemOutMessageDestination.java -- The interface and the implementation, respectively; Simply contains an easier way to output messages to the system instead of having to put "System.out.println("x")". Might be useful only for Go.java's main and unnecessary for GoGui1.java's main.
 
-# **Running the Game**
+## **Running the Game**
 ant run
 
 see the picture in W16 final remarks to see what the game looks like
@@ -68,13 +68,13 @@ see the picture in W16 final remarks to see what the game looks like
 
 # W16 Final Remarks (Inaccurate due to F17 rework, please skip to W18 Final Remarks)
 
-# The Current State of the Project
+## The Current State of the Project
 
 The game, as it currently stands works, but it's missing some gameplay fundamentals. It doesn't implement area and territory scoring, and there are some gameplay bugs (such as the one outlined in the Ko rule of the game). All of these are outlined in the issues.
 
 But again, the game currently works, and the scoring is simply based on the amount of tiles held by one player. Capturing works perfectly and there are no known glitches. You are able to restart the game, but it would nice to clear the previous scoreboard.
 
-# Developer Notes
+## Developer Notes
 
 The code works but it is pretty repetitive. It is basically understandable, but some aspects of the code could be more concise and the method names could be clearer. A little problem you might run into also, is trying to understand the game itself. It's a pretty deep game, with little intricacies here and there that makes the gameplay a little more confusing than usual. But the rules are in the game, as well as a source that goes into a little more detail than the in-game instructions panel does.
 
@@ -83,7 +83,7 @@ So I would suggest:
 2. Start understanding the code. This step might be a little difficult, but the comments could make the process easier. 
 3. Working on the issues.
 
-# File Explanation
+## File Explanation
 
 ButtonAndScrollComponent.java -- Handles the scrollbars/buttons in the GUI
 
@@ -106,7 +106,7 @@ MessageDestination.java/SystemOutMessageDestination.java -- The interface and th
 
 
 
-# Running the Game
+## Running the Game
 
 simply use the command:
 ```
@@ -124,7 +124,7 @@ Do not look at the file explaination section as a guide.  The code was heavily r
 
 # W18 Final Remarks
 
-# The Current State of the Project
+## The Current State of the Project
 
 There are two modes: Two-Player (which is presented as the default) and Single-Player (You play against an AI that places stones randomly). All the rules of the game are implemented correctly except for one bug (see issue #82 - "Cannot drop stone in eye on the edge of board when such a move would result in a capture."). If the words "perfectly" or some synonym of that is ever used from now on, please keep in mind that this bug is present.
 
@@ -132,7 +132,7 @@ In the Single-Player mode, everything works perfectly. There are no buttons that
 
 In the Two-player mode, the player must click for the AI to place their stone, but the AI is the one who decides where the stone goes (randomly). The player may have to click multiple times in order for the AI to choose a valid spot. The player will also have to skip the AI's turn if they click repeatedly and the AI won't do anything because there are no more valid moves for it to make. Saving and loading minght not work in this mode.
 
-# Developer Notes
+## Developer Notes
 
 This README was useless when W18 started because of F17's rework. W18 seeks to fix that. Please enjoy the information below.
 
@@ -143,7 +143,7 @@ So I would suggest:
 2. Start understanding the code. This step might be a little difficult, but the comments could make the process easier. 
 3. Working on the issues.
 
-# File Explanation
+## File Explanation
 
 AboutTheAuthors.java -- Displays information about the authors when the "About the Authors" button on the Opening Screen is clicked
 
@@ -173,7 +173,7 @@ Status.java -- Contains many "global" variables about the state of the game, ind
 
 Stone.java -- The class that represents a stone in the game of Go
 
-# Running the Game
+## Running the Game
 
 simply use the command:
 ```

@@ -134,6 +134,8 @@ In the Two-player mode, the player must click for the AI to place their stone, b
 
 # Developer Notes
 
+This README was useless when W18 started because of F17's rework. W18 seeks to fix that. Please enjoy the information below.
+
 The code works but it is pretty repetitive. It is basically understandable, but some aspects of the code could be more concise and the method names could be clearer. A little problem you might run into also, is trying to understand the game itself. It's a pretty deep game, with little intricacies here and there that makes the gameplay a little more confusing than usual. But the rules are in the game, as well as a source that goes into a little more detail than the in-game instructions panel does.
 
 So I would suggest:
@@ -151,26 +153,25 @@ ButtonAndScrollComponent.java -- Handles the scrollbars/buttons in the in-game G
 
 ChooseBoardSizeScreen.java -- Displays options to choose a Go board of 5x5, 9x9, 13x13, or 19x19. Opens a new window.
 
+GameBoard.java -- Displays the actual Go board and handles turning mouse clicks into locations usable by the rest of the program.
 
+GameCreator.java -- Creates everything in the in-game GUI using GameBoard.java, ButtonAndScrollComponent.java, Grid.java, and others
 
-Go.java -- The old contains main. Doesn't use graphics and can be played on the terminal. This no longer works due to we changed the number of paraments and the return type of the "checkSurrounded" method in GoGrid.java.
+GoInstructions.java -- Displays the instructions of Go when the appropriate button is clicked on the Opening Screen or the in-game GUI
 
-GoComponent.java -- Handles the actual game mechanics, such as piece color changing, and deciding whose turn it is.
+Grid.java -- Handles adding stones to the board; includes methods to add stone, check if such a placement is valid according to the many complicated rules of Go, collecting dead stones, and others
 
-GoGame.java -- Contains the interface used by GoGrid.java and assists in the implementation of the game rules.
+Main.java -- All it does is create an instance of OpeningScreen
 
-GoGrid.java -- Contains the implementation of GoGame.java, with appropriate methods that are used by GoComponent to help with the game mechanics. It's also responsible for the drawing of the grid and the methods used to make sure that the rules stay valid.
+OpeningScreen.java -- Displays the screen one sees when starting the game. Right now, it has 5 buttons: "Start New Game", "Instructions", "Load Saved Game", "About the Authors", and "Single Player"
 
-GoGui1.java -- Organizes the layout of the game, to have the grid on the left side and the message box on the right side. Contains the main that build.xml runs.
+SoundEffect.java -- The class that actually retrieves the sound effect file and has a method to play it
 
-GoGui2.java -- Contains the "Directions" section of the GUI, handles little else but that.
+State.java -- Enables the current player to either have a BLACK or WHITE state, indicating whose turn it is
 
-GoIllegalMoveException.java -- Contains the Exception that occurs when you try to make an illegal move in Go.
+Status.java -- Contains many "global" variables about the state of the game, indicating if the Skipped Turn button was pressed, if the game is over, etc.
 
-MessageDestination.java/SystemOutMessageDestination.java -- The interface and the implementation, respectively; Simply contains an easier way to output messages to the system instead of having to put "System.out.println("x")". Might be useful only for Go.java's main and unnecessary for GoGui1.java's main.
-
-
-
+Stone.java -- The class that represents a stone in the game of Go
 
 # Running the Game
 

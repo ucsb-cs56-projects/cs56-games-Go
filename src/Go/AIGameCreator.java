@@ -19,7 +19,7 @@ import java.io.Serializable;
  * Builds UI and starts the game.
  *
  */
-public class GameCreator extends JComponent {
+public class AIGameCreator extends JComponent {
 
     public static final String TITLE = "Japanese Tsumego";
     public static final int BORDER_SIZE = 25;
@@ -27,18 +27,18 @@ public class GameCreator extends JComponent {
     transient public  JFrame f=null;
     transient public JPanel goPanel=null;
     public Grid grid = null;
-    public GameBoard board = null;
+    public AIGameBoard AIboard = null;
     public JTextArea textArea = null;
-    public ButtonAndScrollComponent basc  = null;
+    public AIButtonAndScrollComponent basc  = null;
     public void Surrender() {
-	board.surrender = true;
+	AIboard.surrender = true;
     }
     public void ReDraw() {
         	System.out.println("GameBoard Redrawing");
                 f.getContentPane().removeAll();
 		goPanel = new JPanel();
 		goPanel.setBackground(Color.GRAY);
-		goPanel.setLayout(new BorderLayout());
+		   goPanel.setLayout(new BorderLayout());
 		goPanel.setBorder(BorderFactory.createEmptyBorder(
 			BORDER_SIZE, 
 			BORDER_SIZE, 
@@ -48,13 +48,13 @@ public class GameCreator extends JComponent {
 		);
 		grid = new Grid(col,row);
 		textArea = new JTextArea(4,4);
-		board = new GameBoard(col,row,textArea);
+		AIboard = new AIGameBoard(col,row,textArea);
 		
-	        basc = new ButtonAndScrollComponent(board, textArea, grid, this);
+	        basc = new AIButtonAndScrollComponent(AIboard, textArea, grid, this);
 
 		f.add(goPanel);
 
-		board.setPreferredSize(new Dimension(500,500));
+		AIboard.setPreferredSize(new Dimension(500,500));
 		basc.setPreferredSize(new Dimension(300,150));
 		Font font = new Font("Verdana", Font.BOLD, 15);
 		textArea.setFont(font);
@@ -72,7 +72,7 @@ public class GameCreator extends JComponent {
 		f.applyComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
 		
-		goPanel.add(board);
+		goPanel.add(AIboard);
 
 		f.pack();
 		f.setResizable(false);
@@ -80,7 +80,7 @@ public class GameCreator extends JComponent {
 		f.setVisible(true);
 		f.getContentPane().repaint();
     }
-    public GameCreator(int col, int row) {
+    public AIGameCreator(int col, int row) {
                 this.col = col;
                 this.row = row;
 		f = new JFrame();
@@ -103,13 +103,13 @@ public class GameCreator extends JComponent {
 		
 		grid = new Grid(col,row);
 		textArea = new JTextArea(4,4);
-		board = new GameBoard(col,row,textArea);
+		AIboard = new AIGameBoard(col,row,textArea);
 		
-	        basc = new ButtonAndScrollComponent(board, textArea, grid, this);
+	        basc = new AIButtonAndScrollComponent(AIboard, textArea, grid, this);
 
 		f.add(goPanel);
 
-		board.setPreferredSize(new Dimension(500,500));
+		AIboard.setPreferredSize(new Dimension(500,500));
 		basc.setPreferredSize(new Dimension(300,150));
 		Font font = new Font("Verdana", Font.BOLD, 15);
 		textArea.setFont(font);
@@ -127,7 +127,7 @@ public class GameCreator extends JComponent {
 		f.applyComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
 		
-		goPanel.add(board);
+		goPanel.add(AIboard);
 
 		f.pack();
 		f.setResizable(false);

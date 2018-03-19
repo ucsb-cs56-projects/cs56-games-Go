@@ -64,10 +64,14 @@ class OpeningScreen extends JComponent
 		panel.add(button4);
 		button4.addActionListener(new AuthorBioButtonListener());
 
+		JButton button5 = new JButton("Single Player");
+		panel.add(button5);
+		button5.addActionListener(new SoloButtonListener());
+
 		Status start = new Status();
 
 		//frame.setResizable(false);
-		
+   		
 
 	}
 
@@ -107,16 +111,78 @@ class OpeningScreen extends JComponent
 				Object temp5 = iStream.readObject();
 				boolean Skip = (boolean) temp5;
 
+				Object temp6 = iStream.readObject();
+				boolean GameOver = (boolean) temp6;
+
+				Object temp7 = iStream.readObject();
+				boolean BlackSurrendered = (boolean) temp7;
+
+				Object temp8 = iStream.readObject();
+				boolean WhiteSurrendered = (boolean) temp8;
+
 				iStream.close();
+
+				Status.setSFXonOrOff(SFX);
+				Status.setMusicOnOrOff(Music);
 
 				GameCreator savedGame = new GameCreator(size, size);
 				savedGame.board.restoreGame(history, savedGame.textArea);
 
 				Status.setMoves(history);
 				Status.setBoardSize(size);
-				Status.setSFXonOrOff(SFX);
-				Status.setMusicOnOrOff(Music);
 				Status.setSkippedTurn(Skip);
+				Status.setGameIsOver(GameOver);
+				Status.setBlackSurrendered(BlackSurrendered);
+				Status.setWhiteSurrendered(WhiteSurrendered);
+
+				//If the game is over because someone has won
+				if (Status.getGameIsOver() && !Status.getBlackSurrendered() && !Status.getWhiteSurrendered()) {
+					savedGame.Surrender();
+					String Bpoints = "points";
+					String Wpoints = "points";
+
+					if (Status.getBlackScore() == 1) {
+						Bpoints = "point";
+					}
+					if (Status.getWhiteScore() == 1) {
+						Wpoints = "point";
+					}
+					savedGame.textArea.append("\nBoth players have\nskipped their turn.\n");
+					savedGame.textArea.append("A winner will now be calculated.\n");
+					savedGame.textArea.append("\nThe winner is...\n");
+
+					if (Status.getWhiteScore() > Status.getBlackScore()) {
+						savedGame.textArea.append("White! With " + Status.getWhiteScore() + " " + Wpoints + " to\n");
+						savedGame.textArea.append("Black's " + Status.getBlackScore() + " " + Bpoints + ",\n");
+						savedGame.textArea.append("White has won the match!\n");
+					} else if (Status.getWhiteScore() < Status.getBlackScore()) {
+						savedGame.textArea.append("Black! With " + Status.getBlackScore() + " " + Bpoints + " to\n");
+						savedGame.textArea.append("White's " + Status.getWhiteScore() + " " + Wpoints + ",\n");
+						savedGame.textArea.append("Black has won the match!\n");
+					} else {
+						savedGame.textArea.append("No one!\nBoth players have " + Status.getWhiteScore() + " " + Bpoints + "!\n");
+						savedGame.textArea.append("This match is a draw!\n");
+					}
+
+					savedGame.textArea.append("\nPress the restart button\nto play again.\n");
+				}
+
+				//If the game is over because someone has surrendered
+				if (Status.getGameIsOver() && (Status.getBlackSurrendered() || Status.getWhiteSurrendered())) {
+					savedGame.Surrender();
+   
+					if (Status.getWhiteSurrendered()) {
+						savedGame.textArea.append("\nWhite has surrendered.\n");
+						savedGame.textArea.append("By default, Black has\nwon the match!\n");
+					}
+
+					else if (Status.getBlackSurrendered()) {
+						savedGame.textArea.append("\nBlack has surrendered.\n");
+						savedGame.textArea.append("By default, White has\nwon the match!\n");
+					}
+
+					savedGame.textArea.append("\nPress the restart button\nto play again.\n");
+				}
 			}
 			catch (IOException ex) {
 				ex.printStackTrace();
@@ -134,4 +200,10 @@ class OpeningScreen extends JComponent
 		}
 	}
 
+	class SoloButtonListener implements ActionListener{
+
+		public void actionPerformed (ActionEvent e){
+			AIBoardSizeScreen screen = new AIBoardSizeScreen();
+		}
+	}
 }

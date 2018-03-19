@@ -16,13 +16,13 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 
 
-public class ButtonAndScrollComponent extends JComponent
+public class AIButtonAndScrollComponent extends JComponent
 {
     //new gocomponent, textarea, game, frames
     private Grid grid;
     transient private JTextArea textArea;
-    private GameBoard board;
-    private GameCreator gCreator;
+    private AIGameBoard AIboard;
+    private AIGameCreator gCreator;
     transient private GoInstructions directionFrame;
 
     
@@ -31,10 +31,10 @@ public class ButtonAndScrollComponent extends JComponent
     
     transient private JButton sur = new JButton();
     public boolean surrender = false;    
-    public ButtonAndScrollComponent(GameBoard board, JTextArea textArea, Grid grid, GameCreator gCreator){
+    public AIButtonAndScrollComponent(AIGameBoard AIboard, JTextArea textArea, Grid grid, AIGameCreator gCreator){
         
         super();
-        this.board=board;
+        this.AIboard=AIboard;
         this.textArea = textArea;
         this.grid = grid;
         this.gCreator = gCreator;
@@ -104,13 +104,13 @@ public class ButtonAndScrollComponent extends JComponent
                 surrender = true;
                 gCreator.Surrender();
 
-                if (board.getCurrent_player() == State.WHITE) {
+                if (AIboard.getCurrent_player() == State.WHITE) {
                     textArea.append("\nWhite has surrendered.\n");
                     textArea.append("By default, Black has\nwon the match!\n");
                     Status.setWhiteSurrendered(true);
                 }
 
-                else if (board.getCurrent_player() == State.BLACK) {
+                else if (AIboard.getCurrent_player() == State.BLACK) {
                     textArea.append("\nBlack has surrendered.\n");
                     textArea.append("By default, White has\nwon the match!\n");
                     Status.setBlackSurrendered(true);

@@ -10,6 +10,8 @@ public class Status {
     private static boolean MusicOnOrOff;
     private static boolean SkippedTurn;
     private static boolean GameIsOver;
+    private static boolean WhiteSurrendered;
+    private static boolean BlackSurrendered;
     private static int WhiteScore;
     private static int BlackScore;
     private static ArrayList<String> Moves;
@@ -24,6 +26,8 @@ public class Status {
         WhiteScore = 0;
         BlackScore = 0;
         GameIsOver = false;
+        WhiteSurrendered = false;
+        BlackSurrendered = false;
 
         Moves = new ArrayList<String>();
         boardSize = 0;
@@ -44,12 +48,18 @@ public class Status {
             boolean storeSFX = SFXonOrOff;
             boolean storeMusic = MusicOnOrOff;
             boolean storeSkip = SkippedTurn;
+            boolean storeGameOver = GameIsOver;
+            boolean storeBlackSurrendered = BlackSurrendered;
+            boolean storeWhiteSurrendered = WhiteSurrendered;
 
             oStream.writeObject(storeSize);
             oStream.writeObject(storage);
             oStream.writeObject(storeSFX);
             oStream.writeObject(storeMusic);
             oStream.writeObject(storeSkip);
+            oStream.writeObject(storeGameOver);
+            oStream.writeObject(storeBlackSurrendered);
+            oStream.writeObject(storeWhiteSurrendered);
 
             oStream.close();
         }
@@ -97,6 +107,22 @@ public class Status {
 
     public static void setGameIsOver(boolean gameIsOver) {
         GameIsOver = gameIsOver;
+    }
+
+    public static boolean getWhiteSurrendered() {
+        return WhiteSurrendered;
+    }
+
+    public static void setWhiteSurrendered(boolean whiteSurrendered) {
+        WhiteSurrendered = whiteSurrendered;
+    }
+
+    public static boolean getBlackSurrendered() {
+        return BlackSurrendered;
+    }
+
+    public static void setBlackSurrendered(boolean blackSurrendered) {
+        BlackSurrendered = blackSurrendered;
     }
 
     public static boolean getSkippedTurn() {
